@@ -21,7 +21,9 @@ The build type-checks the application and exports all pages and assets into `out
 ## Features
 
 - Responsive shared navigation, mobile menu, and footer.
-- Browser-local terminal preview with completion, history examples, and selectable themes. It never executes system commands.
+- Animated browser-local terminal preview with completion, history examples, and selectable shell themes. Playback can be paused, stops on interaction, and respects reduced-motion preferences. It never executes system commands.
+- Persistent light/dark mode across every page, initialized before hydration and following the system preference until a visitor chooses a mode.
+- Interactive feature explorer with six capability previews.
 - Searchable documentation topics and copyable code examples.
 - Installation, commands, shortcuts, customization, and a clearly identified roadmap.
 - Keyboard focus styles, a skip link, reduced-motion support, and page metadata.

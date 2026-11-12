@@ -3,6 +3,10 @@ export function Logo() { return <svg viewBox="0 0 32 25" fill="none" aria-hidden
 export function Arrow() { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 export function Icon({name}: {name:string}) {
   const paths: Record<string, ReactNode> = {
+    sun: <><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></>,
+    moon: <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/>,
+    pause: <><path d="M8 5v14M16 5v14" strokeWidth="3"/></>,
+    play: <path d="m8 4 12 8-12 8V4Z"/>,
     terminal: <><path d="m6 8 4 4-4 4m7 0h5"/><rect x="2" y="3" width="20" height="18" rx="3"/></>,
     windows: <path d="m3 5 8-1v7H3V5Zm10-1 8-1v8h-8V4ZM3 13h8v7l-8-1v-6Zm10 0h8v8l-8-1v-7Z"/>,
     download: <path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/>,
