@@ -21,6 +21,7 @@ The build type-checks the application and exports all pages and assets into `out
 ## Features
 
 - Responsive shared navigation, mobile menu, and footer.
+- Shared readable typography across every page, with larger reading text, controls, documentation, and terminal previews; layouts adapt to narrow screens.
 - Animated browser-local terminal preview with completion, history examples, and selectable shell themes. Playback can be paused, stops on interaction, and respects reduced-motion preferences. It never executes system commands.
 - Explicit Light/Dark controls across every page, initialized before hydration and following the system preference until a visitor chooses a mode. The terminal preview follows the page color mode, with Ocean/Dusk/Midnight accent palettes.
 - Windows Terminal-style tabs and caption icons in the terminal preview.

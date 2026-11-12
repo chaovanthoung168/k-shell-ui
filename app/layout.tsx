@@ -4,6 +4,7 @@ import { SiteFooter } from "./components/site-footer";
 import "./globals.css";
 import "./redesign.css";
 import "./window-theme.css";
+import "./typography.css";
 
 export const metadata: Metadata = {
   title: { default: "K Shell — Make every command count.", template: "%s | K Shell" },
