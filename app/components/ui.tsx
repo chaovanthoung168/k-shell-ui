@@ -1,0 +1,24 @@
+import type { ReactNode } from "react";
+export function Logo() { return <svg viewBox="0 0 32 25" fill="none" aria-hidden="true"><path d="m3 4 8 8-8 8M17 21h12" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
+export function Arrow() { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
+export function Icon({name}: {name:string}) {
+  const paths: Record<string, ReactNode> = {
+    terminal: <><path d="m6 8 4 4-4 4m7 0h5"/><rect x="2" y="3" width="20" height="18" rx="3"/></>,
+    windows: <path d="m3 5 8-1v7H3V5Zm10-1 8-1v8h-8V4ZM3 13h8v7l-8-1v-6Zm10 0h8v8l-8-1v-7Z"/>,
+    download: <path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/>,
+    book: <path d="M12 6v15m0-15C8 3 5 3 2 4v15c4-1 6-1 10 2 4-3 6-3 10-2V4c-3-1-6-1-10 2Z"/>,
+    code: <path d="m7 7-5 5 5 5m10-10 5 5-5 5M14 4l-4 16"/>,
+    spark: <path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2ZM20 2v4m-2-2h4"/>,
+    palette: <><path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-3.7 1.8 1.8 0 0 1 1-3.3h3a3 3 0 0 0 3-3c0-4.4-4-8-9-8Z"/><path d="M7 10h.01M10 6.5h.01M15 7h.01M6.5 14h.01" strokeWidth="3"/></>,
+    history: <path d="M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v6l4 2"/>,
+    sliders: <><path d="M4 6h7m4 0h5M4 12h2m4 0h10M4 18h10m4 0h2"/><circle cx="13" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></>,
+    rust: <><circle cx="12" cy="12" r="8"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2M9 16V8h4a2 2 0 0 1 0 4H9m4 0 3 4"/></>,
+    search: <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></>,
+    copy: <><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></>,
+    check: <path d="m5 12 4 4L20 5"/>,
+    menu: <path d="M4 6h16M4 12h16M4 18h16"/>,
+    close: <path d="m6 6 12 12M6 18 18 6"/>,
+    heart: <path d="m12 21-8-8a5 5 0 0 1 8-6 5 5 0 0 1 8 6l-8 8Z"/>,
+  };
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name] || paths.terminal}</svg>;
+}
