@@ -7,7 +7,7 @@ import "./window-theme.css";
 import "./typography.css";
 
 export const metadata: Metadata = {
-  title: { default: "K Shell — A modern shell for Windows", template: "%s | K Shell" },
+  title: { default: "K Shell — A smarter shell for Windows", template: "%s | K Shell" },
   description: "A modern, customizable Windows shell built with Rust. Discover native commands, intelligent completion, syntax highlighting, and persistent history.",
   icons: { icon: "/icon.svg" },
 };

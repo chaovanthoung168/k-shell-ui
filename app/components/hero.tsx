@@ -9,7 +9,7 @@ export function Hero() {
       <div className="container hero-banner-inner">
         <div className="hero-intro">
           <Link href="/about/#project" className="hero-announcement"><span className="status-dot" /><code>kshell.exe</code><span>A fresh take on Windows</span><Arrow /></Link>
-          <h1>K Shell.<br />A modern shell for Windows.</h1>
+          <h1>A smarter shell.<br />Built for Windows.</h1>
           <p>Built with Rust. Inspired by Zsh and Fish.<br className="desktop-break" /> Familiar commands, smart suggestions, and a shell that feels like yours.</p>
           <div className="hero-banner-actions">
             <Link className="button button-primary" href="/docs/#installation"><Logo /> Start your session <Arrow /></Link>
