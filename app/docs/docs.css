@@ -119,9 +119,9 @@
 .palette-midnight .guide-theme-swatch i:nth-child(2) { background: #98baa8; }
 .palette-midnight .guide-theme-swatch i:nth-child(3) { background: #a9a4ca; }
 .guide-theme-picker > p { font-size: 13px; margin: 11px 0 18px; }
-.guide-terminal { --preview-path: #97b9ff; --preview-success: #8ed3b6; --preview-document: #bdade9; background: #172234; color: #d6dfea; border: 1px solid #354151; border-radius: 7px; overflow: hidden; }
-.guide-terminal.palette-dusk { --preview-path: #d5acff; --preview-success: #e9b0c4; --preview-document: #e1bf85; }
-.guide-terminal.palette-midnight { --preview-path: #79b9cc; --preview-success: #8bcbb2; --preview-document: #b6aedb; }
+.guide-terminal { --preview-path: #81b8ea; --preview-success: #81c7b4; --preview-document: #c5a6e8; --preview-config: #d8b27a; background: #172234; color: #d6dfea; border: 1px solid #354151; border-radius: 7px; overflow: hidden; }
+.guide-terminal.palette-dusk { --preview-path: #c7aef2; --preview-success: #a6d7b9; --preview-document: #c7aef2; --preview-config: #e4c082; }
+.guide-terminal.palette-midnight { --preview-path: #79b9cc; --preview-success: #8bcbb2; --preview-document: #b6aedb; --preview-config: #d9ba83; }
 .guide-terminal-chrome { height: 38px; background: #ffffff08; border-bottom: 1px solid #ffffff13; display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 0 12px; }
 .guide-terminal-chrome > span:first-child { display: flex; align-items: center; gap: 9px; }
 .guide-terminal-chrome svg { width: 15px; height: 15px; }
@@ -134,6 +134,12 @@
 .guide-terminal-content { padding: 22px 22px 15px; font-family: var(--mono); font-size: 15px; line-height: 1.9; overflow-wrap: anywhere; }
 .guide-terminal-content p { font-size: inherit; color: #d6dfea; }
 .guide-prompt-path, .guide-directory { color: var(--preview-path); }
+.guide-prompt-path, .guide-file-list > span { display: inline-flex; align-items: center; gap: 8px; }
+.guide-file-icon { width: 13px; height: 14px; flex-shrink: 0; vertical-align: middle; }
+.guide-unicode-icon { width: auto; min-width: 13px; height: auto; line-height: 1; }
+.guide-code-file { color: var(--preview-document); }
+.guide-config-file { color: var(--preview-config); }
+.guide-icon-default { margin-top: 17px; font-size: 13px; line-height: 1.8; }
 .guide-prompt { color: var(--preview-success); margin-right: 10px; }
 .guide-file-list { display: flex; flex-wrap: wrap; gap: 9px 25px; font-size: 14px; padding: 7px 0 18px 19px; }
 .guide-document { color: var(--preview-document); }

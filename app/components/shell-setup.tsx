@@ -10,9 +10,28 @@ const themes = [
   { id: "midnight", name: "Midnight", description: "Quiet cyan with muted sage." },
 ] as const;
 
+type FileKind = "folder" | "file" | "markdown" | "typescript" | "config";
+
+// Vector equivalents keep the Nerd Font preview readable on browsers without
+// that font installed. Unicode mode uses K Shell's actual fallback symbols.
+function FileIcon({ kind, mode }: { kind: FileKind; mode: string }) {
+  if (mode === "off") return null;
+  if (mode === "unicode") {
+    const glyphs: Record<FileKind, string> = { folder: "📁", file: "📄", markdown: "≡", typescript: "‹›", config: "⚙\uFE0E" };
+    return <span className="guide-file-icon guide-unicode-icon" aria-hidden="true">{glyphs[kind]}</span>;
+  }
+  return <svg className="guide-file-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    {kind === "folder" && <path d="M2 5h7l2 2h11v13H2V5Z" />}
+    {kind === "file" && <><path d="M5 2h9l5 5v15H5V2Z" /><path d="M14 2v6h5" fill="none" stroke="#172234" strokeWidth="1.2" /></>}
+    {kind === "markdown" && <><rect x="1.5" y="5" width="21" height="14" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" /><path d="M5 15V9l3 3 3-3v6m6-6v6m-3-3 3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.8" /></>}
+    {kind === "typescript" && <text x="12" y="17" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="700">TS</text>}
+    {kind === "config" && <><path d="m10 2 4 0 .7 3 2 .9 2.7-1.4 2 3.5-2.3 2 .2 2.2 2.2 2-2 3.5-2.9-.9-1.8 1.3-.7 3h-4l-.7-3-2-1-2.7 1.4-2-3.5 2.3-2-.2-2.2-2.2-2 2-3.5L7.5 7l1.8-1.3L10 2Z" /><circle cx="12" cy="12" r="3.3" fill="#172234" /></>}
+  </svg>;
+}
+
 export function ShellSetup() {
   const [theme, setTheme] = useState("midnight");
-  const [icons, setIcons] = useState("unicode");
+  const [icons, setIcons] = useState("nerd");
   const [suggestions, setSuggestions] = useState("soft");
   const sessionCommands = `theme ${theme}\ntheme icons ${icons}\ntheme suggestions ${suggestions}`;
   const startupCommand = `"%LOCALAPPDATA%\\Programs\\KShell\\kshell.exe" --theme ${theme} --icons ${icons} --suggestions ${suggestions}`;
@@ -25,10 +44,11 @@ export function ShellSetup() {
         <fieldset className="guide-theme-picker"><legend>Color palette</legend><div>{themes.map(item => <label className={`guide-theme-option palette-${item.id}`} key={item.id}><input type="radio" name="shell-palette" value={item.id} checked={theme === item.id} onChange={() => setTheme(item.id)} /><span className="guide-theme-swatch" aria-hidden="true"><i /><i /><i /></span><span>{item.name}</span><Icon name="check" /></label>)}</div><p>{themes.find(item => item.id === theme)?.description}</p></fieldset>
         <div className={`guide-terminal palette-${theme}`} aria-label={`${theme} shell theme preview`}>
           <div className="guide-terminal-chrome"><span><Icon name="terminal" /> K Shell</span><span className="guide-window-controls" aria-hidden="true"><i /><i /><i /></span></div>
-          <div className="guide-terminal-content"><p><span className="guide-prompt-path">{icons !== "off" && <span aria-hidden="true">⌁ </span>}C:\Users\you\projects</span></p><p><span className="guide-prompt">›</span> ls</p><div className="guide-file-list"><span className="guide-directory">{icons !== "off" && "▸ "}src</span><span>{icons !== "off" && "◇ "}Cargo.toml</span><span className="guide-document">{icons !== "off" && "◇ "}README.md</span></div><p><span className="guide-prompt">›</span> cargo <span className={`guide-suggestion suggestion-${suggestions}`}>build --release</span><span className="guide-caret" /></p><div className="guide-preview-caption"><span>Illustrative preview</span><span><kbd>Tab</kbd> accept suggestion</span></div></div>
+          <div className="guide-terminal-content"><p><span className="guide-prompt-path"><FileIcon kind="folder" mode={icons} />C:\Users\you\projects</span></p><p><span className="guide-prompt">›</span> ls</p><div className="guide-file-list"><span><FileIcon kind="markdown" mode={icons} />README.md</span><span className="guide-directory"><FileIcon kind="folder" mode={icons} />src</span><span className="guide-code-file"><FileIcon kind="typescript" mode={icons} />app.ts</span><span className="guide-config-file"><FileIcon kind="config" mode={icons} />Cargo.toml</span><span><FileIcon kind="file" mode={icons} />notes.txt</span></div><p><span className="guide-prompt">›</span> cargo <span className={`guide-suggestion suggestion-${suggestions}`}>build --release</span><span className="guide-caret" /></p><div className="guide-preview-caption"><span>Illustrative preview</span><span><kbd>Tab</kbd> accept suggestion</span></div></div>
         </div>
         <div className="guide-config-options"><label>Icons<select value={icons} onChange={event => setIcons(event.target.value)}><option value="unicode">Unicode — no special font</option><option value="nerd">Nerd Font icons</option><option value="off">Off</option></select></label><label>Suggestions<select value={suggestions} onChange={event => setSuggestions(event.target.value)}><option value="soft">Soft</option><option value="bold">Bold</option><option value="underline">Underline</option></select></label></div>
-        {icons === "nerd" && <p className="guide-config-warning"><Icon name="palette" /> Install and select a Nerd Font Mono in your terminal first. This browser preview uses standard symbols.</p>}
+        <p className="guide-icon-default">The Windows Terminal installer selects Nerd Font icons when a compatible Nerd Font is installed, with Unicode as the fallback.</p>
+        {icons === "nerd" && <p className="guide-config-warning"><Icon name="palette" /> Select an installed Nerd Font Mono in your terminal to display these file-type icons. Without one, choose Unicode above.</p>}
       </div>
       <h3>Apply to your current session</h3><p>Copy these commands and run them <strong>one line at a time inside K Shell</strong>.</p><CodeBlock label="K Shell · run each line" code={sessionCommands} />
       <p className="guide-small">These commands last for this session. <code>theme</code> shows your current choices; <code>theme reset</code> restores Ocean, Unicode icons, and soft suggestions. Shell themes change text colors; your terminal controls its background and font.</p>
