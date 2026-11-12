@@ -25,6 +25,7 @@ The build type-checks the application and exports all pages and assets into `out
 - Explicit Light/Dark controls across every page, initialized before hydration and following the system preference until a visitor chooses a mode. The terminal preview follows the page color mode, with Ocean/Dusk/Midnight accent palettes.
 - Windows Terminal-style tabs and caption icons in the terminal preview.
 - Interactive feature explorer with six capability previews.
+- Redesigned About page with a native execution diagram, expandable technology notes, verified dependency versions, and current/future capability sections.
 - Searchable documentation topics and copyable code examples.
 - Installation, commands, shortcuts, customization, and a clearly identified roadmap.
 - Keyboard focus styles, a skip link, reduced-motion support, and page metadata.

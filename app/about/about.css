@@ -1,0 +1,272 @@
+.about-page { --about-accent: var(--accent); }
+.about-intro { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 75px; padding-block: 77px 65px; }
+.about-eyebrow { display: flex; align-items: center; gap: 9px; font-size: 11px; color: var(--slate); }
+.about-eyebrow svg { width: 17px; height: 15px; color: var(--ink); }
+.about-intro h1 { font-size: clamp(45px, 4.6vw, 65px); letter-spacing: -3px; line-height: 1.06; margin: 25px 0 25px; }
+.about-intro-copy > p { max-width: 460px; font-size: 15px; line-height: 1.9; }
+.about-intro-actions { display: flex; gap: 24px; align-items: center; margin-top: 28px; }
+.about-intro-actions .button { font-size: 12px; }
+.about-project-meta { display: flex; align-items: center; gap: 19px; margin-top: 22px; font-size: 10px; color: var(--slate); }
+.about-project-meta > span:first-child { display: flex; align-items: center; gap: 6px; }
+.about-project-meta > span:last-child { border-left: 1px solid var(--line); padding-left: 19px; }
+.shell-blueprint { position: relative; margin: 0; padding: 23px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); isolation: isolate; }
+.shell-blueprint:before { content: ""; position: absolute; inset: 50px 12px 40px; background-image: radial-gradient(var(--hero-line) 1px, transparent 1px); background-size: 19px 19px; z-index: -1; }
+.blueprint-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; font-size: 9px; color: var(--slate); margin-bottom: 27px; }
+.blueprint-heading > span { display: flex; align-items: center; gap: 6px; }
+.blueprint-heading svg { width: 12px; height: 12px; }
+.blueprint-heading code { font-size: 9px; }
+.blueprint-stack { padding-inline: 12px; }
+.blueprint-node { display: flex; align-items: center; gap: 12px; padding: 17px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); }
+.blueprint-node > svg { width: 20px; height: 20px; color: var(--accent); }
+.blueprint-node strong { display: block; font-weight: 500; font-size: 11px; }
+.blueprint-node > div > span { display: block; font-size: 9px; color: var(--slate); margin-top: 4px; }
+.blueprint-node kbd { margin-left: auto; color: var(--slate); font-size: 8px; padding: 1px 4px; border-color: var(--line); }
+.blueprint-connector { display: block; height: 24px; width: 1px; margin: 0 auto; background: var(--hero-line); position: relative; }
+.blueprint-connector:after { content: ""; position: absolute; bottom: 0; left: -3px; width: 7px; height: 7px; border-right: 1px solid var(--accent); border-bottom: 1px solid var(--accent); transform: rotate(45deg); }
+.blueprint-core { display: flex; align-items: center; gap: 14px; padding: 22px; border: 1px solid #35435c; border-radius: 9px; background: #1a2434; color: #edf2fb; box-shadow: 0 10px 20px #18365a0a; }
+.blueprint-core-icon { display: grid; place-items: center; height: 42px; width: 43px; border: 1px solid #ffffff15; background: #ffffff05; border-radius: 9px; }
+.blueprint-core-icon svg { width: 25px; height: 22px; }
+.blueprint-core strong { display: block; font-size: 20px; letter-spacing: -.6px; font-weight: 600; }
+.blueprint-core > div > span { display: block; color: #99acc7; font-size: 9px; margin-top: 3px; }
+.blueprint-rust { display: flex; align-items: center; gap: 5px; font-family: var(--mono); color: #b4c5dd; font-size: 9px; margin-left: auto; }
+.blueprint-rust svg { width: 15px; height: 15px; }
+.shell-blueprint figcaption { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--slate); font-size: 8px; padding-top: 24px; }
+.shell-blueprint figcaption .status-dot { width: 4px; height: 4px; }
+.about-page-nav { display: flex; align-items: center; gap: 32px; padding-block: 21px; border-block: 1px solid var(--line); font-size: 11px; color: var(--slate); }
+.about-page-nav > span { margin-right: auto; color: var(--ink); }
+.about-page-nav a:hover { color: var(--accent); }
+.about-story { display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; padding-block: 76px 49px; }
+.about-story h2 { font-size: 39px; }
+.about-story-copy p { font-size: 14px; line-height: 1.95; margin-bottom: 18px; }
+.about-story-copy p:last-child { margin-bottom: 0; }
+.about-beliefs { display: grid; grid-template-columns: repeat(3,1fr); gap: 35px; padding-block: 22px 60px; }
+.about-beliefs article { display: flex; align-items: flex-start; gap: 14px; border-top: 1px solid var(--line); padding-top: 23px; }
+.about-beliefs article > svg { color: var(--accent); width: 20px; height: 20px; margin-top: 2px; }
+.about-beliefs h3 { font-size: 15px; letter-spacing: -.2px; margin-bottom: 8px; }
+.about-beliefs p { font-size: 11px; line-height: 1.8; }
+.about-technology { background: var(--surface); border-block: 1px solid var(--line); padding-block: 69px 30px; }
+.technology-layout { display: grid; grid-template-columns: .85fr 1.35fr; gap: 33px; }
+.rust-foundation { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 30px; }
+.rust-foundation-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 29px; }
+.rust-symbol { width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; color: var(--ink); background: var(--surface); }
+.rust-symbol svg { width: 29px; height: 29px; }
+.technology-badge { color: var(--slate); font-size: 9px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 20px; }
+.rust-foundation h3 { font-size: 50px; letter-spacing: -2px; margin-bottom: 4px; }
+.rust-edition { color: var(--accent); font-family: var(--mono); font-size: 10px; }
+.rust-foundation > p { font-size: 13px; line-height: 1.9; margin-block: 19px; }
+.rust-source-sample { padding: 15px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-family: var(--mono); font-size: 11px; line-height: 1.9; color: var(--slate); margin-block: 23px; }
+.rust-source-sample code { font-size: 10px; }
+.rust-source-sample span { color: var(--accent); }
+.rust-foundation .text-link { font-size: 11px; }
+.dependency-list { border-top: 1px solid var(--line); }
+.dependency { border-bottom: 1px solid var(--line); }
+.dependency summary { display: flex; align-items: flex-start; gap: 17px; padding: 25px 8px; cursor: pointer; list-style: none; }
+.dependency summary::-webkit-details-marker { display: none; }
+.dependency-icon { width: 37px; height: 37px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); display: grid; place-items: center; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+.dependency-icon svg { width: 19px; height: 19px; }
+.dependency-summary { min-width: 0; flex: 1; }
+.dependency-title { display: flex; align-items: center; gap: 12px; }
+.dependency-title strong { font-size: 19px; font-weight: 600; letter-spacing: -.5px; color: var(--ink); }
+.dependency-title code { font-size: 9px; color: var(--slate); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; }
+.dependency-summary > span:nth-child(2) { display: block; color: var(--accent); font-size: 10px; margin-top: 5px; }
+.dependency-summary > .dependency-description { display: block; font-size: 12px; line-height: 1.85; margin-top: 9px; max-width: 420px; }
+.dependency-expand { display: grid; place-items: center; width: 24px; height: 24px; font-size: 20px; font-weight: 300; color: var(--slate); transition: transform 180ms ease; flex-shrink: 0; }
+.dependency[open] .dependency-expand { transform: rotate(45deg); }
+.dependency-expanded { margin: -8px 35px 24px 62px; border-left: 2px solid var(--hero-line); padding-left: 17px; }
+.dependency-expanded p { font-size: 12px; line-height: 1.9; }
+.dependency-expanded a { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; color: var(--accent); margin-top: 12px; }
+.dependency-expanded a svg { width: 13px; height: 13px; }
+.build-tooling { display: grid; grid-template-columns: repeat(2,1fr); gap: 48px; border-top: 1px solid var(--line); margin-top: 38px; padding-block: 29px; }
+.build-tooling article { display: flex; gap: 17px; }
+.tooling-icon { display: grid; place-items: center; width: 35px; height: 35px; background: var(--paper); border: 1px solid var(--line); border-radius: 7px; color: var(--accent); flex-shrink: 0; }
+.tooling-icon svg { width: 18px; height: 18px; }
+.build-tooling h3 { font-size: 17px; letter-spacing: -.3px; margin-bottom: 5px; }
+.build-tooling article > div > span { display: block; color: var(--accent); font-size: 10px; }
+.build-tooling p { font-size: 12px; line-height: 1.85; margin-top: 12px; }
+.build-tooling a { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; color: var(--accent); margin-top: 14px; }
+.build-tooling a svg { width: 13px; height: 13px; }
+.technology-source { display: flex; align-items: center; gap: 7px; font-size: 9px; border-top: 1px solid var(--line); padding-top: 20px; }
+.technology-source > svg { width: 13px; height: 13px; }
+.technology-source a { display: inline-flex; align-items: center; gap: 7px; margin-left: auto; color: var(--accent); }
+.technology-source a svg { width: 12px; height: 12px; }
+.about-architecture { display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; padding-block: 78px; }
+.architecture-intro > p { font-size: 13px; line-height: 1.9; margin-block: 22px; max-width: 330px; }
+.architecture-layers article { display: flex; gap: 20px; padding-bottom: 28px; }
+.architecture-layers article:last-child { padding-bottom: 0; }
+.architecture-icon { display: grid; place-items: center; width: 39px; height: 39px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); flex-shrink: 0; position: relative; color: var(--accent); }
+.architecture-layers article:not(:last-child) .architecture-icon:after { content: ""; position: absolute; top: 45px; height: 55px; left: 18px; width: 1px; background: var(--line); }
+.architecture-icon svg { width: 19px; height: 19px; }
+.architecture-layers code { font-size: 9px; color: var(--accent); }
+.architecture-layers h3 { font-size: 18px; letter-spacing: -.3px; margin: 7px 0 10px; }
+.architecture-layers p { font-size: 12px; line-height: 1.85; }
+.about-progress { padding-block: 55px 70px; border-top: 1px solid var(--line); }
+.progress-columns { display: grid; grid-template-columns: repeat(2,1fr); gap: 55px; }
+.progress-columns article { border-top: 1px solid var(--line); padding-top: 24px; }
+.progress-label { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; color: var(--accent); }
+.progress-label.future { color: var(--slate); }
+.progress-label svg { width: 14px; height: 14px; }
+.progress-columns h3 { font-size: 23px; margin: 18px 0; letter-spacing: -.7px; }
+.progress-columns ul { padding-left: 17px; margin: 0; color: var(--slate); font-size: 12px; line-height: 2.2; }
+.progress-columns li::marker { color: var(--accent); font-size: 9px; }
+.progress-columns p { font-size: 10px; line-height: 1.8; margin-top: 17px; max-width: 350px; }
+.about-open-source { display: flex; gap: 37px; align-items: center; border-top: 1px solid var(--line); padding-block: 49px 70px; }
+.open-source-mark { display: grid; place-items: center; width: 100px; height: 100px; border: 1px solid var(--line); background: var(--surface); border-radius: 20px; flex-shrink: 0; }
+.open-source-mark svg { width: 53px; height: 43px; }
+.about-open-source h2 { font-size: 35px; letter-spacing: -1.3px; }
+.about-open-source p { font-size: 13px; margin-top: 16px; }
+.open-source-actions { display: flex; align-items: center; gap: 25px; margin-top: 25px; }
+.open-source-actions .button { font-size: 11px; }
+.open-source-actions .text-link { font-size: 11px; }
+
+@media (max-width:1100px) {
+  .about-intro { gap: 40px; }
+  .about-intro h1 { font-size: 52px; letter-spacing: -2.5px; }
+  .about-intro-copy > p { font-size: 14px; }
+  .blueprint-stack { padding-inline: 0; }
+  .shell-blueprint { padding: 20px; }
+  .blueprint-core { padding: 20px 17px; gap: 11px; }
+  .blueprint-core > div > span { font-size: 8px; }
+  .about-story,.about-architecture { gap: 60px; }
+  .technology-layout { gap: 26px; grid-template-columns: .9fr 1.25fr; }
+  .rust-foundation { padding: 25px; }
+  .dependency summary { gap: 13px; padding-inline: 0; }
+  .dependency-expanded { margin-left: 50px; }
+}
+@media (max-width:800px) {
+  .about-intro { gap: 28px; padding-block: 53px; }
+  .about-intro h1 { font-size: 42px; letter-spacing: -2px; }
+  .about-intro-copy > p { font-size: 12px; }
+  .about-intro-actions { gap: 16px; flex-wrap: wrap; }
+  .about-intro-actions .button { font-size: 10px; }
+  .about-intro-actions .text-link { font-size: 10px; }
+  .about-project-meta { font-size: 8px; gap: 10px; }
+  .about-project-meta > span:last-child { padding-left: 10px; }
+  .shell-blueprint { padding: 17px; }
+  .blueprint-heading { font-size: 8px; gap: 5px; margin-bottom: 22px; }
+  .blueprint-heading code { font-size: 8px; }
+  .blueprint-node { padding: 13px; gap: 9px; }
+  .blueprint-node strong { font-size: 10px; }
+  .blueprint-node > div > span { font-size: 8px; }
+  .blueprint-node kbd { display: none; }
+  .blueprint-core { padding: 19px 13px; gap: 10px; }
+  .blueprint-core-icon { width: 34px; height: 34px; }
+  .blueprint-core-icon svg { width: 21px; }
+  .blueprint-core strong { font-size: 17px; }
+  .blueprint-rust { display: none; }
+  .shell-blueprint figcaption { font-size: 7px; }
+  .about-page-nav { font-size: 10px; gap: 25px; }
+  .about-story,.about-architecture { gap: 35px; padding-block: 55px 40px; }
+  .about-story h2 { font-size: 32px; }
+  .about-story-copy p { font-size: 12px; }
+  .about-beliefs { gap: 20px; padding-block: 15px 45px; }
+  .about-beliefs article { gap: 10px; }
+  .about-beliefs h3 { font-size: 13px; }
+  .about-beliefs p { font-size: 10px; }
+  .about-beliefs article > svg { width: 17px; }
+  .about-technology { padding-top: 50px; }
+  .technology-layout { grid-template-columns: .9fr 1.1fr; gap: 23px; }
+  .rust-foundation { padding: 22px; }
+  .rust-foundation-top { gap: 8px; }
+  .rust-symbol { width: 38px; height: 38px; }
+  .rust-symbol svg { width: 25px; height: 25px; }
+  .technology-badge { font-size: 8px; padding-inline: 6px; }
+  .rust-foundation > p { font-size: 12px; }
+  .rust-source-sample { padding: 12px; }
+  .rust-source-sample code { font-size: 9px; }
+  .dependency-icon { display: none; }
+  .dependency-title { gap: 7px; }
+  .dependency-title strong { font-size: 17px; }
+  .dependency-title code { font-size: 8px; }
+  .dependency-summary > .dependency-description { font-size: 11px; }
+  .dependency-expanded { margin-left: 0; margin-right: 10px; padding-left: 12px; }
+  .build-tooling { gap: 30px; }
+  .build-tooling p { font-size: 11px; }
+  .technology-source { font-size: 8px; gap: 5px; }
+  .technology-source a { gap: 5px; }
+  .about-architecture { padding-bottom: 55px; }
+  .architecture-intro h2 { font-size: 33px; }
+  .architecture-intro > p { font-size: 12px; }
+  .architecture-layers article { gap: 14px; }
+  .architecture-layers h3 { font-size: 16px; }
+  .architecture-layers p { font-size: 11px; }
+  .architecture-layers article:not(:last-child) .architecture-icon:after { height: 95px; }
+  .progress-columns { gap: 35px; }
+  .progress-columns h3 { font-size: 20px; }
+  .about-open-source { gap: 30px; }
+  .about-open-source h2 { font-size: 31px; }
+}
+@media (max-width:580px) {
+  .about-intro { grid-template-columns: 1fr; gap: 35px; padding-block: 37px 35px; }
+  .about-eyebrow { font-size: 10px; }
+  .about-intro h1 { font-size: clamp(39px,10.7vw,55px); letter-spacing: -2.4px; margin-block: 22px 20px; }
+  .about-intro-copy > p { font-size: 13px; line-height: 1.9; }
+  .about-intro-actions { margin-top: 23px; gap: 22px; }
+  .about-project-meta { font-size: 9px; gap: 15px; }
+  .about-project-meta > span:last-child { padding-left: 15px; }
+  .shell-blueprint { padding: 20px; }
+  .blueprint-heading { font-size: 9px; }
+  .blueprint-heading code { font-size: 8px; }
+  .blueprint-node { padding: 15px; gap: 12px; }
+  .blueprint-node strong { font-size: 11px; }
+  .blueprint-node > div > span { font-size: 9px; }
+  .blueprint-node kbd { display: block; }
+  .blueprint-core { padding: 20px 16px; }
+  .blueprint-core-icon { width: 38px; height: 38px; }
+  .blueprint-core strong { font-size: 20px; }
+  .blueprint-core > div > span { font-size: 9px; }
+  .blueprint-rust { display: flex; font-size: 8px; }
+  .shell-blueprint figcaption { font-size: 8px; }
+  .about-page-nav { flex-wrap: wrap; justify-content: space-between; gap: 11px; padding-block: 20px; font-size: 9px; }
+  .about-page-nav > span { flex-basis: 100%; margin-bottom: 4px; font-size: 11px; }
+  .about-story { grid-template-columns: 1fr; gap: 24px; padding-block: 41px 31px; }
+  .about-story h2 { font-size: 33px; }
+  .about-story-copy p { font-size: 13px; }
+  .about-beliefs { grid-template-columns: 1fr; gap: 19px; padding-block: 0 40px; }
+  .about-beliefs article { padding-top: 19px; gap: 15px; }
+  .about-beliefs h3 { font-size: 15px; }
+  .about-beliefs p { font-size: 11px; }
+  .about-beliefs article > svg { width: 20px; }
+  .about-technology { padding-block: 41px 25px; }
+  .technology-layout { grid-template-columns: 1fr; gap: 27px; }
+  .rust-foundation { padding: 25px; }
+  .rust-foundation-top { margin-bottom: 22px; }
+  .rust-symbol { width: 42px; height: 42px; }
+  .technology-badge { font-size: 9px; }
+  .rust-foundation h3 { font-size: 46px; }
+  .rust-foundation > p { font-size: 13px; }
+  .rust-source-sample { padding: 15px; margin-block: 20px; }
+  .rust-source-sample code { font-size: 10px; }
+  .dependency summary { padding-block: 22px; gap: 12px; }
+  .dependency-icon { display: grid; width: 33px; height: 33px; }
+  .dependency-icon svg { width: 17px; height: 17px; }
+  .dependency-title strong { font-size: 18px; }
+  .dependency-title code { font-size: 8px; }
+  .dependency-summary > .dependency-description { font-size: 12px; }
+  .dependency-expand { width: 18px; }
+  .dependency-expanded { margin-left: 45px; margin-right: 8px; padding-left: 13px; }
+  .dependency-expanded p { font-size: 11px; }
+  .dependency-expanded a { font-size: 9px; }
+  .build-tooling { grid-template-columns: 1fr; gap: 27px; margin-top: 28px; padding-block: 25px; }
+  .build-tooling p { font-size: 12px; }
+  .technology-source { flex-wrap: wrap; font-size: 8px; gap: 6px; line-height: 1.7; }
+  .technology-source a { flex-basis: 100%; margin: 3px 0 0 19px; }
+  .about-architecture { grid-template-columns: 1fr; gap: 30px; padding-block: 42px; }
+  .architecture-intro > p { font-size: 13px; }
+  .architecture-layers article { gap: 17px; }
+  .architecture-layers h3 { font-size: 18px; }
+  .architecture-layers p { font-size: 12px; }
+  .architecture-layers code { font-size: 8px; }
+  .architecture-layers article:not(:last-child) .architecture-icon:after { height: 80px; }
+  .about-progress { padding-block: 40px; }
+  .progress-columns { grid-template-columns: 1fr; gap: 28px; }
+  .progress-columns h3 { font-size: 22px; }
+  .progress-columns ul { font-size: 12px; }
+  .about-open-source { align-items: flex-start; gap: 20px; padding-block: 35px 45px; flex-direction: column; }
+  .open-source-mark { width: 57px; height: 57px; border-radius: 11px; }
+  .open-source-mark svg { width: 30px; height: 27px; }
+  .about-open-source h2 { font-size: 31px; }
+  .about-open-source p { font-size: 12px; line-height: 1.9; }
+  .open-source-actions { flex-wrap: wrap; gap: 19px; }
+  .open-source-actions .button,.open-source-actions .text-link { font-size: 10px; }
+}
+@media(prefers-reduced-motion:reduce) { .dependency-expand { transition: none; } }
