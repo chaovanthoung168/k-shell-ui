@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Arrow, Icon, Logo } from "./ui";
+import { Icon, Logo } from "./ui";
 import { ThemeToggle } from "./theme-toggle";
+
+// Add the project repository URL here when it is available.
+const GITHUB_REPOSITORY_URL = "";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -23,7 +26,11 @@ export function SiteHeader() {
         </nav>
         <div className="header-actions">
           <ThemeToggle />
-          <Link className="header-cta" href="/docs/#installation">Get K Shell <Arrow /></Link>
+          {GITHUB_REPOSITORY_URL ? (
+            <a className="header-cta" href={GITHUB_REPOSITORY_URL} target="_blank" rel="noopener noreferrer"><Icon name="github" /><span>GitHub</span></a>
+          ) : (
+            <button type="button" className="header-cta" disabled title="GitHub repository coming soon"><Icon name="github" /><span>GitHub</span></button>
+          )}
           <button className="menu-button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} onClick={() => setOpen(!open)}><Icon name={open ? "close" : "menu"} /></button>
         </div>
       </div>
