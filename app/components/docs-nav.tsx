@@ -17,6 +17,7 @@ const groups = [
   { title: "Keep exploring", topics: [
     { id: "shortcuts", label: "Keyboard shortcuts", number: "", keywords: "tab completion history search control" },
     { id: "troubleshooting", label: "Troubleshooting", number: "", keywords: "error not recognized missing profile font boxes fix" },
+    { id: "uninstall", label: "Uninstall K Shell", number: "", keywords: "remove uninstall delete cleanup path preferences history portable" },
     { id: "build-from-source", label: "Build from source", number: "", keywords: "rust cargo developer release" },
     { id: "limitations", label: "Current limitations", number: "", keywords: "scripts scripting pipes redirection roadmap" },
   ] },
