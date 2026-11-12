@@ -3,6 +3,7 @@ import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
 import "./globals.css";
 import "./redesign.css";
+import "./window-theme.css";
 
 export const metadata: Metadata = {
   title: { default: "K Shell — Make every command count.", template: "%s | K Shell" },

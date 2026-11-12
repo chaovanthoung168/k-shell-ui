@@ -12,4 +12,6 @@ Theme system: paper #ffffff, ink #16181c, slate #626976, blue #3b69da in light m
 
 Redesign review: the actual terminal remains the visual centerpiece. Use meaningful command snippets rather than ornamental technology badges. Avoid a constantly moving background; motion belongs to the command demo and can be paused, with reduced-motion preferences respected. Keep all three pages legible in both modes.
 
+Windows treatment: the demo uses a left-aligned Windows Terminal tab, a new-tab glyph, and right-aligned minimize/maximize/close caption glyphs. These are decorative window chrome inside the browser preview. No macOS traffic-light dots. The terminal surface follows the website color mode; Ocean, Dusk, and Midnight continue to select its accent palette. Explicit Light/Dark buttons remove ambiguity about the selected mode and avoid toggling from a stale hydration snapshot. Existing typography and the monochrome/blue palette remain unchanged.
+
 Review: keep the reference's monochrome identity, avoid fabricated metrics, unavailable download links, or an invented GitHub repository. The terminal has browser-local interactions and is explicitly an illustrative preview. Current functionality and install steps follow ../myshell/README.md; scripting and pipes belong to the roadmap.

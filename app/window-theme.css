@@ -1,0 +1,139 @@
+/* Explicit choices work before and after the initial theme-store snapshot. */
+.color-mode-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+}
+
+.color-mode-control button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 8px;
+  min-height: 27px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--slate);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.color-mode-control svg { width: 13px; height: 13px; }
+.color-mode-control button:hover { color: var(--ink); }
+:root:not([data-theme="dark"]) .color-mode-light,
+:root[data-theme="dark"] .color-mode-dark {
+  color: var(--ink);
+  background: var(--surface-raised);
+  border-color: var(--line);
+  box-shadow: 0 1px 3px #00000009;
+}
+
+/* Windows Terminal tab strip and caption controls. */
+.terminal-window {
+  --wt-background: #f9fbff;
+  --wt-titlebar: #e8edf5;
+  --wt-foreground: #28374d;
+  --wt-muted: #60728a;
+  --wt-line: #dce4ef;
+  --wt-accent: #315f9c;
+  --wt-prompt: #267757;
+  --wt-selection: #e5edf9;
+  border-color: #cbd5e3;
+  border-radius: 8px;
+  background: var(--wt-background);
+  color: var(--wt-foreground);
+  --terminal-accent: var(--wt-accent);
+}
+
+.terminal-window.theme-dusk { --wt-background: #fcf9ff; --wt-titlebar: #eee7f5; --wt-accent: #76539d; --wt-selection: #ece4f6; }
+.terminal-window.theme-midnight { --wt-background: #f5fafc; --wt-titlebar: #e1edf1; --wt-accent: #276f80; --wt-selection: #deedf1; }
+
+[data-theme="dark"] .terminal-window {
+  --wt-background: #171a21;
+  --wt-titlebar: #11141a;
+  --wt-foreground: #dbe3f0;
+  --wt-muted: #99a7bc;
+  --wt-line: #303846;
+  --wt-accent: #97b9ff;
+  --wt-prompt: #8ed3b6;
+  --wt-selection: #242e40;
+  border-color: #3a4352;
+}
+
+[data-theme="dark"] .terminal-window.theme-dusk { --wt-background: #25202d; --wt-titlebar: #1c1723; --wt-accent: #d5acff; --wt-selection: #3c2e4b; }
+[data-theme="dark"] .terminal-window.theme-midnight { --wt-background: #0d1624; --wt-titlebar: #0a101a; --wt-accent: #76d4db; --wt-selection: #1b3443; }
+
+.wt-titlebar {
+  display: flex;
+  align-items: stretch;
+  height: 41px;
+  padding: 6px 0 0 8px;
+  background: var(--wt-titlebar);
+  border-bottom: 1px solid var(--wt-line);
+  color: var(--wt-foreground);
+  font-family: var(--sans);
+  user-select: none;
+}
+
+.wt-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 186px;
+  padding-inline: 12px;
+  border-radius: 6px 6px 0 0;
+  background: var(--wt-background);
+  font-size: 10px;
+}
+
+.wt-tab > svg:first-child { width: 15px; height: 13px; }
+.wt-tab-close { margin-left: auto; }
+.wt-titlebar .wt-tab-close,
+.wt-new-tab svg,
+.wt-caption-controls svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1; }
+.wt-new-tab { display: flex; align-items: center; gap: 9px; padding-inline: 12px; color: var(--wt-muted); }
+.wt-new-tab > span { font-size: 18px; line-height: 1; font-weight: 300; }
+.wt-executable { align-self: center; margin-left: auto; padding-inline: 12px; font-size: 9px; color: var(--wt-muted); }
+.wt-caption-controls { display: flex; align-items: stretch; margin-top: -6px; }
+.wt-caption-controls > span { display: grid; place-items: center; width: 37px; }
+
+.terminal-window .terminal-welcome > svg,
+.terminal-window .terminal-welcome strong,
+.terminal-window .terminal-command,
+.terminal-window .terminal-input-line input { color: var(--wt-foreground); }
+.terminal-window .terminal-welcome > div > span,
+.terminal-window .terminal-tip,
+.terminal-window .terminal-output,
+.terminal-window .terminal-path > span { color: var(--wt-muted); }
+.terminal-window .terminal-welcome .terminal-live { color: var(--wt-prompt) !important; }
+.terminal-window .terminal-path { color: var(--wt-accent); }
+.terminal-window .terminal-output > div:first-child { color: var(--wt-accent); }
+.terminal-window .prompt { color: var(--wt-prompt); }
+.terminal-window .terminal-path > span { border-color: var(--wt-line); }
+.terminal-window .terminal-input-line input { caret-color: var(--wt-accent); }
+.terminal-window .terminal-input-line input::placeholder { color: var(--wt-muted); }
+.terminal-window .terminal-input-line button { background: var(--wt-selection); color: var(--wt-muted); border-color: var(--wt-line); }
+.terminal-window .terminal-tabs { border-color: var(--wt-line); background: var(--wt-background); }
+.terminal-window .terminal-tabs button,
+.terminal-window .terminal-tabs .animation-toggle { color: var(--wt-muted); }
+.terminal-window .terminal-tabs button[aria-pressed="true"] { color: var(--wt-foreground); }
+.terminal-window .terminal-tabs button[aria-pressed="true"]:after { background: var(--wt-accent); }
+.terminal-window .terminal-cursor { background: var(--wt-accent); }
+
+@media (max-width: 580px) {
+  .color-mode-control button { padding: 7px; gap: 4px; font-size: 9px; min-height: 28px; }
+  .color-mode-control { gap: 1px; padding: 2px; }
+  .color-mode-control svg { width: 12px; height: 12px; }
+  .wt-titlebar { height: 37px; padding-left: 5px; }
+  .wt-tab { width: 140px; gap: 7px; padding-inline: 9px; }
+  .wt-new-tab { gap: 5px; padding-inline: 8px; }
+  .wt-executable { display: none; }
+  .wt-caption-controls { margin-left: auto; }
+  .wt-caption-controls > span { width: 28px; }
+}

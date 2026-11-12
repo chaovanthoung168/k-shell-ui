@@ -77,9 +77,15 @@ export function TerminalDemo() {
 
   return (
     <div className={`terminal-window theme-${theme}`}>
-      <div className="terminal-titlebar">
-        <div className="window-dots" aria-hidden="true"><i /><i /><i /></div>
-        <span><Logo /> K Shell</span><span className="terminal-platform">kshell.exe</span>
+      <div className="wt-titlebar">
+        <div className="wt-tab"><Logo /><span>K Shell</span><svg className="wt-tab-close" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 5 6 6m0-6-6 6" /></svg></div>
+        <div className="wt-new-tab" aria-hidden="true"><span>+</span><svg viewBox="0 0 16 16"><path d="m5 6 3 3 3-3" /></svg></div>
+        <span className="wt-executable">kshell.exe</span>
+        <div className="wt-caption-controls" aria-hidden="true">
+          <span><svg viewBox="0 0 16 16"><path d="M3 8h10" /></svg></span>
+          <span><svg viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" /></svg></span>
+          <span><svg viewBox="0 0 16 16"><path d="m3.5 3.5 9 9m0-9-9 9" /></svg></span>
+        </div>
       </div>
       <div className="terminal-body">
         <div className="terminal-welcome"><Logo /><div><strong>Welcome to K Shell.</strong><span>A fresh prompt. Endless possibilities.</span></div><span className="terminal-live"><span className="status-dot" /> Ready</span></div>

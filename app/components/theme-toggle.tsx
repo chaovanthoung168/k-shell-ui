@@ -5,6 +5,20 @@ import { Icon } from "./ui";
 
 const storageKey = "kshell-color-mode";
 type Theme = "light" | "dark";
+let sessionPreference: Theme | null = null;
+
+function isTheme(value: string | null): value is Theme {
+  return value === "light" || value === "dark";
+}
+
+function readPreference() {
+  try {
+    const value = localStorage.getItem(storageKey);
+    return isTheme(value) ? value : null;
+  } catch {
+    return sessionPreference;
+  }
+}
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
@@ -25,17 +39,16 @@ export function ThemeToggle() {
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
+    sessionPreference = readPreference();
     const followSystem = () => {
-      try {
-        if (localStorage.getItem(storageKey)) return;
-      } catch { /* System preference still works when storage is unavailable. */ }
-      applyTheme(media.matches ? "dark" : "light");
+      if (!sessionPreference) applyTheme(media.matches ? "dark" : "light");
     };
     const syncStorage = (event: StorageEvent) => {
-      if (event.key !== storageKey) return;
-      if (event.newValue === "dark" || event.newValue === "light") applyTheme(event.newValue);
-      else followSystem();
+      if (event.key !== storageKey && event.key !== null) return;
+      sessionPreference = isTheme(event.newValue) ? event.newValue : null;
+      applyTheme(sessionPreference ?? (media.matches ? "dark" : "light"));
     };
+    applyTheme(sessionPreference ?? (media.matches ? "dark" : "light"));
     media.addEventListener("change", followSystem);
     window.addEventListener("storage", syncStorage);
     return () => {
@@ -44,16 +57,17 @@ export function ThemeToggle() {
     };
   }, []);
 
-  function toggle() {
-    const next = theme === "dark" ? "light" : "dark";
+  function chooseTheme(next: Theme) {
+    // Select an explicit mode, independently of the server hydration snapshot.
+    sessionPreference = next;
     applyTheme(next);
     try { localStorage.setItem(storageKey, next); } catch { /* Keep the session choice. */ }
   }
 
   return (
-    <button className="theme-toggle" role="switch" aria-label="Dark mode" aria-checked={theme === "dark"} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={toggle}>
-      <span className="theme-toggle-thumb" />
-      <Icon name="sun" /><Icon name="moon" />
-    </button>
+    <div className="color-mode-control" role="group" aria-label="Color theme">
+      <button type="button" className="color-mode-light" aria-label="Use light mode" aria-pressed={theme === "light"} onClick={() => chooseTheme("light")}><Icon name="sun" /><span>Light</span></button>
+      <button type="button" className="color-mode-dark" aria-label="Use dark mode" aria-pressed={theme === "dark"} onClick={() => chooseTheme("dark")}><Icon name="moon" /><span>Dark</span></button>
+    </div>
   );
 }
