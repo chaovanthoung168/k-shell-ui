@@ -85,7 +85,7 @@
 .build-tooling p { font-size: 16px; line-height: 1.85; margin-top: 12px; }
 .build-tooling a { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; color: var(--accent); margin-top: 14px; }
 .build-tooling a svg { width: 13px; height: 13px; }
-.technology-source { display: flex; align-items: center; gap: 7px; font-size: 12px; border-top: 1px solid var(--line); padding-top: 20px; }
+.technology-source { display: flex; align-items: center; gap: 7px; font-size: 12px; border-top: 1px solid var(--line); margin-top: 30px; padding-top: 20px; }
 .technology-source > svg { width: 13px; height: 13px; }
 .technology-source a { display: inline-flex; align-items: center; gap: 7px; margin-left: auto; color: var(--accent); }
 .technology-source a svg { width: 12px; height: 12px; }
