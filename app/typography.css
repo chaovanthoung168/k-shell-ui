@@ -221,3 +221,11 @@ td { font-size: 15px; }
   .site-header .color-mode-control button { min-width: 30px; }
   .wt-new-tab svg { display: none; }
 }
+
+/* Keep the install command readable within the responsive quickstart grid. */
+.install-command { min-width: 0; }
+.install-command .docs-code { margin: 0; border: 0; border-radius: 0; }
+.install-command .docs-code pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 24px; line-height: 1.8; }
+.install-command > p { padding: 0 24px 24px; font-size: var(--text-small); }
+.install-command > a { flex-wrap: wrap; }
+#installation .docs-code pre { white-space: pre-wrap; overflow-wrap: anywhere; }

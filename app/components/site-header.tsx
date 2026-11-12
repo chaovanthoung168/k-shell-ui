@@ -5,9 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Icon, Logo } from "./ui";
 import { ThemeToggle } from "./theme-toggle";
-
-// Add the project repository URL here when it is available.
-const GITHUB_REPOSITORY_URL = "";
+import { GITHUB_REPOSITORY_URL } from "../release";
 
 export function SiteHeader() {
   const pathname = usePathname();
