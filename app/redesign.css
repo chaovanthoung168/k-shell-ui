@@ -1,31 +1,31 @@
 /* Shared color modes. The terminal keeps its own shell theme in either mode. */
 :root {
   color-scheme: light;
-  --surface: #f7f9fc;
+  --surface: #f6f6f6;
   --surface-raised: #ffffff;
-  --surface-hover: #edf1f7;
+  --surface-hover: #eee;
   --header: #ffffffed;
-  --hero-canvas: #f8faff;
-  --hero-line: #dbe4f1;
-  --accent: #476cbb;
-  --soft-accent: #edf3ff;
+  --hero-canvas: #fff;
+  --hero-line: #e5e5e5;
+  --accent: #111;
+  --soft-accent: #eee;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --paper: #101216;
-  --ink: #edf1f7;
-  --slate: #a0a9b9;
-  --line: #2a303b;
-  --blue: #9bb9ff;
-  --surface: #161a21;
-  --surface-raised: #1b2029;
-  --surface-hover: #242c39;
-  --header: #101216ed;
-  --hero-canvas: #0d1119;
-  --hero-line: #28364b;
-  --accent: #a6c2ff;
-  --soft-accent: #202d43;
+  --paper: #080808;
+  --ink: #f5f5f5;
+  --slate: #a3a3a3;
+  --line: #292929;
+  --blue: #ddd;
+  --surface: #111;
+  --surface-raised: #161616;
+  --surface-hover: #222;
+  --header: #080808ed;
+  --hero-canvas: #000;
+  --hero-line: #292929;
+  --accent: #fff;
+  --soft-accent: #242424;
 }
 
 body {
@@ -131,31 +131,31 @@ body {
 
 /* The hero terminal is ink-black in both page modes. The product is the contrast. */
 .hero-terminal .terminal-window {
-  --wt-background: #171a21;
-  --wt-titlebar: #11141a;
-  --wt-foreground: #dbe3f0;
-  --wt-muted: #99a7bc;
-  --wt-line: #303846;
-  --wt-accent: #97b9ff;
-  --wt-prompt: #8ed3b6;
-  --wt-selection: #242e40;
-  border-color: #3a4352;
+  --wt-background: #1a1a1a;
+  --wt-titlebar: #141414;
+  --wt-foreground: #e2e2e2;
+  --wt-muted: #a6a6a6;
+  --wt-line: #373737;
+  --wt-accent: #b7b7b7;
+  --wt-prompt: #c2c2c2;
+  --wt-selection: #2d2d2d;
+  border-color: #424242;
   border-radius: 10px;
-  box-shadow: 0 24px 60px -30px #09101c80;
+  box-shadow: 0 24px 60px -30px #0f0f0f80;
 }
 
 .hero-terminal .terminal-window.theme-dusk {
-  --wt-background: #25202d;
-  --wt-titlebar: #1c1723;
-  --wt-accent: #d5acff;
-  --wt-selection: #3c2e4b;
+  --wt-background: #222222;
+  --wt-titlebar: #191919;
+  --wt-accent: #bbbbbb;
+  --wt-selection: #333333;
 }
 
 .hero-terminal .terminal-window.theme-midnight {
-  --wt-background: #0d1624;
-  --wt-titlebar: #0a101a;
-  --wt-accent: #76d4db;
-  --wt-selection: #1b3443;
+  --wt-background: #151515;
+  --wt-titlebar: #0f0f0f;
+  --wt-accent: #c1c1c1;
+  --wt-selection: #303030;
 }
 
 .hero-terminal .wt-titlebar {
@@ -236,7 +236,7 @@ body {
   top: 5px;
   width: 6px;
   height: 15px;
-  background: #b1c6ed;
+  background: #c4c4c4;
   animation: cursor-blink 1.1s step-end infinite;
   pointer-events: none;
 }
@@ -262,14 +262,14 @@ body {
 .feature-detail-icon svg { width: 21px; height: 21px; }
 .feature-detail h3 { font-size: 27px; letter-spacing: -.9px; line-height: 1.18; margin-bottom: 16px; }
 .feature-detail p { font-size: 12px; line-height: 1.9; }
-.feature-preview { background: #171d28; border: 1px solid #303c50; border-radius: 9px; color: #d2dcee; padding: 20px; min-height: 235px; font-family: var(--mono); box-shadow: 0 10px 20px #0c19300c; animation: preview-change 240ms ease-out; overflow: hidden; }
-.preview-path { display: flex; align-items: center; gap: 7px; font-size: 9px; color: #8a9dbb; margin-bottom: 19px; }
+.feature-preview { background: #1d1d1d; border: 1px solid #3b3b3b; border-radius: 9px; color: #dbdbdb; padding: 20px; min-height: 235px; font-family: var(--mono); box-shadow: 0 10px 20px #1818180c; animation: preview-change 240ms ease-out; overflow: hidden; }
+.preview-path { display: flex; align-items: center; gap: 7px; font-size: 9px; color: #9b9b9b; margin-bottom: 19px; }
 .preview-path .status-dot { width: 4px; height: 4px; }
 .preview-command { font-size: 11px; white-space: pre-wrap; overflow-wrap: anywhere; }
-.preview-hint { color: #88aa9c; }
-.feature-preview pre { font-size: 9px; line-height: 1.9; white-space: pre-wrap; margin-block: 14px 20px; min-height: 52px; color: #9aaac1; }
-.preview-shortcut { display: flex; align-items: center; gap: 9px; color: #7f8da4; font-size: 8px; padding-top: 13px; border-top: 1px solid #ffffff0c; }
-.preview-shortcut kbd { border-color: #414e64; color: #c0d0ea; font-size: 9px; padding: 1px 5px; }
+.preview-hint { color: #a2a2a2; }
+.feature-preview pre { font-size: 9px; line-height: 1.9; white-space: pre-wrap; margin-block: 14px 20px; min-height: 52px; color: #a8a8a8; }
+.preview-shortcut { display: flex; align-items: center; gap: 9px; color: #8c8c8c; font-size: 8px; padding-top: 13px; border-top: 1px solid #ffffff0c; }
+.preview-shortcut kbd { border-color: #4d4d4d; color: #cecece; font-size: 9px; padding: 1px 5px; }
 .feature-guide { display: flex; align-items: center; gap: 12px; color: var(--accent); font-size: 11px; }
 .feature-guide svg { width: 15px; }
 .feature-footnote { display: flex; align-items: center; gap: 9px; color: var(--slate); font-size: 10px; padding-top: 19px; }
@@ -278,51 +278,51 @@ body {
 .feature-footnote > a svg { width: 13px; }
 
 /* Existing sections participate in the same theme system. */
-[data-theme="dark"] .navigation a { color: #a0a9b9; }
+[data-theme="dark"] .navigation a { color: #a8a8a8; }
 [data-theme="dark"] .navigation a:hover,
 [data-theme="dark"] .navigation a[aria-current] { color: var(--ink); }
 [data-theme="dark"] .header-cta,
-[data-theme="dark"] .button-secondary { background: var(--surface-raised); border-color: #343e4e; color: #e2e9f5; }
+[data-theme="dark"] .button-secondary { background: var(--surface-raised); border-color: #3d3d3d; color: #e8e8e8; }
 [data-theme="dark"] .header-cta:hover,
 [data-theme="dark"] .button-secondary:hover { background: var(--surface-hover); }
-[data-theme="dark"] .button-primary { background: #e3ebfa; border-color: #e3ebfa; color: #172132; box-shadow: 0 2px 8px #0003; }
-[data-theme="dark"] .button-primary:hover { background: #c5d6f5; }
-[data-theme="dark"] .brand-label { color: #8e99aa; border-color: var(--line); }
+[data-theme="dark"] .button-primary { background: #eaeaea; border-color: #eaeaea; color: #202020; box-shadow: 0 2px 8px #0003; }
+[data-theme="dark"] .button-primary:hover { background: #d5d5d5; }
+[data-theme="dark"] .brand-label { color: #989898; border-color: var(--line); }
 [data-theme="dark"] .foundation,
 [data-theme="dark"] .foundation > div,
-[data-theme="dark"] .foundation svg { color: #9aa6b9; }
-[data-theme="dark"] .section-kicker { color: #93a4bc; }
+[data-theme="dark"] .foundation svg { color: #a5a5a5; }
+[data-theme="dark"] .section-kicker { color: #a2a2a2; }
 [data-theme="dark"] .advantage-section,
 [data-theme="dark"] .site-footer,
 [data-theme="dark"] .values-section { background: var(--surface); border-color: var(--line); }
 [data-theme="dark"] .advantage-list article,
 [data-theme="dark"] .roadmap-stages article { border-color: var(--line); }
-[data-theme="dark"] p code { color: #b8cbea; background: #232d3d; }
+[data-theme="dark"] p code { color: #c9c9c9; background: #2c2c2c; }
 [data-theme="dark"] .quickstart-code,
 [data-theme="dark"] .about-symbol { background: var(--surface-raised); border-color: var(--line); }
-[data-theme="dark"] .quickstart-code pre { color: #d0dbee; }
-[data-theme="dark"] .quickstart-code > a { background: var(--surface); color: #b5c3da; }
-[data-theme="dark"] .code-label { color: #a7b4c8; }
-[data-theme="dark"] .footer-links > div { color: #a0adbf; }
-[data-theme="dark"] .footer-links > div > span { color: #dbe4f2; }
-[data-theme="dark"] .footer-bottom { color: #98a5b9; }
+[data-theme="dark"] .quickstart-code pre { color: #dadada; }
+[data-theme="dark"] .quickstart-code > a { background: var(--surface); color: #c2c2c2; }
+[data-theme="dark"] .code-label { color: #b3b3b3; }
+[data-theme="dark"] .footer-links > div { color: #acacac; }
+[data-theme="dark"] .footer-links > div > span { color: #e3e3e3; }
+[data-theme="dark"] .footer-bottom { color: #a4a4a4; }
 [data-theme="dark"] .docs-search,
 [data-theme="dark"] .sidebar-note,
 [data-theme="dark"] .docs-callout { background: var(--surface); border-color: var(--line); }
-[data-theme="dark"] .docs-sidebar nav a { color: #acb8ca; }
+[data-theme="dark"] .docs-sidebar nav a { color: #b7b7b7; }
 [data-theme="dark"] .docs-sidebar nav a:hover,
 [data-theme="dark"] .docs-sidebar nav a:focus { background: var(--soft-accent); color: var(--accent); }
 [data-theme="dark"] .sidebar-heading,
-[data-theme="dark"] .sidebar-reference { color: #b1c4e3; }
+[data-theme="dark"] .sidebar-reference { color: #c2c2c2; }
 [data-theme="dark"] .install-steps > li:before,
 [data-theme="dark"] th,
-[data-theme="dark"] .shortcut-list kbd { background: var(--surface-raised); border-color: var(--line); color: #b1c4e3; }
-[data-theme="dark"] td { color: #a6b3c7; }
-[data-theme="dark"] td:first-child { color: #c4d5f0; }
-[data-theme="dark"] .notice { background: #27251d; border-color: #45402d; }
-[data-theme="dark"] .notice strong { color: #d0bd85; }
-[data-theme="dark"] .roadmap-badge { background: #1b2d27; border-color: #304b40; color: #a8cbb8; }
-[data-theme="dark"] .roadmap-badge.planned { background: #232b3a; border-color: #344056; color: #b0c0db; }
+[data-theme="dark"] .shortcut-list kbd { background: var(--surface-raised); border-color: var(--line); color: #c2c2c2; }
+[data-theme="dark"] td { color: #b2b2b2; }
+[data-theme="dark"] td:first-child { color: #d3d3d3; }
+[data-theme="dark"] .notice { background: #252525; border-color: #404040; }
+[data-theme="dark"] .notice strong { color: #bdbdbd; }
+[data-theme="dark"] .roadmap-badge { background: #292929; border-color: #444444; color: #c2c2c2; }
+[data-theme="dark"] .roadmap-badge.planned { background: #2a2a2a; border-color: #3f3f3f; color: #bfbfbf; }
 [data-theme="dark"] .skip-link { background: var(--surface-raised); }
 
 @keyframes hero-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }

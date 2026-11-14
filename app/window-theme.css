@@ -36,38 +36,38 @@
 
 /* Windows Terminal tab strip and caption controls. */
 .terminal-window {
-  --wt-background: #f9fbff;
-  --wt-titlebar: #e8edf5;
-  --wt-foreground: #28374d;
-  --wt-muted: #60728a;
-  --wt-line: #dce4ef;
-  --wt-accent: #315f9c;
-  --wt-prompt: #267757;
-  --wt-selection: #e5edf9;
-  border-color: #cbd5e3;
+  --wt-background: #fbfbfb;
+  --wt-titlebar: #ededed;
+  --wt-foreground: #353535;
+  --wt-muted: #707070;
+  --wt-line: #e3e3e3;
+  --wt-accent: #5a5a5a;
+  --wt-prompt: #636363;
+  --wt-selection: #ececec;
+  border-color: #d4d4d4;
   border-radius: 8px;
   background: var(--wt-background);
   color: var(--wt-foreground);
   --terminal-accent: var(--wt-accent);
 }
 
-.terminal-window.theme-dusk { --wt-background: #fcf9ff; --wt-titlebar: #eee7f5; --wt-accent: #76539d; --wt-selection: #ece4f6; }
-.terminal-window.theme-midnight { --wt-background: #f5fafc; --wt-titlebar: #e1edf1; --wt-accent: #276f80; --wt-selection: #deedf1; }
+.terminal-window.theme-dusk { --wt-background: #fafafa; --wt-titlebar: #e9e9e9; --wt-accent: #606060; --wt-selection: #e7e7e7; }
+.terminal-window.theme-midnight { --wt-background: #f9f9f9; --wt-titlebar: #ebebeb; --wt-accent: #616161; --wt-selection: #eaeaea; }
 
 [data-theme="dark"] .terminal-window {
-  --wt-background: #171a21;
-  --wt-titlebar: #11141a;
-  --wt-foreground: #dbe3f0;
-  --wt-muted: #99a7bc;
-  --wt-line: #303846;
-  --wt-accent: #97b9ff;
-  --wt-prompt: #8ed3b6;
-  --wt-selection: #242e40;
-  border-color: #3a4352;
+  --wt-background: #1a1a1a;
+  --wt-titlebar: #141414;
+  --wt-foreground: #e2e2e2;
+  --wt-muted: #a6a6a6;
+  --wt-line: #373737;
+  --wt-accent: #b7b7b7;
+  --wt-prompt: #c2c2c2;
+  --wt-selection: #2d2d2d;
+  border-color: #424242;
 }
 
-[data-theme="dark"] .terminal-window.theme-dusk { --wt-background: #25202d; --wt-titlebar: #1c1723; --wt-accent: #d5acff; --wt-selection: #3c2e4b; }
-[data-theme="dark"] .terminal-window.theme-midnight { --wt-background: #0d1624; --wt-titlebar: #0a101a; --wt-accent: #76d4db; --wt-selection: #1b3443; }
+[data-theme="dark"] .terminal-window.theme-dusk { --wt-background: #222222; --wt-titlebar: #191919; --wt-accent: #bbbbbb; --wt-selection: #333333; }
+[data-theme="dark"] .terminal-window.theme-midnight { --wt-background: #151515; --wt-titlebar: #0f0f0f; --wt-accent: #c1c1c1; --wt-selection: #303030; }
 
 .wt-titlebar {
   display: flex;

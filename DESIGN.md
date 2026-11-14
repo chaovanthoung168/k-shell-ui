@@ -151,3 +151,11 @@ Layout: left-aligned terminal copy and a large terminal on desktop; centered cop
 Motion: Rust, Windows, Git, completion, history, and theme tiles gather into the terminal in one staggered sequence. Pause/resume and replay are separate from the working terminal demo's playback. Scroll changes the terminal's perspective and position, with one requestAnimationFrame update per scroll frame. Reduced-motion preferences show the completed terminal without the collection or sticky journey. No animation library or raster imagery is needed.
 
 Critique: the previous oversized logo duplicated the branding and placed the actual terminal below the fold. The terminal now anchors the hero. A generic icon-only card grid would repeat the tool tiles; the cards instead use command previews with working completion, history, and theme controls. Preserve native Windows claims and browser-simulation boundaries.
+
+## Black-and-white platform branding
+
+User direction: the platform uses black and white. This supersedes the earlier violet treatment. Use actual neutral color values throughout Home, Docs, About, and Playground; do not apply a grayscale filter to the page. Keep transparent borders and gray tonal hierarchy in both light and dark modes.
+
+Hero direction: a centered command workspace. Use pure black #000, white #fff, charcoal #151515, border #404040, and secondary text #a3a3a3. Retain Segoe UI for the interface and Consolas for commands. One broad headline sits above the actions and a straight, centered terminal; remove perspective, colored light, the orbit ring, and diagonal tool tiles. The gathering tiles move horizontally inward in neutral bordered rectangles. Keep the short scroll-following sequence and the interactive cards below it. Short mobile viewports use ordinary document flow so the terminal remains reachable; reduced motion remains static.
+
+Critique: the old split layout gave decorative purple atmosphere more presence than the shell. The centered composition puts the usable terminal directly under the promise. Preserve the new symbol plus Shell branding and the terminal content. Neutralize the surrounding card and page surfaces for a consistent platform.

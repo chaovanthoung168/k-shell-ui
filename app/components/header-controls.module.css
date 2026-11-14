@@ -14,7 +14,7 @@
 .actions .menuButton:hover { background: var(--surface); }
 .actions .menuButton svg { width: 21px; height: 21px; }
 :global(.site-header).homeHeader { height: 80px; border-bottom: 0; }
-:global([data-theme="dark"]) .homeHeader { background: #0d0c11; }
+:global([data-theme="dark"]) .homeHeader { background: #000; }
 .homeHeader :global(.navigation a[aria-current])::after { display: none; }
 
 @media (max-width: 900px) {

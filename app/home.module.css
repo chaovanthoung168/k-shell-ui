@@ -1,6 +1,6 @@
 /* Homepage art direction. Unslop workflow by Damir Sokolovsky, CC BY 4.0. */
-.home { --paper: #f7f6f9; --ink: #211e29; --slate: #67616f; --line: #211e291a; --surface: #eeecf2; --surface-raised: #fff; --surface-hover: #e5e1ec; --accent: #77539d; --soft-accent: #eae3f2; color: var(--ink); background: var(--paper); }
-:global([data-theme="dark"]) .home { --paper: #0d0c11; --ink: #eeebf3; --slate: #a8a1b3; --line: #ffffff17; --surface: #17141d; --surface-raised: #211b2a; --surface-hover: #282130; --accent: #c0a6e4; --soft-accent: #292133; }
+.home { --paper: #fff; --ink: #111; --slate: #666; --line: #e5e5e5; --surface: #f6f6f6; --surface-raised: #fff; --surface-hover: #eee; --accent: #111; --soft-accent: #eee; color: var(--ink); background: var(--paper); }
+:global([data-theme="dark"]) .home { --paper: #080808; --ink: #f5f5f5; --slate: #a3a3a3; --line: #292929; --surface: #111; --surface-raised: #161616; --surface-hover: #222; --accent: #fff; --soft-accent: #242424; }
 .foundation { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; padding-block: 32px; border-bottom: 1px solid var(--line); color: var(--slate); font-size: 13px; }
 .foundation > div { display: flex; align-items: center; flex-wrap: wrap; gap: 32px; }
 .foundation > div > span { display: inline-flex; align-items: center; gap: 8px; }

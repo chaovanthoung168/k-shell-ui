@@ -23,10 +23,10 @@ function FileIcon({ kind, mode }: { kind: FileKind; mode: string }) {
   }
   return <svg className="guide-file-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     {kind === "folder" && <path d="M2 5h7l2 2h11v13H2V5Z" />}
-    {kind === "file" && <><path d="M5 2h9l5 5v15H5V2Z" /><path d="M14 2v6h5" fill="none" stroke="#172234" strokeWidth="1.2" /></>}
+    {kind === "file" && <><path d="M5 2h9l5 5v15H5V2Z" /><path d="M14 2v6h5" fill="none" stroke="#202020" strokeWidth="1.2" /></>}
     {kind === "markdown" && <><rect x="1.5" y="5" width="21" height="14" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" /><path d="M5 15V9l3 3 3-3v6m6-6v6m-3-3 3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.8" /></>}
     {kind === "typescript" && <text x="12" y="17" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="700">TS</text>}
-    {kind === "config" && <><path d="m10 2 4 0 .7 3 2 .9 2.7-1.4 2 3.5-2.3 2 .2 2.2 2.2 2-2 3.5-2.9-.9-1.8 1.3-.7 3h-4l-.7-3-2-1-2.7 1.4-2-3.5 2.3-2-.2-2.2-2.2-2 2-3.5L7.5 7l1.8-1.3L10 2Z" /><circle cx="12" cy="12" r="3.3" fill="#172234" /></>}
+    {kind === "config" && <><path d="m10 2 4 0 .7 3 2 .9 2.7-1.4 2 3.5-2.3 2 .2 2.2 2.2 2-2 3.5-2.9-.9-1.8 1.3-.7 3h-4l-.7-3-2-1-2.7 1.4-2-3.5 2.3-2-.2-2.2-2.2-2 2-3.5L7.5 7l1.8-1.3L10 2Z" /><circle cx="12" cy="12" r="3.3" fill="#202020" /></>}
   </svg>;
 }
 

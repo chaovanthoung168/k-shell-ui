@@ -23,12 +23,12 @@
 .blueprint-node kbd { margin-left: auto; color: var(--slate); font-size: 12px; padding: 1px 4px; border-color: var(--line); }
 .blueprint-connector { display: block; height: 24px; width: 1px; margin: 0 auto; background: var(--hero-line); position: relative; }
 .blueprint-connector:after { content: ""; position: absolute; bottom: 0; left: -3px; width: 7px; height: 7px; border-right: 1px solid var(--accent); border-bottom: 1px solid var(--accent); transform: rotate(45deg); }
-.blueprint-core { display: flex; align-items: center; gap: 14px; padding: 22px; border: 1px solid #35435c; border-radius: 9px; background: #1a2434; color: #edf2fb; box-shadow: 0 10px 20px #18365a0a; }
+.blueprint-core { display: flex; align-items: center; gap: 14px; padding: 22px; border: 1px solid #424242; border-radius: 9px; background: #232323; color: #f2f2f2; box-shadow: 0 10px 20px #3232320a; }
 .blueprint-core-icon { display: grid; place-items: center; height: 42px; width: 43px; border: 1px solid #ffffff15; background: #ffffff05; border-radius: 9px; }
 .blueprint-core-icon svg { width: 25px; height: 22px; }
 .blueprint-core strong { display: block; font-size: 23px; letter-spacing: -.6px; font-weight: 600; }
-.blueprint-core > div > span { display: block; color: #99acc7; font-size: 12px; margin-top: 3px; }
-.blueprint-rust { display: flex; align-items: center; gap: 5px; font-family: var(--mono); color: #b4c5dd; font-size: 12px; margin-left: auto; }
+.blueprint-core > div > span { display: block; color: #aaaaaa; font-size: 12px; margin-top: 3px; }
+.blueprint-rust { display: flex; align-items: center; gap: 5px; font-family: var(--mono); color: #c3c3c3; font-size: 12px; margin-left: auto; }
 .blueprint-rust svg { width: 15px; height: 15px; }
 .shell-blueprint figcaption { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--slate); font-size: 12px; padding-top: 24px; }
 .shell-blueprint figcaption .status-dot { width: 4px; height: 4px; }

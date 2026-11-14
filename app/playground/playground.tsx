@@ -116,7 +116,7 @@ export function Playground() {
         <header className={styles.toolbar}>
           <div className={styles.title}><Logo /><h1 id="playground-heading">Playground</h1><span title="Browser simulation with a temporary sample filesystem">Browser sandbox</span></div>
           <div className={styles.controls}>
-            <div className={styles.themePicker}><ChoiceSelect label="Terminal theme" disabled={session.closed || session.stdin} value={session.theme} onChange={(theme) => changeTheme(theme as ShellTheme)} options={THEMES.map((theme) => ({ value: theme, label: theme[0].toUpperCase() + theme.slice(1), color: { ocean: "#91b8fa", dusk: "#bb95e1", midnight: "#76bdcd" }[theme] }))} /></div>
+            <div className={styles.themePicker}><ChoiceSelect label="Terminal theme" disabled={session.closed || session.stdin} value={session.theme} onChange={(theme) => changeTheme(theme as ShellTheme)} options={THEMES.map((theme) => ({ value: theme, label: theme[0].toUpperCase() + theme.slice(1), color: { ocean: "#d4d4d4", dusk: "#a3a3a3", midnight: "#737373" }[theme] }))} /></div>
             <button className={styles.reset} type="button" onClick={reset} aria-label="Reset session" title="Reset sample files, history, and terminal theme"><Icon name="history" /><span>Reset</span></button>
           </div>
         </header>
