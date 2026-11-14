@@ -16,7 +16,7 @@ export function SiteHeader() {
     <header className={`site-header ${pathname === "/" ? styles.homeHeader : ""}`}>
       <div className="container header-inner">
         <Link className="brand" href="/" aria-label="K Shell home" onClick={() => setOpen(false)}>
-          <span className="brand-logo"><Logo /></span><span className="brand-name">K Shell</span>
+          <span className="brand-logo"><Logo /></span><span className="brand-name">Shell</span>
         </Link>
         <nav aria-label="Main navigation" className={open ? "navigation is-open" : "navigation"}>
           {[["/", "Home"], ["/playground/", "Playground"], ["/docs/", "Docs"], ["/about/", "About"]].map(([href, label]) => (

@@ -11,7 +11,7 @@ html { scroll-padding-top: calc(var(--header-height) + 16px); }
 .site-header { height: var(--header-height); }
 .brand .brand-logo { width: 33px; height: 34px; }
 .brand .brand-logo > svg { width: 33px; height: 34px; }
-.brand .brand-name { line-height: 1; }
+.brand .brand-name { font-size: 32px; line-height: 1; }
 .site-header .header-cta { min-height: 36px; padding: 6px 12px; gap: 8px; line-height: 1.4; }
 .site-header .header-cta svg { width: 17px; height: 17px; }
 .site-header .header-cta:disabled { cursor: default; opacity: .8; }
