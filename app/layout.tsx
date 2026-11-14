@@ -7,9 +7,9 @@ import "./window-theme.css";
 import "./typography.css";
 
 export const metadata: Metadata = {
-  title: { default: "K Shell — A smarter shell for Windows", template: "%s | K Shell" },
+  title: { default: "K Shell — A familiar shell for Windows", template: "%s | K Shell" },
   description: "A modern, customizable Windows shell built with Rust. Discover native commands, intelligent completion, syntax highlighting, and persistent history.",
-  icons: { icon: "/icon.svg" },
+  icons: { icon: "/kshell-icon.svg" },
 };
 
 const themeScript = `(function(){var t;try{t=localStorage.getItem('kshell-color-mode')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t})()`;

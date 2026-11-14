@@ -10,7 +10,7 @@ const groups = [
     { id: "launch", label: "Open your first session", number: "2", keywords: "launch start help terminal" },
   ] },
   { title: "Make it yours", topics: [
-    { id: "customization", label: "Choose your look", number: "3", keywords: "theme ocean dusk midnight icons suggestions config" },
+    { id: "customization", label: "Choose your appearance", number: "3", keywords: "theme ocean dusk midnight icons suggestions config" },
     { id: "startup", label: "Save your preferences", number: "4", keywords: "persist startup default environment settings config font" },
     { id: "commands", label: "Try your first commands", number: "5", keywords: "ls cat mkdir echo tree files use" },
   ] },
@@ -47,10 +47,10 @@ export function DocsNav() {
   }, []);
   const filtered = groups.map(group => ({ ...group, topics: group.topics.filter(topic => `${topic.label} ${topic.keywords}`.toLowerCase().includes(query.trim().toLowerCase())) }));
   return <aside className="guide-nav" aria-label="Documentation navigation">
-    <button className="guide-mobile-toggle" aria-expanded={open} aria-controls="guide-navigation" onClick={() => setOpen(!open)}><span><Icon name="book" /> On this page</span><Icon name={open ? "close" : "menu"} /></button>
+    <button className="guide-mobile-toggle" aria-expanded={open} aria-controls="guide-navigation" onClick={() => setOpen(!open)}><span><Icon name="book" /> {topics.find(topic => topic.id === active)?.label ?? "On this page"}</span><span className="guide-mobile-label">Topics <Icon name={open ? "close" : "menu"} /></span></button>
     <div id="guide-navigation" className={`guide-nav-content${open ? " is-open" : ""}`}>
       <a className="guide-nav-title" href="#overview"><Icon name="book" /> Documentation</a>
-      <label className="guide-search"><Icon name="search" /><input aria-label="Search documentation topics" placeholder="Find a topic…" value={query} onChange={event => setQuery(event.target.value)} /></label>
+      <label className="guide-search"><Icon name="search" /><input aria-label="Search documentation topics" placeholder="Search topics" value={query} onChange={event => setQuery(event.target.value)} /></label>
       <nav aria-label="Documentation topics">{filtered.filter(group => group.topics.length > 0).map(group => <div className="guide-nav-group" key={group.title}>
         <p>{group.title}</p>{group.topics.map(topic => <a key={topic.id} href={`#${topic.id}`} aria-current={active === topic.id ? "location" : undefined} onClick={() => { setActive(topic.id); setOpen(false); }}>{topic.number ? <span className="guide-nav-number">{topic.number}</span> : <span className="guide-nav-dot" />}{topic.label}</a>)}
       </div>)}</nav>

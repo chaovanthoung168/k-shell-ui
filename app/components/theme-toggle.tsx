@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { Icon } from "./ui";
+import styles from "./header-controls.module.css";
 
 const storageKey = "kshell-color-mode";
 type Theme = "light" | "dark";
@@ -65,9 +66,9 @@ export function ThemeToggle() {
   }
 
   return (
-    <div className="color-mode-control" role="group" aria-label="Color theme">
-      <button type="button" className="color-mode-light" aria-label="Use light mode" aria-pressed={theme === "light"} onClick={() => chooseTheme("light")}><Icon name="sun" /><span>Light</span></button>
-      <button type="button" className="color-mode-dark" aria-label="Use dark mode" aria-pressed={theme === "dark"} onClick={() => chooseTheme("dark")}><Icon name="moon" /><span>Dark</span></button>
+    <div className={styles.themeSwitch} role="group" aria-label="Color theme">
+      <button type="button" className={`${styles.themeButton} ${styles.light}`} title="Light mode" aria-label="Use light mode" aria-pressed={theme === "light"} onClick={() => chooseTheme("light")}><Icon name="sun" /></button>
+      <button type="button" className={`${styles.themeButton} ${styles.dark}`} title="Dark mode" aria-label="Use dark mode" aria-pressed={theme === "dark"} onClick={() => chooseTheme("dark")}><Icon name="moon" /></button>
     </div>
   );
 }

@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Icon, Logo } from "./ui";
 
 const examples = {
   Completion: { command: "ls", lines: ["  src/       tests/       Cargo.toml", "  README.md  Cargo.lock  LICENSE"] },
-  History: { command: "history 3", lines: ["  1  cargo build", "  2  theme ocean", "  3  ls"] },
-  Themes: { command: "theme ocean", lines: ["  Theme set to Ocean.", "  Your shell. Your favorite colors."] },
+  History: { command: "history 3", lines: ["  1  cargo build", "  2  theme dusk", "  3  ls"] },
+  Themes: { command: "theme dusk", lines: ["  Theme set to Dusk", "  Ocean, Dusk, Midnight — your choice"] },
 };
 type Mode = keyof typeof examples;
 
 const sequence: { mode: Mode; command: string; lines: string[] }[] = [
-  { mode: "Completion", command: "cargo build --release", lines: ["  Demo: compiling your next big idea…", "  Finished. Ready for what comes next."] },
+  { mode: "Completion", command: "cargo build --release", lines: ["  Demo: release build complete", "  Run Cargo in K Shell to build your project"] },
   { mode: "History", ...examples.History },
   { mode: "Themes", ...examples.Themes },
 ];
@@ -23,14 +23,26 @@ function subscribeMotion(callback: () => void) {
 }
 
 export function TerminalDemo() {
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   const [mode, setMode] = useState<Mode>("Completion");
   const [input, setInput] = useState("");
   const [response, setResponse] = useState<string[] | null>(null);
   const [lastCommand, setLastCommand] = useState<string | null>(null);
-  const [theme, setTheme] = useState("ocean");
+  const [theme, setTheme] = useState("dusk");
   const [autoPlay, setAutoPlay] = useState(true);
   const reducedMotion = useSyncExternalStore(subscribeMotion, () => window.matchMedia("(prefers-reduced-motion: reduce)").matches, () => true);
-  const playing = autoPlay && !reducedMotion;
+  const playing = autoPlay && !reducedMotion && visible;
+
+  useEffect(() => {
+    const terminal = terminalRef.current;
+    if (!terminal) return;
+    const observer = new IntersectionObserver(entries => {
+      setVisible(entries.some(entry => entry.isIntersecting));
+    }, { threshold: .2 });
+    observer.observe(terminal);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!playing) return;
@@ -39,6 +51,7 @@ export function TerminalDemo() {
     const timer = window.setInterval(() => {
       const current = sequence[scene];
       tick += 1;
+      // Let the terminal's entrance finish before the first keystroke.
       if (tick <= 9) return;
       const length = tick - 9;
       if (length <= current.command.length) {
@@ -47,14 +60,32 @@ export function TerminalDemo() {
         setLastCommand(current.command);
         setMode(current.mode);
         setResponse(current.lines);
+        if (current.mode === "Themes") setTheme("dusk");
         setInput("");
       } else if (length > current.command.length + 35) {
+        if (scene === sequence.length - 1) {
+          setAutoPlay(false);
+          window.clearInterval(timer);
+          return;
+        }
         tick = 0;
-        scene = (scene + 1) % sequence.length;
+        scene += 1;
       }
     }, 85);
     return () => window.clearInterval(timer);
   }, [playing]);
+
+  function togglePlayback() {
+    if (autoPlay) {
+      setAutoPlay(false);
+      return;
+    }
+    setMode("Completion");
+    setInput("");
+    setResponse(null);
+    setLastCommand(null);
+    setAutoPlay(true);
+  }
 
   function run() {
     setAutoPlay(false);
@@ -76,7 +107,7 @@ export function TerminalDemo() {
   }
 
   return (
-    <div className={`terminal-window theme-${theme}`}>
+    <div ref={terminalRef} className={`terminal-window theme-${theme}`}>
       <div className="wt-titlebar">
         <div className="wt-tab"><Logo /><span>K Shell</span><svg className="wt-tab-close" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 5 6 6m0-6-6 6" /></svg></div>
         <div className="wt-new-tab" aria-hidden="true"><span>+</span><svg viewBox="0 0 16 16"><path d="m5 6 3 3 3-3" /></svg></div>
@@ -88,7 +119,7 @@ export function TerminalDemo() {
         </div>
       </div>
       <div className="terminal-body">
-        <div className="terminal-welcome"><Logo /><div><strong>Welcome to K Shell.</strong><span>A fresh prompt. Endless possibilities.</span></div><span className="terminal-live"><span className="status-dot" /> Ready</span></div>
+        <div className="terminal-welcome"><Logo /><div><strong>K Shell on Windows</strong><span>Interactive command preview</span></div><span className="terminal-live"><span className="status-dot" /> Ready</span></div>
         <div className="terminal-path"><Icon name="terminal" /> ~\projects\k-shell <span>main</span></div>
         <div className="terminal-command"><span className="prompt">›</span> {lastCommand ?? examples[mode].command}</div>
         <div className="terminal-output" aria-live={playing ? "off" : "polite"}>{(response ?? examples[mode].lines).map((line, i) => <div key={i}>{line}</div>)}</div>
@@ -107,8 +138,8 @@ export function TerminalDemo() {
         <div className="terminal-tip">Interactive preview. Click the prompt and try a command.</div>
       </div>
       <div className="terminal-tabs" role="group" aria-label="Terminal preview examples">
-        <button className="animation-toggle" aria-label={playing ? "Pause terminal animation" : "Play terminal animation"} disabled={reducedMotion} onClick={() => setAutoPlay(!autoPlay)}><Icon name={playing ? "pause" : "play"} /><span>{reducedMotion ? "Motion off" : playing ? "Pause demo" : "Play demo"}</span></button>
-        {(Object.keys(examples) as Mode[]).map(tab => <button key={tab} aria-pressed={mode === tab} onClick={() => { setAutoPlay(false); setMode(tab); setLastCommand(null); setResponse(null); setInput(""); }}>{tab}</button>)}
+        <button className="animation-toggle" aria-label={playing ? "Pause terminal animation" : "Play terminal animation"} disabled={reducedMotion} onClick={togglePlayback}><Icon name={playing ? "pause" : "play"} /><span>{reducedMotion ? "Motion off" : playing ? "Pause demo" : "Play demo"}</span></button>
+        {(Object.keys(examples) as Mode[]).map(tab => <button key={tab} aria-pressed={mode === tab} onClick={() => { setAutoPlay(false); setMode(tab); setLastCommand(null); setResponse(null); setInput(""); if (tab === "Themes") setTheme("dusk"); }}>{tab}</button>)}
       </div>
     </div>
   );

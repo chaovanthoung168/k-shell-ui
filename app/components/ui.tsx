@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-export function Logo() { return <svg viewBox="0 0 32 25" fill="none" aria-hidden="true"><path d="m3 4 8 8-8 8M17 21h12" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
+// Angular K/lightning mark traced from the supplied logo; inherit the page theme.
+export function Logo() { return <svg viewBox="0 0 809 820" fill="none" aria-hidden="true"><path fill="currentColor" d="M190 0H422L222 379H383L29 820L138 500H0ZM301 335L542 60Q555 46 580 46H809L494 396L753 727H475L321 532L464 335Z"/></svg>; }
 export function Arrow() { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 export function Icon({name}: {name:string}) {
   const paths: Record<string, ReactNode> = {

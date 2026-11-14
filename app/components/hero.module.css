@@ -1,0 +1,234 @@
+/* Direction approved from the Pinterest reference; craft pass follows unslop
+   by Damir Sokolovsky (@heydamir), CC BY 4.0. */
+.banner {
+  --hero-ease: cubic-bezier(.22, 1, .36, 1);
+  padding: 0;
+}
+
+.panel {
+  color-scheme: dark;
+  max-width: none;
+  margin-inline: auto;
+  overflow: clip;
+  border: 0;
+  border-radius: 0;
+  background: #0d0c11;
+  color: #f1eff6;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: center;
+  gap: 48px;
+  width: calc(100% - 96px);
+  max-width: 1200px;
+  min-height: 728px;
+  margin-inline: auto;
+  padding-block: 64px 80px;
+}
+
+.copy { min-width: 0; }
+.heading {
+  margin: 0;
+  font-size: clamp(80px, 8.2vw, 116px);
+  font-weight: 400;
+  line-height: .96;
+  letter-spacing: -.055em;
+}
+.subhead {
+  max-width: 400px;
+  margin-top: 32px;
+  color: #b2afbd;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin-top: 32px; }
+.primary, .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: color 160ms var(--hero-ease), background-color 160ms var(--hero-ease), border-color 160ms var(--hero-ease), transform 160ms var(--hero-ease);
+}
+.primary { background: #eeeaf7; color: #19171f; }
+.primary:hover { background: #dcd4ee; }
+.secondary { padding-inline: 0; color: #c7c3d1; }
+.secondary:hover { color: #fff; }
+.primary:active, .secondary:active { transform: scale(.98); }
+.primary svg, .secondary svg { width: 16px; height: 16px; }
+.panel :focus-visible { outline: 2px solid #d4b8f2; outline-offset: 4px; }
+.specs { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 24px; color: #a19caa; font-size: 12px; line-height: 20px; }
+.specs > span { padding-left: 24px; border-left: 1px solid #ffffff24; }
+.stage { min-width: 0; perspective: 1200px; }
+.terminal { transform-origin: center; }
+.scene { position: relative; min-width: 0; height: 480px; display: flex; flex-direction: column; justify-content: center; perspective: 1000px; }
+.object { position: relative; width: min(90%, 360px); margin-inline: auto; aspect-ratio: 809 / 820; transform-style: preserve-3d; transform: rotateX(12deg) rotateY(-22deg) rotateZ(-10deg); animation: prompt-assemble 1000ms var(--hero-ease) both; }
+.object > span { position: absolute; inset: 0; }
+.object svg { width: 100%; height: 100%; }
+.objectBack { color: #34244c; transform: translate3d(24px, 28px, -24px); }
+.objectMiddle { color: #70509c; transform: translate3d(12px, 14px, -12px); }
+.objectFront { color: #bc9de9; filter: drop-shadow(1px 1px 0 #e4d1ff); }
+.commandTrace { display: flex; align-items: center; gap: 16px; margin-top: 48px; border-block: 1px solid #ffffff14; padding-block: 16px; font-family: var(--mono); font-size: 14px; color: #e4ddef; }
+.commandTrace > span { color: #bc9de9; font-size: 24px; }
+.commandTrace code { font-size: inherit; }
+.commandTrace code > span { color: #9990a7; }
+.commandTrace kbd { margin-left: auto; border-color: #ffffff29; color: #c1b9ce; font-size: 12px; }
+.sceneCaption { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: 11px; color: #9e95ac; }
+.sceneCaption > span:first-child { color: #d4cbdf; }
+.replay { display: inline-flex; align-items: center; gap: 8px; padding: 0; background: transparent; color: #b6acc5; font-size: 12px; min-height: 32px; }
+.replay svg { width: 12px; height: 12px; }
+.replay:hover { color: #fff; }
+.workbench { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); gap: 80px; align-items: center; max-width: 1200px; width: calc(100% - 96px); margin-inline: auto; padding-block: 48px 80px; border-top: 1px solid #ffffff14; }
+.workbenchCopy h2 { font-size: 32px; font-weight: 400; letter-spacing: -.025em; line-height: 1.2; }
+.workbenchCopy p { font-size: 15px; line-height: 1.8; margin-top: 20px; color: #b2afbd; max-width: 32ch; }
+.workbenchCopy a { display: inline-flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 14px; color: #ded7e9; }
+.workbenchCopy a:hover { color: #fff; }
+.workbenchCopy a svg { width: 16px; height: 16px; }
+
+/* The shell itself carries the color; the surrounding stage stays neutral. */
+.panel .terminal :global(.terminal-window) {
+  --wt-background: #191a23;
+  --wt-titlebar: #13141b;
+  --wt-foreground: #ebe7f1;
+  --wt-muted: #a7a0b3;
+  --wt-line: #ffffff14;
+  --wt-accent: #a8c4f2;
+  --wt-prompt: #a6d7bf;
+  --wt-selection: #292a38;
+  border: 1px solid #ffffff24;
+  border-radius: 12px;
+  background: var(--wt-background);
+  box-shadow: 0 24px 48px -24px #0009;
+}
+.panel .terminal :global(.terminal-window.theme-dusk) {
+  --wt-background: #221d2d;
+  --wt-titlebar: #19151f;
+  --wt-accent: #d1b0ef;
+  --wt-selection: #372b46;
+}
+.panel .terminal :global(.terminal-window.theme-midnight) {
+  --wt-background: #101a26;
+  --wt-titlebar: #0d141e;
+  --wt-accent: #9bd4dd;
+  --wt-selection: #213241;
+}
+.terminal :global(.wt-titlebar) { height: 40px; padding-top: 4px; }
+.terminal :global(.wt-tab) { width: 160px; font-size: 13px; }
+.terminal :global(.wt-caption-controls) { margin-top: -4px; }
+.terminal :global(.wt-caption-controls > span) { width: 28px; }
+.terminal :global(.wt-executable) { font-size: 11px; padding-inline: 8px; }
+.terminal :global(.wt-new-tab) { padding-inline: 8px; }
+.terminal :global(.terminal-body) { min-height: 336px; padding: 28px 24px 24px; }
+.terminal :global(.terminal-welcome) { gap: 12px; margin-bottom: 28px; }
+.terminal :global(.terminal-welcome > svg) { width: 28px; height: 24px; }
+.terminal :global(.terminal-welcome strong) { font-size: 15px; font-weight: 400; letter-spacing: 0; }
+.terminal :global(.terminal-welcome > div > span) { margin-top: 4px; font-size: 12px; line-height: 20px; }
+.terminal :global(.terminal-welcome .terminal-live) { display: flex; align-items: center; gap: 8px; margin: 0 0 0 auto; font-size: 12px !important; }
+.terminal :global(.terminal-live .status-dot) { width: 4px; height: 4px; margin: 0; background: var(--wt-prompt); }
+.terminal :global(.terminal-path) { gap: 8px; margin-bottom: 8px; font-size: 13px; }
+.terminal :global(.terminal-path > svg) { width: 16px; height: 16px; }
+.terminal :global(.terminal-path > span) { margin-left: 0; font-size: 11px; }
+.terminal :global(.terminal-command) { gap: 8px; font-size: 15px; overflow-wrap: anywhere; }
+.terminal :global(.terminal-output) { min-height: 96px; padding-block: 8px 12px; font-size: 13px; line-height: 1.85; }
+.terminal :global(.second-path) { margin-top: 8px; }
+.terminal :global(.terminal-input-line) { gap: 8px; }
+.terminal :global(.prompt) { margin-right: 0; font-weight: 500; }
+.terminal :global(.terminal-input-line input) { height: 32px; font-size: 15px; }
+.terminal :global(.terminal-input-line input::placeholder) { font-size: 13px; }
+.terminal :global(.terminal-input-line button) { min-width: 32px; min-height: 32px; font-size: 16px; }
+.terminal :global(.terminal-input-line button:hover) { color: var(--wt-foreground); }
+.terminal :global(.terminal-tip) { margin: 16px 0 0; font-size: 11px; line-height: 20px; }
+.terminal :global(.terminal-tabs) { min-height: 48px; height: auto; gap: 20px; padding-inline: 20px; }
+.terminal :global(.terminal-tabs button) { min-height: 48px; font-size: 12px; transition: color 160ms var(--hero-ease); }
+.terminal :global(.terminal-tabs button:hover) { color: var(--wt-foreground); }
+.terminal :global(.terminal-tabs button[aria-pressed="true"]::after) { content: ""; position: absolute; inset: auto 0 0; height: 2px; background: var(--wt-accent); }
+.terminal :global(.terminal-tabs .animation-toggle) { display: flex; align-items: center; gap: 8px; margin-right: auto; font-family: var(--sans); }
+.terminal :global(.animation-toggle svg) { width: 16px; height: 16px; }
+.terminal :global(.animation-toggle:disabled) { cursor: default; }
+.terminal :global(.terminal-cursor) { position: absolute; top: 8px; left: 0; width: 6px; height: 16px; background: var(--wt-accent); pointer-events: none; }
+
+@keyframes prompt-assemble {
+  from { opacity: 0; transform: translate3d(32px, 12px, -120px) rotateX(24deg) rotateY(-65deg) rotateZ(-10deg); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotateX(12deg) rotateY(-22deg) rotateZ(-10deg); }
+}
+
+@media (max-width: 1100px) {
+  .inner { width: calc(100% - 64px); gap: 32px; min-height: 680px; padding-block: 64px; }
+  .heading { font-size: clamp(72px, 8.8vw, 96px); }
+  .workbench { width: calc(100% - 64px); gap: 40px; }
+  .sceneCaption > span:last-child { max-width: 20ch; text-align: right; }
+  .actions { gap: 8px 16px; }
+  .terminal :global(.wt-executable), .terminal :global(.wt-caption-controls) { display: none; }
+  .terminal :global(.terminal-body) { padding-inline: 20px; }
+  .terminal :global(.terminal-live) { display: none !important; }
+  .terminal :global(.terminal-tabs) { gap: 12px; padding-inline: 12px; }
+  .terminal :global(.animation-toggle > span) { display: none; }
+}
+
+@media (max-width: 800px) {
+  .inner { grid-template-columns: 1fr 1fr; min-height: 600px; gap: 24px; padding-block: 48px; }
+  .heading { font-size: clamp(60px, 9.5vw, 80px); }
+  .subhead { font-size: 15px; }
+  .scene { height: 360px; }
+  .commandTrace { font-size: 11px; gap: 8px; margin-top: 32px; }
+  .commandTrace kbd { display: none; }
+  .workbench { grid-template-columns: 1fr; gap: 32px; padding-block: 48px; }
+  .workbenchCopy { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; }
+  .workbenchCopy p { margin-top: 0; }
+  .workbenchCopy a { margin-top: 0; }
+  .terminal :global(.terminal-body) { min-height: 312px; }
+  .terminal :global(.animation-toggle > span) { display: inline; }
+}
+
+@media (max-width: 580px) {
+  .inner { grid-template-columns: 1fr; width: calc(100% - 40px); gap: 40px; padding-block: 40px; }
+  .heading { font-size: clamp(64px, 18vw, 96px); line-height: .98; }
+  .subhead { max-width: 34ch; margin-top: 24px; font-size: 16px; line-height: 1.6; }
+  .scene { height: auto; max-width: 320px; width: 100%; margin-inline: auto; padding: 12px 16px 0; }
+  .object { width: 76%; margin-inline: auto; }
+  .commandTrace { margin-top: 32px; font-size: 12px; }
+  .sceneCaption { font-size: 11px; }
+  .sceneCaption > span:last-child { max-width: 24ch; }
+  .workbench { width: calc(100% - 40px); padding-block: 40px; }
+  .workbenchCopy { display: block; }
+  .workbenchCopy h2 { font-size: 28px; }
+  .workbenchCopy p { margin-top: 16px; max-width: none; }
+  .workbenchCopy a { margin-top: 20px; }
+  .actions { gap: 8px 16px; margin-top: 24px; }
+  .primary, .secondary { min-height: 44px; font-size: 13px; gap: 8px; }
+  .primary { padding: 12px; }
+  .specs { margin-top: 20px; font-size: 11px; gap: 4px 8px; }
+  .terminal :global(.wt-titlebar) { height: 36px; }
+  .terminal :global(.wt-tab) { flex: 1; width: auto; }
+  .terminal :global(.wt-new-tab), .terminal :global(.wt-tab-close) { display: none; }
+  .terminal :global(.terminal-body) { min-height: 0; padding: 20px 16px; }
+  .terminal :global(.terminal-welcome) { margin-bottom: 20px; }
+  .terminal :global(.terminal-welcome > div > span), .terminal :global(.second-path), .terminal :global(.terminal-tip) { display: none; }
+  .terminal :global(.terminal-path) { font-size: 11px; }
+  .terminal :global(.terminal-command), .terminal :global(.terminal-input-line input) { font-size: 14px; }
+  .terminal :global(.terminal-output) { min-height: 96px; font-size: 12px; }
+  .terminal :global(.terminal-tabs) { gap: 16px; padding-inline: 12px; }
+  .terminal :global(.terminal-tabs button) { font-size: 11px; }
+  .terminal :global(.animation-toggle > span) { display: none; }
+}
+
+@media (max-width: 360px) {
+  .actions { gap: 8px 12px; }
+  .secondary svg { display: none; }
+  .terminal :global(.terminal-tabs) { gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .object { animation: none; }
+  .replay { display: none; }
+  .primary, .secondary, .terminal :global(.terminal-tabs button) { transition: none; }
+  .primary:active, .secondary:active { transform: none; }
+}

@@ -9,6 +9,9 @@
 
 html { scroll-padding-top: calc(var(--header-height) + 16px); }
 .site-header { height: var(--header-height); }
+.brand .brand-logo { width: 33px; height: 34px; }
+.brand .brand-logo > svg { width: 33px; height: 34px; }
+.brand .brand-name { line-height: 1; }
 .site-header .header-cta { min-height: 36px; padding: 6px 12px; gap: 8px; line-height: 1.4; }
 .site-header .header-cta svg { width: 17px; height: 17px; }
 .site-header .header-cta:disabled { cursor: default; opacity: .8; }
@@ -19,17 +22,10 @@ body { font-size: 17px; }
 .brand-label { font-size: 13px; }
 .navigation a { font-size: 16px; }
 .header-cta { font-size: var(--text-control); }
-.button,
-.hero-banner-actions .button { font-size: var(--text-control); min-height: 46px; }
+.button { font-size: var(--text-control); min-height: 46px; }
 .site-header .color-mode-control button { font-size: 13px; min-height: 30px; }
 .text-link { font-size: var(--text-control); }
 .section-kicker { font-size: var(--text-small); }
-.hero-intro > p { font-size: 18px; max-width: 680px; }
-.hero-announcement,
-.hero-announcement code,
-.hero-proof { font-size: var(--text-small); }
-.hero-announcement { flex-wrap: wrap; justify-content: center; }
-.hero-proof { flex-wrap: wrap; gap: 12px 22px; }
 .foundation,
 .foundation > div { font-size: var(--text-small); }
 .foundation { flex-wrap: wrap; }
@@ -56,13 +52,6 @@ body { font-size: 17px; }
 .preview-shortcut kbd { font-size: var(--text-caption); }
 .feature-guide { font-size: var(--text-control); }
 .feature-footnote { font-size: var(--text-small); flex-wrap: wrap; gap: 10px; }
-.hero-stage-caption { font-family: var(--sans); font-size: var(--text-caption); text-align: center; }
-.stage-callout > div > span,
-.stage-callout code,
-.stage-callout strong { font-size: var(--text-caption); }
-.stage-callout kbd { font-size: 11px; }
-.completion-callout { left: -15px; }
-.theme-callout { right: -15px; }
 .code-label { font-size: var(--text-small); height: auto; min-height: 44px; padding-block: 10px; flex-wrap: wrap; }
 .code-label > span { font-size: var(--text-caption); }
 .quickstart-code pre { font-size: var(--text-body); }
@@ -75,7 +64,6 @@ body { font-size: 17px; }
 .footer-bottom { font-size: 13px; flex-wrap: wrap; }
 
 /* Windows terminal text remains readable independently of the page theme. */
-.hero-terminal .terminal-body { min-height: 330px; }
 .hero-terminal .terminal-welcome strong { font-size: 17px; }
 .hero-terminal .terminal-welcome > div > span { font-size: 13px; }
 .terminal-welcome .terminal-live { font-size: 12px !important; white-space: nowrap; }
@@ -90,7 +78,6 @@ body { font-size: 17px; }
 .terminal-output > div { white-space: pre-wrap; }
 .terminal-tip { font-size: 12px; margin-left: 0; }
 .terminal-input-line button { font-size: 16px; min-width: 28px; min-height: 28px; }
-.hero-terminal .terminal-tabs { min-height: 48px; height: auto; }
 .terminal-tabs button,
 .terminal-tabs .animation-toggle { font-size: 12px; }
 .terminal-tabs button { min-height: 44px; }
@@ -132,7 +119,6 @@ td { font-size: 15px; }
   .brand-label { display: none; }
   .header-actions { gap: 12px; }
   .feature-explorer { grid-template-columns: 235px minmax(0, 1fr); }
-  .stage-callout { display: none; }
   .footer-top { flex-wrap: wrap; gap: 35px; }
   .footer-links { gap: 40px; }
 }
@@ -165,8 +151,6 @@ td { font-size: 15px; }
   .advantage-grid,
   .quickstart { grid-template-columns: 1fr; gap: 30px; }
   .footer-links { width: 100%; justify-content: space-between; gap: 25px; }
-  .hero-banner-actions { flex-wrap: wrap; }
-  .hero-terminal .terminal-tabs { gap: 16px; }
 }
 
 @media (max-width:580px) {
@@ -175,28 +159,16 @@ td { font-size: 15px; }
   .site-header .navigation { top: var(--header-height); }
   .site-header .color-mode-control button { font-size: 12px; padding: 7px 6px; }
   .site-header .header-actions { gap: 8px; }
-  .hero-intro > p { font-size: 16px; }
-  .hero-banner-actions .button { font-size: 14px; }
-  .hero-announcement,
-  .hero-announcement code { font-size: 12px; }
-  .hero-proof { font-size: 12px; gap: 10px 15px; }
   .section-heading p { font-size: 16px; }
   .feature-detail h3 { font-size: 28px; }
   .feature-footnote { font-size: 13px; }
   .feature-footnote > a { margin-left: 0; }
   .foundation { font-size: 14px; }
   .foundation > div { font-size: 13px; gap: 13px 20px; }
-  .hero-terminal .terminal-welcome { align-items: flex-start; }
   .hero-terminal .terminal-welcome strong { font-size: 16px; }
-  .hero-terminal .terminal-welcome > div > span { font-size: 12px; }
-  .hero-terminal .terminal-body { min-height: 335px; }
-  .hero-terminal .terminal-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0 12px; padding: 5px 13px; }
-  .terminal-tabs .animation-toggle { grid-column: 1 / -1; justify-content: center; margin: 0; min-height: 34px; }
-  .terminal-tabs button { min-height: 38px; }
   .terminal-command { flex-wrap: wrap; gap: 5px; }
   .terminal-tip { font-size: 12px; }
-  .wt-tab { width: 130px; font-size: 13px; }
-  .wt-new-tab { padding-inline: 7px; }
+  .wt-tab { font-size: 13px; }
   .code-label { font-size: 13px; gap: 8px; }
   .code-label > span { margin-left: 0; font-size: 12px; }
   .quickstart-code pre { font-size: 14px; }

@@ -1,6 +1,6 @@
 # K Shell website
 
-A responsive, three-page website for K Shell, built with Next.js 16, React 19, TypeScript, and plain CSS.
+A responsive website for K Shell, built with Next.js 16, React 19, TypeScript, and plain CSS.
 
 ## Local development
 
@@ -8,7 +8,19 @@ A responsive, three-page website for K Shell, built with Next.js 16, React 19, T
 npm run dev
 ```
 
-Open http://localhost:3000 (or http://127.0.0.1:3000). The Home, Docs, and About pages live at `/`, `/docs/`, and `/about/`.
+Open http://localhost:3000 (or http://127.0.0.1:3000). The Home, Playground, Docs, and About pages live at `/`, `/playground/`, `/docs/`, and `/about/`.
+
+## Playground
+
+The Playground is a browser-only simulation with a temporary sample filesystem. Its terminal shares the navbar's responsive container and fills the remaining viewport.
+
+All 27 K Shell built-in names are supported: `append`, `cat`, `cd`, `clear`, `copy`, `cp`, `create`, `delete`, `echo`, `exit`, `help`, `history`, `ls`, `mkdir`, `move`, `mv`, `open`, `pwd`, `rename`, `rm`, `specs`, `sysinfo`, `theme`, `touch`, `tree`, `update`, and `write`. Use `help` or `help command` for syntax. File operations share the sample workspace, support quoted Windows paths, and preserve existing files when a copy or move would overwrite them.
+
+Tab completes commands, paths and theme settings; repeated Tab cycles matches. Right accepts inline suggestions, Up/Down recalls history, and Ctrl L clears output. `cat` without a filename reads typed input; Ctrl D or Finish input ends it, and Ctrl C or Cancel returns to the prompt. `exit` closes the session; Reset reopens it. Themes support palette, icon and suggestion-style settings, with browser-safe text labels for Nerd icons.
+
+`open` previews sample text files in the terminal; `sysinfo` and `specs` report workspace data. The Playground does not execute the Rust shell, access the host filesystem, launch Windows apps, or run external programs such as Git, npm or Python. Reset restores the sample workspace; reloading starts a new session.
+
+Run the shell-behavior checks with `npm run test:playground`.
 
 ## Production
 
@@ -31,6 +43,6 @@ The build type-checks the application and exports all pages and assets into `out
 - Installation, commands, shortcuts, customization, and a clearly identified roadmap.
 - Keyboard focus styles, a skip link, reduced-motion support, and page metadata.
 
-The supplied prompt image inspired the SVG brand mark. `DESIGN.md` records the visual direction. Shell behavior and install instructions are based on the adjacent Rust project's README. Public copies of its reference and MIT license are in `public/`. No external fonts or runtime services are needed.
+The supplied angular K/lightning logo is traced as a theme-aware SVG brand mark, shared across navigation, previews, and page artwork. Matching SVG and multi-size ICO browser icons use the same silhouette; `public/kshell-logo.png` preserves the supplied artwork. `DESIGN.md` records the visual direction. Shell behavior and install instructions are based on the adjacent Rust project's README. Public copies of its reference and MIT license are in `public/`. No external fonts or runtime services are needed.
 
 `.openai/hosting.json` records this website's private Sites deployment identity and static output directory. It contains no credentials.
