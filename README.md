@@ -37,7 +37,8 @@ The build type-checks the application and exports all pages and assets into `out
 - Animated browser-local terminal preview with completion, history examples, and selectable shell themes. Playback can be paused, stops on interaction, and respects reduced-motion preferences. It never executes system commands.
 - Explicit Light/Dark controls across every page, initialized before hydration and following the system preference until a visitor chooses a mode. The terminal preview follows the page color mode, with Ocean/Dusk/Midnight accent palettes.
 - Windows Terminal-style tabs and caption icons in the terminal preview.
-- Interactive feature explorer with six capability previews.
+- Terminal-focused hero: tool and feature tiles gather into the live preview, with pause/resume and replay controls. The terminal follows a short scroll journey before releasing into the feature cards. Reduced-motion preferences disable the collection and sticky sequence.
+- Six feature cards with command visuals, completion acceptance, history recall, and theme switching.
 - Redesigned About page with a native execution diagram, expandable technology notes, verified dependency versions, and current/future capability sections.
 - Searchable documentation topics and copyable code examples.
 - Installation, commands, shortcuts, customization, and a clearly identified roadmap.

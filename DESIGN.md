@@ -139,3 +139,15 @@ The homepage now uses a substantially different hierarchy: an oversized three-li
 Validation: ESLint, TypeScript and the production export pass. Browser checks cover the changed headline, replay action, six-tab feature structure, completion acceptance, theme selection, launch-command copying, terminal input, and both page modes. Measured page widths fit 320px, 390px, 800px and desktop viewports with no horizontal overflow. Console error check is clear.
 
 Design process: frontend-design and unslop by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)), CC BY 4.0.
+
+## Terminal collection and scroll journey
+
+Reference: https://www.pinterest.com/pin/737183032790531550/ — a dark violet product stage, gathering objects, and feature cards. The terminal remains the product; the reference's security content is not reused.
+
+Palette: stage #0c0a14, shell #1b1626, violet #bca4e3, text #f3effa, mint prompt #a4d5bd, paper #f7f6f9. Segoe UI carries the headline and interface; Consolas carries actual commands. Keep the approved symbol plus Shell wordmark.
+
+Layout: left-aligned terminal copy and a large terminal on desktop; centered copy above a flat terminal on mobile. A short sticky section carries the same terminal down the page while the copy changes, then releases it before the three-column feature-card grid (two on tablet, one on mobile). Preserve ordinary browser scrolling.
+
+Motion: Rust, Windows, Git, completion, history, and theme tiles gather into the terminal in one staggered sequence. Pause/resume and replay are separate from the working terminal demo's playback. Scroll changes the terminal's perspective and position, with one requestAnimationFrame update per scroll frame. Reduced-motion preferences show the completed terminal without the collection or sticky journey. No animation library or raster imagery is needed.
+
+Critique: the previous oversized logo duplicated the branding and placed the actual terminal below the fold. The terminal now anchors the hero. A generic icon-only card grid would repeat the tool tiles; the cards instead use command previews with working completion, history, and theme controls. Preserve native Windows claims and browser-simulation boundaries.
