@@ -1,31 +1,32 @@
-.banner { --journey: 0; --terminal-rise: 0px; --hero-ease: cubic-bezier(.22,1,.36,1); height: 175svh; position: relative; background: #000; color: #fff; }
+.banner { --journey: 0; --terminal-x: 24%; --terminal-rise: 0px; --terminal-width: 55%; --hero-ease: cubic-bezier(.22,1,.36,1); height: 190svh; position: relative; background: #000; color: #fff; }
 .panel { position: sticky; top: 80px; height: calc(100svh - 80px); min-height: 650px; display: flex; flex-direction: column; overflow: clip; background: #000; color-scheme: dark; }
-.inner { flex: 1; min-height: 0; width: calc(100% - 80px); max-width: 1200px; margin-inline: auto; display: grid; grid-template-rows: auto 1fr; align-items: center; justify-items: center; gap: 20px; padding-top: 30px; }
-.copyStack { display: grid; align-items: center; width: 100%; text-align: center; min-height: 205px; }
+.inner { position: relative; flex: 1; min-height: 0; width: calc(100% - 96px); max-width: 1200px; margin-inline: auto; display: flex; align-items: center; padding-block: 24px; }
+.copyStack { position: relative; width: 41%; text-align: left; min-height: 205px; }
 .copy, .scrollCopy { grid-area: 1/1; }
 .copy { opacity: clamp(0, calc(1 - var(--journey) * 2.7), 1); transform: translateY(calc(var(--journey) * -25px)); }
 .copy:focus-within { opacity: 1; transform: none; position: relative; z-index: 5; background: #000; }
 .heading { font-size: clamp(48px, 5.5vw, 76px); font-weight: 500; line-height: 1.05; letter-spacing: -.055em; }
-.heading span { white-space: nowrap; }
-.subhead { margin: 18px auto 0; max-width: 55ch; font-size: 17px; line-height: 1.65; color: #a3a3a3; }
-.actions { display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; }
+.heading span { display: block; white-space: nowrap; }
+.subhead { margin: 24px 0 0; max-width: 35ch; font-size: 17px; line-height: 1.75; color: #a3a3a3; }
+.subhead br { display: none; }
+.actions { display: flex; justify-content: flex-start; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 26px; }
 .primary, .secondary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 11px 17px; border: 1px solid transparent; border-radius: 5px; font-size: 13px; line-height: 1.5; transition: background 160ms, border-color 160ms; }
 .primary { color: #000; background: #fff; }
 .primary:hover { background: #d9d9d9; }
 .secondary { color: #eee; background: #090909; border-color: #333; }
 .secondary:hover { border-color: #888; background: #181818; }
 .primary svg, .secondary svg { width: 15px; height: 15px; }
-.specs { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 15px; font-size: 11px; color: #818181; }
+.specs { display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 20px; font-size: 11px; color: #818181; }
 .specs > span { display: inline-flex; align-items: center; gap: 16px; }
 .specs > span::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: #555; }
-.scrollCopy { opacity: clamp(0, calc((var(--journey) - .4) * 3), 1); transform: translateY(calc((1 - var(--journey)) * 28px)); pointer-events: none; }
-.scrollCopy h2 { font-size: clamp(36px, 4vw, 54px); line-height: 1.08; letter-spacing: -.045em; font-weight: 400; }
-.scrollCopy h2 br { display: none; }
-.scrollCopy p { margin: 20px auto 0; color: #a3a3a3; font-size: 16px; line-height: 1.7; }
-.scene { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; max-width: 1120px; min-width: 0; min-height: 350px; height: 100%; }
+.scrollCopy { position: absolute; left: 0; right: 0; top: 28px; text-align: center; opacity: clamp(0, calc((var(--journey) - .4) * 3), 1); transform: translateY(calc((1 - var(--journey)) * 28px)); pointer-events: none; }
+.scrollCopy h2 { font-size: clamp(34px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -.045em; font-weight: 400; }
+.scrollCopy h2 br { display: block; }
+.scrollCopy p { margin: 14px auto 0; color: #a3a3a3; font-size: 15px; line-height: 1.7; }
+.scene { display: flex; align-items: center; justify-content: center; position: absolute; left: 50%; top: 50%; width: var(--terminal-width); min-width: 0; height: 400px; transform: translate(calc(-50% + var(--terminal-x)), calc(-50% + var(--terminal-rise))); will-change: transform, width; }
 .scene::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(100%, 900px); height: 1px; transform: translate(-50%,-50%); background: #202020; }
-.terminal { width: 100%; max-width: 760px; position: relative; z-index: 1; transform: translateY(var(--terminal-rise)); will-change: transform; animation: terminal-appear 800ms ease both; }
-.collection { position: absolute; inset: 0; z-index: 2; pointer-events: none; transform: translateY(var(--terminal-rise)); }
+.terminal { width: 100%; position: relative; z-index: 1; animation: terminal-appear 800ms ease both; }
+.collection { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .collection * { animation-play-state: inherit !important; }
 .ingredient { position: absolute; left: 50%; top: 50%; display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 10px 14px; border: 1px solid #404040; border-radius: 6px; background: #151515; color: #ddd; font-size: 12px; white-space: nowrap; transform: translate(-50%,-50%) translate(var(--tile-x,var(--x)),var(--tile-y,var(--y))); animation: collect-tool 3900ms var(--hero-ease) var(--delay) both; }
 .ingredient svg { width: 18px; height: 18px; color: #fff; }
@@ -74,11 +75,12 @@
 @keyframes collect-tool { 0% { opacity: 0; transform: translate(-50%,-50%) translate(var(--tile-x,var(--x)),var(--tile-y,var(--y))) scale(.9); } 16%, 42% { opacity: 1; transform: translate(-50%,-50%) translate(var(--tile-x,var(--x)),var(--tile-y,var(--y))) scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%,-50%) translate(0,0) scale(.1); } }
 @keyframes tools-received { from { opacity: 0; } to { opacity: 1; } }
 @keyframes terminal-appear { from { opacity: 0; } to { opacity: 1; } }
-@media (min-width: 1550px) { .inner { padding-top: 48px; } .copyStack { min-height: 230px; } .scene { min-height: 400px; } .terminal { max-width: 840px; } .received { top: calc(50% + 185px); } }
-@media (max-width: 1100px) { .inner { width: calc(100% - 64px); } .terminal { max-width: 680px; } .ingredient { --tile-x: calc(var(--x) * .83); } .sceneFooter { width: calc(100% - 64px); } }
-@media (max-width: 800px) { .panel { min-height: 680px; } .inner { width: calc(100% - 48px); gap: 12px; padding-top: 32px; } .heading { font-size: 52px; } .subhead { font-size: 16px; } .copyStack { min-height: 210px; } .scene { min-height: 340px; } .terminal { max-width: 600px; } .ingredient { --tile-x: calc(var(--x) * .62); --tile-y: calc(var(--y) * 1.2); font-size: 11px; } .received { top: calc(50% + 174px); } .scrollCopy h2 { font-size: 42px; } .scrollCopy h2 br { display: block; } }
+@media (min-width: 1550px) { .heading { font-size: 76px; } }
+@media (max-width: 1100px) { .inner { width: calc(100% - 64px); } .heading { font-size: 58px; } .subhead { font-size: 16px; } .ingredient { --tile-x: calc(var(--x) * .83); } .sceneFooter { width: calc(100% - 64px); } }
+@media (max-width: 800px) { .panel { min-height: 680px; } .inner { display: grid; grid-template-rows: auto 1fr; width: calc(100% - 48px); gap: 12px; padding-top: 32px; } .heading { font-size: 52px; } .subhead { font-size: 16px; } .copyStack { grid-area: 1/1; width: 100%; min-height: 235px; } .scene { grid-area: 2/1; position: relative; left: auto; top: auto; width: 100%; max-width: 600px; min-height: 340px; height: 100%; margin-inline: auto; transform: translateY(var(--terminal-rise)); will-change: transform; } .ingredient { --tile-x: calc(var(--x) * .8); --tile-y: calc(var(--y) * 1.05); font-size: 11px; } .received { top: calc(50% + 174px); } .scrollCopy { grid-area: 1/1; position: relative; left: auto; right: auto; top: auto; align-self: center; } .scrollCopy h2 { font-size: 42px; } .scrollCopy h2 br { display: block; } }
 @media (max-width: 580px) { .banner { height: 165svh; } .panel { top: 64px; height: calc(100svh - 64px); min-height: 660px; } .inner { width: calc(100% - 40px); padding-top: 28px; gap: 8px; } .copyStack { min-height: 265px; } .heading { font-size: clamp(43px, 11.5vw, 60px); line-height: 1.06; } .heading span { display: block; } .subhead { max-width: 33ch; font-size: 14px; line-height: 1.7; margin-top: 16px; } .subhead br { display: none; } .actions { gap: 10px; margin-top: 20px; } .primary, .secondary { font-size: 12px; padding: 11px 13px; } .specs { gap: 10px; font-size: 9px; margin-top: 14px; } .specs > span { gap: 10px; } .scene { min-height: 310px; } .ingredient { --tile-x: calc(var(--x) * .32); --tile-y: calc(var(--y) * 1.1); padding: 8px 10px; min-height: 36px; font-size: 10px; } .ingredient svg { width: 14px; height: 14px; } .received { top: calc(50% + 145px); font-size: 10px; } .scrollCopy h2 { font-size: 37px; } .scrollCopy p { max-width: 28ch; font-size: 15px; } .sceneFooter { width: calc(100% - 40px); padding-block: 10px 14px; } .terminal :global(.wt-titlebar) { height: 32px; } .terminal :global(.wt-tab) { flex: 1; font-size: 10px; } .terminal :global(.wt-executable), .terminal :global(.wt-caption-controls), .terminal :global(.wt-new-tab), .terminal :global(.wt-tab-close) { display: none; } .terminal :global(.terminal-body) { padding: 18px 16px; } .terminal :global(.terminal-welcome) { margin-bottom: 16px; } .terminal :global(.terminal-welcome strong) { font-size: 12px; } .terminal :global(.terminal-welcome > div > span), .terminal :global(.second-path) { display: none; } .terminal :global(.terminal-path) { font-size: 10px; } .terminal :global(.terminal-output) { min-height: 60px; font-size: 10px; } .terminal :global(.terminal-command), .terminal :global(.terminal-input-line input) { font-size: 12px; } .terminal :global(.terminal-tabs) { gap: 15px; padding-inline: 12px; } .terminal :global(.terminal-tabs button) { font-size: 10px; } .terminal :global(.animation-toggle > span) { display: none; } }
-@media (max-height: 740px) and (min-width: 801px) { .panel { min-height: 600px; } .inner { padding-top: 20px; gap: 8px; } .copyStack { min-height: 196px; } .heading { font-size: 60px; } .subhead { font-size: 15px; margin-top: 12px; } .actions { margin-top: 16px; } .specs { margin-top: 12px; } .scene { min-height: 330px; } .sceneFooter { padding-block: 10px; } }
+@media (max-height: 740px) and (min-width: 801px) { .panel { min-height: 500px; } .inner { padding-top: 20px; } .copyStack { min-height: 196px; } .heading { font-size: 60px; } .subhead { font-size: 15px; margin-top: 16px; } .actions { margin-top: 20px; } .specs { margin-top: 16px; } .scrollCopy { top: 20px; } .scrollCopy h2 { font-size: 36px; } .scrollCopy p { display: none; } .sceneFooter { padding-block: 10px; } }
 @media (max-height: 700px) and (max-width: 800px) { .banner { height: auto; } .panel { position: relative; top: 0; height: auto; min-height: 0; } .inner { padding-block: 28px 20px; gap: 24px; } .copyStack { min-height: 0; } .copy { opacity: 1; transform: none; } .scrollCopy { display: none; } .scene { min-height: 320px; } .terminal, .collection { transform: none; } .progress { display: none; } }
 @media (pointer: coarse) { .motionControls button { min-height: 44px; } }
-@media (prefers-reduced-motion: reduce) { .banner { height: auto; } .panel { position: relative; top: 0; height: auto; min-height: 0; } .inner { padding-block: 40px 32px; gap: 24px; } .copy { opacity: 1; transform: none; } .scrollCopy, .collection, .sceneFooter, .progress { display: none; } .terminal { transform: none; animation: none; will-change: auto; } .scene { min-height: 350px; } }
+@media (prefers-reduced-motion: reduce) { .banner { height: auto; } .panel { position: relative; top: 0; height: auto; min-height: 0; } .inner { padding-block: 40px 32px; gap: 4%; justify-content: space-between; min-height: 450px; } .copy { opacity: 1; transform: none; } .scrollCopy, .collection, .sceneFooter, .progress { display: none; } .terminal { animation: none; } .scene { position: relative; left: auto; top: auto; width: 55%; min-height: 350px; height: 350px; transform: none; will-change: auto; } }
+@media (prefers-reduced-motion: reduce) and (max-width: 800px) { .inner { gap: 24px; } .scene { width: 100%; } }

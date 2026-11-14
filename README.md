@@ -37,7 +37,7 @@ The build type-checks the application and exports all pages and assets into `out
 - Animated browser-local terminal preview with completion, history examples, and selectable shell themes. Playback can be paused, stops on interaction, and respects reduced-motion preferences. It never executes system commands.
 - Explicit Light/Dark controls across every page, initialized before hydration and following the system preference until a visitor chooses a mode. The terminal preview follows the page color mode, with Ocean/Dusk/Midnight accent palettes.
 - Windows Terminal-style tabs and caption icons in the terminal preview.
-- Centered black-and-white hero with a straight terminal, gathering tool tiles, pause/resume and replay controls. The terminal follows a short scroll journey before releasing into the feature cards. Reduced-motion preferences disable the collection and sticky sequence.
+- Black-and-white hero with the title on the left and a straight terminal on the right. Scrolling moves the same terminal down into the center and widens it before the feature cards. Gathering tool tiles, pause/resume, and replay remain available. Mobile uses a stacked layout; reduced-motion preferences disable the collection and sticky sequence.
 - Monochrome platform branding across Home, Docs, About, and Playground, with neutral light and dark modes.
 - Six feature cards with command visuals, completion acceptance, history recall, and theme switching.
 - Redesigned About page with a native execution diagram, expandable technology notes, verified dependency versions, and current/future capability sections.

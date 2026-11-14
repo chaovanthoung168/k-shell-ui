@@ -159,3 +159,9 @@ User direction: the platform uses black and white. This supersedes the earlier v
 Hero direction: a centered command workspace. Use pure black #000, white #fff, charcoal #151515, border #404040, and secondary text #a3a3a3. Retain Segoe UI for the interface and Consolas for commands. One broad headline sits above the actions and a straight, centered terminal; remove perspective, colored light, the orbit ring, and diagonal tool tiles. The gathering tiles move horizontally inward in neutral bordered rectangles. Keep the short scroll-following sequence and the interactive cards below it. Short mobile viewports use ordinary document flow so the terminal remains reachable; reduced motion remains static.
 
 Critique: the old split layout gave decorative purple atmosphere more presence than the shell. The centered composition puts the usable terminal directly under the promise. Preserve the new symbol plus Shell branding and the terminal content. Neutralize the surrounding card and page surfaces for a consistent platform.
+
+## Left title, right terminal, then center on scroll
+
+User revision: begin the desktop hero with the title and actions left, and the terminal right. As the user scrolls, fade the first copy and move the same terminal downward into the horizontal center, widening it to 800px at most. Place the second heading above the centered terminal. Keep the black-and-white platform palette, collection controls, real browser preview, and feature cards.
+
+Use a measured scene within the shared 1200px container. Interpolate its horizontal offset, width, and vertical position from scroll progress with a smooth easing curve, updating in one animation frame without remounting the terminal or losing its input. On narrow screens, retain a readable vertical stack. Short mobile viewports and reduced-motion preferences use normal document flow.
