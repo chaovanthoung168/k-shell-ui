@@ -21,12 +21,6 @@
 .nativeList article > svg { width: 20px; height: 20px; margin-top: 4px; color: var(--slate); }
 .nativeList h3 { font-size: 22px; font-weight: 400; line-height: 1.4; letter-spacing: 0; }
 .nativeList p { margin-top: 12px; font-size: 15px; line-height: 1.8; }
-.about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding-block: 80px 112px; border-top: 1px solid var(--line); }
-.aboutMark { display: block; color: var(--accent); }
-.aboutMark svg { width: 240px; height: auto; }
-.about h2 { font-size: clamp(40px, 4vw, 56px); font-weight: 400; letter-spacing: -.03em; line-height: 1.08; }
-.about p { margin-top: 24px; font-size: 15px; }
-.about .textLink { margin-top: 20px; }
 
 @media (max-width: 1000px) {
   .nativeGrid { gap: 48px; }
@@ -41,7 +35,4 @@
   .nativeCopy h2 { font-size: 48px; }
   .nativeList { gap: 24px; }
   .nativeList article { padding-bottom: 24px; }
-  .about { grid-template-columns: 1fr; gap: 40px; padding-block: 56px 64px; }
-  .aboutMark svg { width: 112px; }
-  .about h2 { font-size: 40px; }
 }

@@ -173,3 +173,11 @@ User correction: the terminal must leave the hero, rotate across the boundary, a
 Mount one terminal scene as a sibling of both sections within a shared positioned wrapper. Measure its source anchor and destination dock, interpolate their document coordinates and width with scroll progress, and apply a temporary roll/pitch/yaw that returns to zero on landing. Do not duplicate or remount the terminal; commands, input, and selected theme persist. The receiving dock reserves layout space, and the terminal's geometry is wholly inside that next section after landing. The transition reverses naturally with upward scrolling. Retain the monochrome palette, mobile handoff, collection playback controls, and static reduced-motion fallback.
 
 Verification: one live terminal before and after the handoff; an echo command remains in its output; rotation is nonzero while crossing the section boundary and zero when landed; final terminal bounds are outside the hero and inside the receiving section, centered on its container.
+
+## Collection packets and arrival title
+
+Refine the technology collection into compact icon-and-caption packets. Stagger their arrivals along fine monochrome connector paths, merge them at the terminal prompt, and finish with a brief intake check and terminal-frame pulse. Pause/resume and replay control all packet, path, and confirmation motion together.
+
+The workspace heading stays visually hidden, with its layout space reserved, while the terminal travels. Once the existing terminal-location state reaches workspace, reveal the heading after 120ms, then the subtitle after 260ms and the workspace link after 380ms. Reverse scrolling hides the copy again. The terminal stays mounted through the sequence, and the static reduced-motion fallback remains available.
+
+Remove the homepage's large logo and “For the love of the command line” story teaser, as requested from the supplied screenshot. The homepage now proceeds from installation directly to the shared footer; the About route and navigation remain available.

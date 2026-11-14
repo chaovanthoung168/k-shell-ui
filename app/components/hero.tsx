@@ -7,12 +7,12 @@ import { TerminalDemo } from "./terminal-demo";
 import styles from "./hero-motion.module.css";
 
 const ingredients = [
-  { label: "Rust", icon: "rust", x: -235, y: -160 },
-  { label: "Windows", icon: "windows", x: 235, y: -160 },
-  { label: "Completion", icon: "spark", x: -260, y: 0 },
-  { label: "Git", icon: "code", x: 260, y: 0 },
-  { label: "History", icon: "history", x: -225, y: 155 },
-  { label: "Themes", icon: "palette", x: 225, y: 155 },
+  { label: "Rust", detail: "Native engine", icon: "rust", x: -235, y: -170 },
+  { label: "Windows", detail: "Your platform", icon: "windows", x: 235, y: -170 },
+  { label: "Completion", detail: "Less typing", icon: "spark", x: -260, y: -40 },
+  { label: "Git", detail: "Your native tools", icon: "code", x: 260, y: -40 },
+  { label: "History", detail: "Pick up anywhere", icon: "history", x: -225, y: 120 },
+  { label: "Themes", detail: "Make it yours", icon: "palette", x: 225, y: 120 },
 ];
 
 export function Hero() {
@@ -119,8 +119,10 @@ export function Hero() {
 
       <div ref={scene} className={styles.scene}>
         <div className={styles.collection} key={intro} style={{ animationPlayState: paused ? "paused" : "running" }} aria-hidden="true">
-          {ingredients.map((item, index) => <span key={item.label} className={styles.ingredient} style={{ "--x": `${item.x}px`, "--y": `${item.y}px`, "--delay": `${index * 160}ms` } as CSSProperties}><Icon name={item.icon} /><span>{item.label}</span></span>)}
-          <span className={styles.received}><Icon name="check" /> All together. Ready to run.</span>
+          <svg className={styles.routes} viewBox="0 0 600 330" preserveAspectRatio="none" fill="none"><path d="M65 0C65 70 95 180 95 260M535 0C535 110 170 170 95 260M40 125C40 180 75 210 95 260M560 125C400 125 180 200 95 260M75 285Q85 280 95 260M525 285C370 320 165 300 95 260" /></svg>
+          {ingredients.map((item, index) => <span key={item.label} className={styles.ingredient} style={{ "--x": `${item.x}px`, "--y": `${item.y}px`, "--delay": `${600 + index * 280}ms` } as CSSProperties}><span className={styles.ingredientIcon}><Icon name={item.icon} /></span><span className={styles.ingredientCopy}><strong>{item.label}</strong><small>{item.detail}</small></span></span>)}
+          <span className={styles.intake}><Icon name="check" /></span>
+          <span className={styles.received}><Icon name="check" /> Six capabilities. One prompt.</span>
         </div>
         <div className={styles.terminal}><TerminalDemo /></div>
       </div>
