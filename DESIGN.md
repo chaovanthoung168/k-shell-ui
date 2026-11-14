@@ -165,3 +165,11 @@ Critique: the old split layout gave decorative purple atmosphere more presence t
 User revision: begin the desktop hero with the title and actions left, and the terminal right. As the user scrolls, fade the first copy and move the same terminal downward into the horizontal center, widening it to 800px at most. Place the second heading above the centered terminal. Keep the black-and-white platform palette, collection controls, real browser preview, and feature cards.
 
 Use a measured scene within the shared 1200px container. Interpolate its horizontal offset, width, and vertical position from scroll progress with a smooth easing curve, updating in one animation frame without remounting the terminal or losing its input. On narrow screens, retain a readable vertical stack. Short mobile viewports and reduced-motion preferences use normal document flow.
+
+## Rotate the terminal into the next section
+
+User correction: the terminal must leave the hero, rotate across the boundary, and land in the next section. Replace the extended sticky hero with a normal viewport-height hero and a distinct workspace section below it. Keep the left-hand title and initial right-hand terminal, then place the landed terminal centrally below the workspace heading and above the existing feature cards.
+
+Mount one terminal scene as a sibling of both sections within a shared positioned wrapper. Measure its source anchor and destination dock, interpolate their document coordinates and width with scroll progress, and apply a temporary roll/pitch/yaw that returns to zero on landing. Do not duplicate or remount the terminal; commands, input, and selected theme persist. The receiving dock reserves layout space, and the terminal's geometry is wholly inside that next section after landing. The transition reverses naturally with upward scrolling. Retain the monochrome palette, mobile handoff, collection playback controls, and static reduced-motion fallback.
+
+Verification: one live terminal before and after the handoff; an echo command remains in its output; rotation is nonzero while crossing the section boundary and zero when landed; final terminal bounds are outside the hero and inside the receiving section, centered on its container.
