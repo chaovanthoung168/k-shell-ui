@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Icon, Logo } from "./ui";
+import { Icon, Wordmark } from "./ui";
 import { ThemeToggle } from "./theme-toggle";
 import { GITHUB_REPOSITORY_URL } from "../release";
 import styles from "./header-controls.module.css";
@@ -16,7 +16,7 @@ export function SiteHeader() {
     <header className={`site-header ${pathname === "/" ? styles.homeHeader : ""}`}>
       <div className="container header-inner">
         <Link className="brand" href="/" aria-label="K Shell home" onClick={() => setOpen(false)}>
-          <span className="brand-logo"><Logo /></span><span className="brand-name">Shell</span>
+          <Wordmark />
         </Link>
         <nav aria-label="Main navigation" className={open ? "navigation is-open" : "navigation"}>
           {[["/", "Home"], ["/playground/", "Playground"], ["/docs/", "Docs"], ["/about/", "About"]].map(([href, label]) => (

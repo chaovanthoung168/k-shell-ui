@@ -1,5 +1,21 @@
 # K Shell website
 
+## Supplied K Shell wordmark — November 15, 2026
+
+The supplied complete K/lightning and custom italic Shell lettering supersede
+earlier logo directions below. Preserve the original PNG in public/kshell-logo.png.
+Use the complete artwork in the shared header and footer, with no additional
+typeset Shell label. Use only the K from that same image in compact terminal,
+About, documentation, and Playground locations. Inline SVG luminance masks
+remove the image's black canvas and inherit the surrounding foreground color.
+Keep the original proportions, including the lower lightning tip. Header artwork
+fits within the existing navigation height and shrinks at narrow widths.
+
+Browser SVG icons use the same source pixels and adapt to the browser color
+scheme. The six-size ICO fallback uses a white K on a neutral dark tile.
+Regenerate these assets with node scripts/update-brand-assets.mjs after an
+authorized source-artwork change.
+
 The terminal prompt in the supplied image is the brand anchor. A spacious, light developer website surrounds an ink-black interactive terminal, making the shell experience the focus.
 
 Palette: paper #ffffff, ink #16181c, slate #626976, line #e8eaee, blue #3b69da, terminal #171a21. Blue relates to the shell's Ocean theme; syntax colors are confined to code examples.

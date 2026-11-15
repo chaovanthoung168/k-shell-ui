@@ -45,6 +45,6 @@ The build type-checks the application and exports all pages and assets into `out
 - Installation, commands, shortcuts, customization, and a clearly identified roadmap.
 - Keyboard focus styles, a skip link, reduced-motion support, and page metadata.
 
-The supplied angular K/lightning logo is traced as a theme-aware SVG brand mark, shared across navigation, previews, and page artwork. Matching SVG and multi-size ICO browser icons use the same silhouette; `public/kshell-logo.png` preserves the supplied artwork. `DESIGN.md` records the visual direction. Shell behavior and install instructions are based on the adjacent Rust project's README. Public copies of its reference and MIT license are in `public/`. No external fonts or runtime services are needed.
+The supplied K Shell artwork is preserved in `public/kshell-logo.png`. The header and footer use the complete custom wordmark; compact previews and page artwork use its isolated K/lightning symbol. SVG luminance masks retain the supplied pixels while following each page's foreground color. Matching SVG and multi-size ICO browser icons are generated with `node scripts/update-brand-assets.mjs`. `DESIGN.md` records the visual direction. Shell behavior and install instructions are based on the adjacent Rust project's README. Public copies of its reference and MIT license are in `public/`. No external fonts or runtime services are needed.
 
 `.openai/hosting.json` records this website's private Sites deployment identity and static output directory. It contains no credentials.

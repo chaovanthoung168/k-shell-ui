@@ -1,6 +1,26 @@
-import type { ReactNode } from "react";
-// Angular K/lightning mark traced from the supplied logo; inherit the page theme.
-export function Logo() { return <svg viewBox="0 0 809 820" fill="none" aria-hidden="true"><path fill="currentColor" d="M190 0H422L222 379H383L29 820L138 500H0ZM301 335L542 60Q555 46 580 46H809L494 396L753 727H475L321 532L464 335Z"/></svg>; }
+import { useId, type ReactNode } from "react";
+
+// Use the supplied pixels as a luminance mask so the original artwork follows
+// the surrounding foreground color without its black rectangular background.
+function BrandArtwork({ wordmark = false }: { wordmark?: boolean }) {
+  const id = useId();
+  const maskId = `${id}-artwork`;
+  const clipId = `${id}-symbol`;
+  return (
+    <svg className={wordmark ? "brand-wordmark" : undefined} viewBox={`228 288 ${wordmark ? 1088 : 476} 476`} fill="none" aria-hidden="true">
+      <defs>
+        <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024" style={{ maskType: "luminance" }}>
+          <image href="/kshell-logo.png" width="1536" height="1024" />
+        </mask>
+        {!wordmark && <clipPath id={clipId}><path d="M228 288H704V313L509 504L632 668H481L408 574L228 761Z" /></clipPath>}
+      </defs>
+      <rect x="228" y="288" width={wordmark ? 1088 : 476} height="476" fill="currentColor" mask={`url(#${maskId})`} clipPath={wordmark ? undefined : `url(#${clipId})`} />
+    </svg>
+  );
+}
+
+export function Logo() { return <BrandArtwork />; }
+export function Wordmark() { return <BrandArtwork wordmark />; }
 export function Arrow() { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 export function Icon({name}: {name:string}) {
   const paths: Record<string, ReactNode> = {

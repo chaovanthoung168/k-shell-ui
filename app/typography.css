@@ -9,9 +9,13 @@
 
 html { scroll-padding-top: calc(var(--header-height) + 16px); }
 .site-header { height: var(--header-height); }
-.brand .brand-logo { width: 33px; height: 34px; }
-.brand .brand-logo > svg { width: 33px; height: 34px; }
-.brand .brand-name { font-size: 32px; line-height: 1; }
+.brand .brand-wordmark { display: block; width: 120px; height: 52.5px; }
+@media (max-width: 580px) {
+  .brand .brand-wordmark { width: 104px; height: 45.5px; }
+}
+@media (max-width: 360px) {
+  .brand .brand-wordmark { width: 96px; height: 42px; }
+}
 .site-header .header-cta { min-height: 36px; padding: 6px 12px; gap: 8px; line-height: 1.4; }
 .site-header .header-cta svg { width: 17px; height: 17px; }
 .site-header .header-cta:disabled { cursor: default; opacity: .8; }
