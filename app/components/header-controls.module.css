@@ -1,19 +1,19 @@
-.actions { display: flex; align-items: center; gap: 12px; }
-.themeSwitch { display: inline-flex; align-items: center; gap: 3px; height: 42px; padding: 4px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); }
-.themeButton { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--slate); transition: background-color 150ms ease, color 150ms ease; }
-.themeButton svg { width: 17px; height: 17px; }
+.actions { display: flex; align-items: center; gap: 10px; }
+.themeSwitch { display: inline-flex; align-items: center; gap: 2px; height: 32px; padding: 3px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); }
+.themeButton { display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--slate); transition: background-color 150ms ease, color 150ms ease; }
+.themeButton svg { width: 15px; height: 15px; }
 .themeButton:hover { background: var(--surface-hover); color: var(--ink); }
 :global(:root:not([data-theme="dark"])) .light,
 :global([data-theme="dark"]) .dark { color: var(--paper); background: var(--ink); }
 .themeButton:focus-visible { outline-offset: 3px; }
-.github { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 9px 17px; border: 1px solid transparent; border-radius: 24px; background: var(--ink); color: var(--paper); font-size: 14px; font-weight: 500; line-height: 1.5; white-space: nowrap; transition: background-color 150ms ease; }
-.github > svg { width: 18px; height: 18px; }
+.github { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 32px; padding: 5px 12px; border: 1px solid transparent; border-radius: 24px; background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 500; line-height: 1.5; white-space: nowrap; transition: background-color 150ms ease; }
+.github > svg { width: 16px; height: 16px; }
 .github:hover { background: var(--accent); }
 .github:disabled { cursor: default; opacity: .6; }
-.actions .menuButton { display: none; align-items: center; justify-content: center; min-width: 42px; min-height: 42px; margin: 0; padding: 9px; border-radius: 50%; background: transparent; color: var(--ink); }
+.actions .menuButton { display: none; align-items: center; justify-content: center; min-width: 36px; min-height: 36px; margin: 0; padding: 8px; border-radius: 50%; background: transparent; color: var(--ink); }
 .actions .menuButton:hover { background: var(--surface); }
-.actions .menuButton svg { width: 21px; height: 21px; }
-:global(.site-header).homeHeader { height: 80px; border-bottom: 0; }
+.actions .menuButton svg { width: 18px; height: 18px; }
+:global(.site-header).homeHeader { height: var(--header-height); border-bottom: 0; }
 :global([data-theme="dark"]) .homeHeader { background: #000; }
 .homeHeader :global(.navigation a[aria-current])::after { display: none; }
 
@@ -23,21 +23,16 @@
 }
 
 @media (max-width: 580px) {
-  :global(.site-header).homeHeader { height: 64px; }
   .actions { gap: 7px; }
-  .themeSwitch { height: 44px; padding: 3px; }
-  .themeButton { width: 36px; height: 36px; }
-  .github { width: 44px; min-height: 44px; padding: 10px; border-radius: 50%; }
+  .themeSwitch { height: 36px; padding: 3px; }
+  .themeButton { width: 28px; height: 28px; }
+  .github { width: 36px; min-height: 36px; padding: 8px; border-radius: 50%; }
   .github > span { display: none; }
-  .github > svg { width: 20px; height: 20px; }
-  .actions .menuButton { min-width: 40px; min-height: 44px; padding: 8px; }
+  .github > svg { width: 18px; height: 18px; }
 }
 
 @media (max-width: 360px) {
   .actions { gap: 4px; }
-  .themeButton { width: 32px; }
-  .github { width: 40px; }
-  .actions .menuButton { min-width: 36px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,5 +1,13 @@
 # K Shell website
 
+## Compact navbar
+
+Use a consistent 56px header on desktop and 52px on mobile, including Home.
+The header wordmark is 96px wide on desktop and 88px on mobile; footer branding
+keeps its existing size. Navigation text is 14px. Theme and GitHub controls use
+32px heights on desktop and 36px on mobile. Shared header-height offsets keep
+the mobile menu, documentation anchors, and Playground aligned with the bar.
+
 ## Supplied K Shell wordmark — November 15, 2026
 
 The supplied complete K/lightning and custom italic Shell lettering supersede

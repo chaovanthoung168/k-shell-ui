@@ -4,14 +4,16 @@
   --text-control: 15px;
   --text-small: 14px;
   --text-caption: 12px;
-  --header-height: 64px;
+  --header-height: 56px;
 }
 
 html { scroll-padding-top: calc(var(--header-height) + 16px); }
 .site-header { height: var(--header-height); }
 .brand .brand-wordmark { display: block; width: 120px; height: 52.5px; }
+.site-header .brand .brand-wordmark { width: 96px; height: 42px; }
 @media (max-width: 580px) {
   .brand .brand-wordmark { width: 104px; height: 45.5px; }
+  .site-header .brand .brand-wordmark { width: 88px; height: 38.5px; }
 }
 @media (max-width: 360px) {
   .brand .brand-wordmark { width: 96px; height: 42px; }
@@ -24,7 +26,7 @@ html { scroll-padding-top: calc(var(--header-height) + 16px); }
 body { font-size: 17px; }
 .brand { font-size: 25px; }
 .brand-label { font-size: 13px; }
-.navigation a { font-size: 16px; }
+.navigation a { font-size: 14px; }
 .header-cta { font-size: var(--text-control); }
 .button { font-size: var(--text-control); min-height: 46px; }
 .site-header .color-mode-control button { font-size: 13px; min-height: 30px; }
@@ -158,7 +160,7 @@ td { font-size: 15px; }
 }
 
 @media (max-width:580px) {
-  :root { --header-height: 56px; }
+  :root { --header-height: 52px; }
   .brand { font-size: 24px; }
   .site-header .navigation { top: var(--header-height); }
   .site-header .color-mode-control button { font-size: 12px; padding: 7px 6px; }
