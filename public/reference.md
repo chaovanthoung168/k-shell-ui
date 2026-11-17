@@ -412,6 +412,262 @@ If neither is installed, the error points to Windows Settings > Optional feature
 > OpenSSH Client. Install the client, then restart K Shell for command suggestions.
 This feature does not install or enable an SSH server on your computer.
 
+## Developer tools with KPM (source build)
+
+KPM is a native K Shell builtin for installing developer tools and selecting
+managed versions. It is in the updated source build; the existing v0.1.6 download
+does not include it. Build the source with current stable Rust and launch the
+resulting K Shell, then run `kpm --help`.
+
+```text
+kpm list
+kpm search java
+kpm versions node
+kpm install
+kpm install node
+kpm install java
+```
+
+`kpm install` opens a single-tool menu. `kpm install node` (or another tool)
+discovers its available Windows x64 releases and shows a separate Latest Stable
+shortcut, the five newest distinct stable versions, and Other version for manual
+input. The five releases need not have different major versions. Fewer entries
+are shown when the provider has fewer releases. Prereleases are filtered out.
+Menus use Up/Down, Enter and Esc/Ctrl+C; Esc from version selection returns to
+tool selection when installation began without a tool. Discovery failures offer
+Retry/Cancel. Installed and saved active versions are marked in the menu.
+
+Exact versions skip the version menu, but still require availability validation
+and installation confirmation. Version numbers below are syntax examples, not
+claims that those releases are still available:
+
+```text
+kpm install node@22.15.0
+kpm install python@3.13.2
+kpm install go@1.24.1
+kpm install rust@1.85.0
+kpm install php@8.4.3
+kpm install git@2.47.1
+kpm install java@21
+```
+
+Java selects a full Eclipse Temurin JDK, including `javac`, for feature releases
+17 and later. `java@21` resolves the newest available JDK 21 patch/build; a full
+provider version such as `java@21.0.6+7` can pin a particular release. Java
+versions are not treated as universal SemVer. Git Windows build suffixes are
+also verified according to Git's version output.
+
+For scripts or redirected input, specify an explicit version or `@latest` and
+`--yes`. The flag skips confirmation, not validation; in a terminal it does not
+skip the version menu when no version was supplied. One install command accepts
+one tool only:
+
+```text
+kpm install node@latest --yes
+kpm install java@21 --yes
+```
+
+Before confirmation, KPM shows the tool, resolved version, provider, destination,
+and any executable found on PATH. Installation uses a cyan, indeterminate marker
+moving left to right on stderr, without fake percentages. `KSHELL_KPM_FPS` sets
+5-60 refreshes per second (default 30); redirected stderr uses plain messages.
+Cursor visibility is restored on success, failure and cancellation.
+
+| Tool | Provider and version management |
+| --- | --- |
+| Node.js | Official ZIP and SHA-256 list from nodejs.org; isolated versions, switching, native npm/npx integration. LTS labels come from metadata. |
+| Python | WinGet `Python.Python.<major>.<minor>`, user scope. One recorded version; `use` and in-place `upgrade` are explicitly unsupported. |
+| Go | go.dev release metadata, ZIP and SHA-256; isolated SDKs and switching. |
+| Rust | Existing native rustup client; private `RUSTUP_HOME` and `CARGO_HOME`, pinned MSVC toolchains, switching. KPM never bootstraps rustup or changes the user's existing Rust homes. |
+| PHP | Official Windows NTS x64 ZIPs and hashes from downloads.php.net; isolated versions and switching. Discovery is limited to the published releases JSON, so archive-only older versions are unavailable. A matching Visual C++ runtime must already be installed. |
+| Git | WinGet `Git.Git`, user scope. One recorded version; `use` and in-place `upgrade` are explicitly unsupported. |
+| Java | Adoptium metadata and verified Temurin JDK ZIPs; isolated JDKs, switching, matching `java`/`javac`, and child `JAVA_HOME`. |
+
+WinGet must be available through Microsoft's App Installer for Python/Git. The
+selected installer must support user scope, KPM's custom destination, and a
+matching current-user registry InstallLocation. Otherwise verification fails
+and the pending record remains for inspection. Existing unmanaged packages are
+not adopted or overwritten. Package/source agreements are accepted as part of
+the confirmed installation. WinGet's own installer may update user settings;
+KPM never changes system PATH or requests administrator elevation. WinGet
+uninstall rechecks exact package/version, managed files and current-user
+installer location before removal. Replace a managed Python/Git version by
+uninstalling it first, then installing another version.
+
+```text
+kpm installed
+kpm installed node
+kpm current node
+kpm use node
+kpm use node@22.15.0
+kpm use java@21
+java -version
+javac -version
+kpm upgrade node
+kpm upgrade node@latest --yes
+kpm uninstall node@22.15.0
+kpm recover
+```
+
+`use` lists only installed, recorded versions and never downloads anything.
+Activation runs version verification before saving the selection; Java verifies
+both runtime and compiler. The selection affects subsequent commands immediately
+and persists across K Shell restarts. K Shell prepends managed bin directories
+and sets JAVA_HOME/GOROOT/private Rust variables for children only. Explicit
+executable paths retain their normal meaning; native npm/npx use the selected
+Node and its packaged CLI scripts. System PATH and the parent terminal's
+environment stay unchanged. The shell still lacks variable expansion, so use
+`kpm current java`, `java -version` and `javac -version` to check the selection.
+
+The first switchable installation activates automatically after verification.
+When another version is active, an interactive install offers activation;
+`--yes` preserves that existing selection, so switch explicitly with `kpm use`.
+Upgrade installs a newer isolated release; it keeps earlier versions. Active
+uninstall confirmation explicitly includes deactivation; `--yes` authorizes
+that deactivation too. Only KPM-recorded installations can be removed.
+
+Storage defaults to `%LOCALAPPDATA%\KShell\kpm`. `KSHELL_KPM_HOME` selects an
+absolute private root; an empty setting disables storage. KPM refuses nonempty
+unmarked roots, unsafe paths and reparse points. An OS file lock serializes
+changes, installation records are replaced atomically, and a pending journal
+supports recovery after failure or interruption. Downloads require HTTPS from
+the configured provider and SHA-256 validation before extraction. ZIP traversal,
+links, duplicate files and excessive sizes are rejected.
+
+`kpm recover` verifies a completed pending installation before recording it,
+or cleans marked staging when no installation exists. For absent WinGet packages,
+recovery also cleans the marked incomplete destination after checking WinGet's
+inventory. Recovered versions are not activated automatically. Unverifiable
+partial installations, especially WinGet work
+outside the requested destination, remain pending for inspection. Do not delete
+the store to work around an error. Cancellation drops HTTP work and kills owned
+native process jobs; brokered installers can outlive WinGet, so recovery must
+check their actual result. Uninstall/file cleanup is not transactional.
+
+HTTP work shares one lazy current-thread Tokio runtime with `kreq`. Production
+providers are implemented; automated tests use mock providers, local archives,
+and compiled test-owned native binaries, never real software installs or public
+network services. Live installation across all seven upstreams still requires
+separate verification on machines with the relevant installer prerequisites.
+
+## Native HTTP requests with kreq (source build)
+
+`kreq` is a built-in HTTP client in this source tree. Build with `cargo build`
+and launch `target/debug/kshell.exe` to use it; the existing v0.1.6 download
+does not include this new command yet. No separate curl installation is required.
+It uses reqwest with Rustls and native certificate roots, a current-thread Tokio
+runtime shared with KPM, and serde_json for explicit JSON formatting.
+
+Run each example separately inside K Shell:
+
+```text
+kreq get 'https://api.example.com/users/1'
+kreq get 'https://api.example.com/users/1' --json
+kreq GET 'https://api.example.com/users/1' -j
+kreq post 'https://api.example.com/users' -H 'Content-Type: application/json' -d '{"name":"John","age":22}'
+kreq post 'https://api.example.com/messages' -H 'Content-Type: text/plain' -d 'Hello World'
+kreq put 'https://api.example.com/users/1' -d 'replacement'
+kreq patch 'https://api.example.com/users/1' -H 'Content-Type: application/json' -d '{"active":true}'
+kreq delete 'https://api.example.com/users/1'
+kreq head 'https://api.example.com/users/1' -i
+kreq options 'https://api.example.com/users' -i
+kreq get 'https://api.example.com/profile' -H 'Authorization: Bearer TOKEN'
+kreq get 'https://api.example.com/data' -H 'X-API-Key: TOKEN'
+kreq get 'https://example.com/download' -L -o 'download.bin'
+kreq get 'https://api.example.com/users' --timeout 5 --fail -v
+kreq -X PATCH 'https://api.example.com/users/1' -d 'updated'
+kreq --help
+```
+
+The example API addresses are placeholders; replace them with your own service.
+Methods are case-insensitive; options work before or after the URL. `-X` can
+override the positional method or supply it when only a URL is given.
+
+| Option | Behavior |
+| --- | --- |
+| `-j`, `--json` | Parse original response bytes and pretty-print JSON; invalid or empty JSON fails. Objects, arrays and scalar values are supported. |
+| `--raw` | Omit the interactive response summary and show only the body. With `--json`, show just formatted JSON. |
+| `-H`, `--header` | Add a `Name: value` header; repeat for multiple headers. |
+| `-d`, `--data` | Send the supplied text exactly, without adding a newline. |
+| `-o`, `--output` | Save original body bytes, overwriting a regular file relative to the shell's current folder. Parent folder must exist. |
+| `-i`, `--include` | Prepend final response headers on stdout; with `-o`, only headers go to stdout and the file contains just the body. |
+| `-v`, `--verbose` | Send method, URL (without query/fragment), request/final-response headers, status and elapsed time to stderr. Sensitive header values are redacted. |
+| `-L`, `--location` | Follow up to 10 HTTP/HTTPS redirects. Off by default. Cross-origin redirects with sensitive request headers are refused to protect credentials. |
+| `-X`, `--request` | Override the method using one of the seven supported methods. |
+| `--timeout` | Total network timeout in seconds; positive fractions allowed, default 30, maximum 86400. |
+| `--fail` | Return status 22 for HTTP 4xx/5xx, while still writing the response body. |
+| `-h`, `--help` | Show the complete usage reference. |
+
+Interactive requests show a response summary with `StatusCode`,
+`Content`, `RawContent`, and `Headers`. StatusCode combines the numeric code
+and description, such as `200 OK` or `404 Not Found`. By default Content
+shows the compact response text; `--json` indents JSON inside that field:
+
+```text
+StatusCode        : 200 OK
+Content           : {
+                      "active": true,
+                      "id": 1,
+                      "name": "John"
+                    }
+RawContent        : HTTP/1.1 200 OK
+                    content-type: application/json
+
+                    {"id":1,"name":"John","active":true}
+Headers           : {[content-type, application/json]}
+```
+
+Select just content or response headers by adding a final response view.
+Options may appear before or after that view; `header` aliases `headers`.
+Both terminal views retain the combined StatusCode line:
+
+```text
+kreq get 'https://api.example.com/users/1' --json content
+kreq get 'https://api.example.com/users/1' content
+kreq get 'https://api.example.com/users/1' headers
+kreq get 'https://api.example.com/users/1' header
+```
+
+Content view omits RawContent and Headers, including with `-i`. Headers view
+omits Content and RawContent, skips downloading the body, and ignores `--json`
+because no response-body parsing is needed. In raw/batch/redirected output,
+content writes only the body; headers writes an HTTP status line and response
+headers. With `headers -o headers.txt`, save that header block instead of the
+body. `--fail` retains its normal status behavior in either view.
+
+Use `--raw` for body-only terminal output, or `--raw --json` for body-only
+formatted JSON. File output, redirected stdout, and batch/`-c` execution omit
+the summary. Raw output preserves the exact response bytes, including binary
+bytes, without added newlines or colors. JSON output stays plain for reliable
+copying and external piping. `--json` changes only response
+formatting: set request Content-Type explicitly with `-H`. With `--json -o`,
+the body is validated as JSON and the file retains the original bytes; invalid
+JSON leaves the destination untouched. Raw file transfers stream without
+buffering the full body; explicit JSON formatting buffers it in memory.
+Terminal text previews retain at most 64 KiB unless `--json` is requested;
+binary bodies show a byte count. RawContent displays the normalized status and
+headers plus at most 240 characters of the original body. It is a display
+preview, not a wire capture. Summary headers redact credentials and terminal
+controls are escaped. `-i` is redundant in a summary; in raw/batch/file modes
+it retains its existing header-output behavior. Forms are not parsed.
+Failed/interrupted transfers may leave partial raw files or output.
+
+Successful HTTP transactions return 0, including 4xx/5xx unless `--fail` is used.
+Usage errors return 2; network, TLS, timeout, JSON and file errors return 1.
+Interactive Windows Ctrl+C cancels the transaction and returns 130. These
+statuses update shell state and the exit code of `kshell -c`. Authentication
+headers are forwarded as supplied. URL user/password credentials are rejected.
+Verbose logs redact Authorization, API-key, token, secret and cookie headers,
+including known request credentials reflected by response headers; raw body and
+explicit `-i` header output remain server data. Avoid verbose mode for private
+URLs. Requests do not load curl configuration or a persistent cookie jar.
+
+The shell's existing single- and double-quote rules apply; single-quote JSON,
+paths containing spaces, and URLs with `&`. K Shell does not yet implement
+internal pipes, `>`/`>>` redirection, variable expansion, or conditional scripting.
+Use `-o` inside K Shell; external host pipes/redirection preserve raw stdout.
+HTTP tests use only private loopback fixtures, including OS pipes and file handles.
+
 ## HTTP requests and downloads with curl
 
 K Shell runs native `curl.exe` directly, with its usual options and exit codes.
@@ -564,6 +820,11 @@ Inside K Shell:
 
 ```text
 theme
+theme list
+theme install atomic
+theme atomic
+theme status
+theme default
 theme dusk
 theme midnight
 theme ocean
@@ -576,11 +837,25 @@ theme suggestions underline
 theme reset
 ```
 
-`theme` shows your current choices; Tab completes theme names, icon modes and
-suggestion styles.
-Changes apply to the next prompt and subsequent listings in this session.
-`theme reset` restores Ocean, standard Unicode icons and soft suggestions. These commands do not
-write a settings file. To choose startup defaults, set these environment values
+`theme` opens the interactive prompt picker. Use Up/Down to preview a design,
+Enter to install and activate it, or Esc/Ctrl+C to cancel. A fresh installation
+uses the original default prompt; optional designs are `powerline`, `atomic`,
+`bubblesline`, `cert`, and `negligible`. They install offline from bundled designs,
+without downloading scripts or fonts. With commands, run `theme install <name>`
+before `theme <name>` to activate and save a design. `theme list` lists designs;
+`theme status` shows your current prompt, palette, icons and suggestion style.
+Tab completes design names, installation names, icon modes and suggestion styles.
+
+Prompt installation records and your selection are saved in `%APPDATA%\kshell`
+(home fallback `.kshell`) and survive upgrades. `KSHELL_CONFIG_DIR` overrides
+that directory; an empty value disables persistence. `theme default` restores
+and saves the original prompt. These commands require the installed shell;
+the browser Playground supports palette changes only.
+
+Palette, icon and suggestion changes apply to the next prompt and subsequent
+listings in this session. `theme reset` restores the original prompt, Ocean,
+standard Unicode icons and soft suggestions for this session. To choose startup
+palette, icon and suggestion defaults, set these environment values
 in PowerShell before launching K Shell (or in your PowerShell profile):
 
 ```powershell

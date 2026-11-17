@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocsNav } from "../components/docs-nav";
+import { DocsContents } from "../components/docs-contents";
 import { CodeBlock } from "../components/code-block";
 import { ShellSetup } from "../components/shell-setup";
+import { KreqGuide } from "../components/kreq-guide";
+import { KpmGuide } from "../components/kpm-guide";
 import { Arrow, Icon, Logo } from "../components/ui";
 import { GITHUB_REPOSITORY_URL, INSTALL_COMMAND, RELEASES_URL } from "../release";
 import "./docs.css";
@@ -18,16 +21,16 @@ export default function Docs() {
     <article className="guide-article">
       <section id="overview" className="guide-intro">
         <div className="guide-breadcrumb"><Link href="/">K Shell</Link><span>/</span> Documentation</div>
-        <h1>Get started with K Shell</h1>
-        <p className="guide-lead">Install K Shell on Windows, choose your appearance, and run your first commands. Follow the five steps below.</p>
-        <nav className="guide-route" aria-label="Guide steps"><a href="#installation"><span className="guide-route-number" aria-hidden="true">1</span><span>Install</span></a><a href="#launch"><span className="guide-route-number" aria-hidden="true">2</span><span>Launch</span></a><a href="#customization"><span className="guide-route-number" aria-hidden="true">3</span><span>Appearance</span></a><a href="#startup"><span className="guide-route-number" aria-hidden="true">4</span><span>Startup</span></a><a href="#commands"><span className="guide-route-number" aria-hidden="true">5</span><span>Commands</span></a></nav>
+        <h1>The K Shell handbook</h1>
+        <p className="guide-lead">Install on Windows, choose a theme, and run your first commands.</p>
+        <nav className="guide-route" aria-label="Guide steps"><a href="#installation">Installation</a><a href="#launch">First session</a><a href="#customization">Appearance</a><a href="#startup">Startup</a><a href="#commands">Commands</a></nav>
         <div className="guide-requirements"><strong>Before you begin</strong><ul><li><Icon name="windows" /> Windows 10 or 11, x64</li><li><Icon name="terminal" /> PowerShell 5.1 or newer</li><li><Icon name="check" /> No admin access or Rust needed</li></ul><p>Windows Terminal is recommended. Already installed? <a href="#customization">Jump to configuration.</a></p></div>
       </section>
 
       <div className="guide-walkthrough">
         <section id="installation" className="guide-step" aria-labelledby="installation-title">
           <span className="guide-step-number" aria-label="Step 1">1</span>
-          <header className="guide-section-heading"><span>Step 1 · Install</span><h2 id="installation-title">Install K Shell</h2><p>Open the Start menu, search for <strong>PowerShell</strong>, and open it. Paste this command and press <kbd>Enter</kbd>.</p></header>
+          <header className="guide-section-heading"><h2 id="installation-title">Install K Shell</h2><p>Open <strong>PowerShell</strong> from the Start menu. Paste this command and press <kbd>Enter</kbd>.</p></header>
           <CodeBlock label="PowerShell · install K Shell" code={INSTALL_COMMAND} />
           <div className="guide-result"><Icon name="check" /><p>When setup finishes, you’ll see <strong>“K Shell is ready.”</strong> Your Windows Terminal profile and user PATH are set up for you.</p></div>
           <details className="guide-details"><summary>What does the installer change?</summary><div><p>It downloads the latest stable GitHub release, verifies its SHA256 checksum, and installs into <code>%LOCALAPPDATA%\Programs\KShell</code>. It adds that folder to your user PATH and creates a K Shell profile in Windows Terminal.</p><p>Your default Terminal profile and command history are preserved. The execution-policy flag applies only to the setup process. This is an unsigned early Windows release.</p><a className="guide-source-link" href={`${GITHUB_REPOSITORY_URL}/blob/main/install.ps1`} target="_blank" rel="noopener noreferrer">Read the installer source</a></div></details>
@@ -37,7 +40,7 @@ export default function Docs() {
 
         <section id="launch" className="guide-step" aria-labelledby="launch-title">
           <span className="guide-step-number" aria-label="Step 2">2</span>
-          <header className="guide-section-heading"><span>Step 2 · Launch</span><h2 id="launch-title">Open your first session</h2><p>Close and reopen your terminal app to refresh PATH. In a new PowerShell or Command Prompt window, run:</p></header>
+          <header className="guide-section-heading"><h2 id="launch-title">Open your first session</h2><p>Close and reopen your terminal app to refresh PATH. In a new PowerShell or Command Prompt window, run:</p></header>
           <CodeBlock label="PowerShell or Command Prompt" code="kshell" />
           <p>Using Windows Terminal? Open its dropdown beside <strong>+</strong> and select <strong>K Shell</strong>. Once you see the <code>›</code> prompt, you’re inside K Shell.</p>
           <div className="guide-prompt-example"><div><span>C:\Users\you</span><p><b>›</b> help<span className="guide-example-caret" /></p></div><span>K Shell</span></div>
@@ -50,25 +53,27 @@ export default function Docs() {
 
         <section id="commands" className="guide-step guide-step-last" aria-labelledby="commands-title">
           <span className="guide-step-number" aria-label="Step 5">5</span>
-          <header className="guide-section-heading"><span>Step 5 · Commands</span><h2 id="commands-title">Try your first commands</h2><p>Start by looking around your current folder. Run each line separately inside K Shell.</p></header>
+          <header className="guide-section-heading"><h2 id="commands-title">Try your first commands</h2><p>Start by looking around your current folder. Run each line separately inside K Shell.</p></header>
           <CodeBlock label="K Shell · explore your files" code={'pwd\nls -la\ntree -L 2'} />
           <h3>Create a small practice project</h3><p>Use a new folder name if <code>kshell-demo</code> already exists. These commands create a folder and write a sample note inside it.</p>
           <CodeBlock label="K Shell · run each line" code={"mkdir kshell-demo\ncd kshell-demo\nwrite notes.txt 'Hello from K Shell'\ncat notes.txt"} />
           <div className="guide-result"><Icon name="check" /><p>You should see <strong>Hello from K Shell</strong> printed below your command.</p></div>
-          <div className="guide-table-scroll"><table><caption>A few commands to keep nearby</caption><thead><tr><th>Command</th><th>Use it to</th></tr></thead><tbody>{[["cd ..", "Go up one folder"], ["history 10", "See your last 10 history entries"], ["theme", "Check your current appearance settings"], ["help", "Browse available commands and shortcuts"], ["exit", "Leave K Shell"]].map(([command, description]) => <tr key={command}><td><code>{command}</code></td><td>{description}</td></tr>)}</tbody></table></div>
+          <div className="guide-table-scroll"><table><caption>A few commands to keep nearby</caption><thead><tr><th>Command</th><th>Use it to</th></tr></thead><tbody>{[["cd ..", "Go up one folder"], ["history 10", "See your last 10 history entries"], ["theme", "Preview, install, and select a prompt theme"], ["theme status", "Check your current appearance settings"], ["help", "Browse available commands and shortcuts"], ["exit", "Leave K Shell"]].map(([command, description]) => <tr key={command}><td><code>{command}</code></td><td>{description}</td></tr>)}</tbody></table></div>
           <p>Installed developer tools come along, too. Try <code>git status</code> in a Git repository, <code>cargo --version</code> if Rust is installed, or <code>code .</code> if you use VS Code.</p>
           <div className="guide-finish"><Icon name="check" /><div><strong>Setup complete</strong><p>Your shell is installed and your preferences are saved.</p></div></div>
         </section>
       </div>
 
       <div className="guide-reference-sections">
+        <KpmGuide />
+        <KreqGuide />
         <section id="shortcuts" className="guide-reference-section"><header className="guide-section-heading"><span>Everyday use</span><h2>Keyboard shortcuts</h2><p>Complete commands, recall history, and move through your input.</p></header><dl className="guide-shortcuts">{[["Tab", "Accept a visible suggestion, or complete and cycle through commands and paths."], ["→", "Accept the suggestion at the end of your input. Enter runs it."], ["↑ / ↓", "Move through command history."], ["Ctrl + R", "Search previous commands."], ["Ctrl + L", "Clear the terminal screen and scrollback."], ["Ctrl + C", "Cancel the current input line."], ["Ctrl + D", "Exit when the input line is empty."]].map(([key, description]) => <div key={key}><dt><kbd>{key}</kbd></dt><dd>{description}</dd></div>)}</dl></section>
 
         <section id="troubleshooting" className="guide-reference-section"><header className="guide-section-heading"><span>Help</span><h2>Troubleshooting</h2><p>Find a fix for common installation and appearance problems.</p></header>
           <details className="guide-details"><summary>“kshell is not recognized” after installation</summary><div><p>Close all windows of your terminal app, then open it again. If the command still isn’t found, test the standard install path from PowerShell:</p><CodeBlock label="PowerShell · check the installed executable" code={'& "$env:LOCALAPPDATA\\Programs\\KShell\\kshell.exe" --help'} /><p>If that works, add <code>%LOCALAPPDATA%\Programs\KShell</code> to your Windows <strong>user</strong> PATH, or rerun the installer. For a custom installation, use its actual path.</p></div></details>
           <details className="guide-details"><summary>The K Shell profile is missing from Windows Terminal</summary><div><p>Restart all Windows Terminal windows. You can still run <code>kshell</code> from PowerShell. To regenerate the profile after a standard installation, run:</p><CodeBlock label="PowerShell · regenerate the Terminal profile" code={'powershell -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\\Programs\\KShell\\Install-KShellProfile.ps1"'} /><p>This restores the installed profile’s Midnight preset. Your executable stays installed. If you have a user override in Terminal settings, check its Command line field as well.</p></div></details>
           <details className="guide-details"><summary>Icons appear as empty squares</summary><div><p>Switch back to standard Unicode icons inside K Shell:</p><CodeBlock label="K Shell" code="theme icons unicode" /><p>For Nerd icons, install and select a compatible Nerd Font Mono in the terminal’s Appearance settings. K Shell does not install fonts. You can also turn icons off with <code>theme icons off</code>.</p></div></details>
-          <details className="guide-details"><summary>My theme changes disappear in a new tab</summary><div><p>The <code>theme</code> command changes the current session. Follow <a href="#startup">step 4</a> to save startup settings. Explicit <code>--theme</code>, <code>--icons</code>, and <code>--suggestions</code> flags override environment defaults.</p></div></details>
+          <details className="guide-details"><summary>My theme changes disappear in a new tab</summary><div><p>The theme picker and <code>theme &lt;design&gt;</code> save your prompt choice automatically. Palette, icon, and suggestion changes apply to the current session; follow <a href="#startup">step 4</a> to save those startup settings. Explicit <code>--theme</code>, <code>--icons</code>, and <code>--suggestions</code> flags override environment defaults.</p><p>If your prompt choice is not saved, check whether <code>KSHELL_CONFIG_DIR</code> is set: an empty value disables persistence; a custom directory must be writable. If <code>theme install</code> is unavailable, close K Shell and rerun the <a href="#installation">installer</a> to update.</p></div></details>
           <details className="guide-details"><summary>How do I update or remove K Shell?</summary><div><p>To update, close your K Shell sessions and run the command from <a href="#installation">step 1</a> again. Setup keeps backups of the previous executable and profile.</p><p>To remove K Shell, follow the <a href="#uninstall">step-by-step uninstall guide</a> below.</p></div></details>
         </section>
 
@@ -94,5 +99,6 @@ export default function Docs() {
         <footer className="guide-footer"><Logo /><p>K Shell documentation</p><a href="#overview">Back to top ↑</a></footer>
       </div>
     </article>
+    <DocsContents />
   </main>;
 }

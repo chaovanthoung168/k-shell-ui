@@ -1,5 +1,211 @@
 # K Shell website
 
+## Restored split hero and terminal rotation
+
+Latest user direction: restore the hero title on the left and the terminal on
+the right, preserving the current terminal design and scroll rotation. Use the
+existing headline, copy, actions, black-and-white colors, and TerminalDemo
+component. Remove the particle wave from this hero composition.
+
+Keep one mounted terminal. Restore the earlier measured scroll handoff into
+the centered workspace dock, including its temporary roll, pitch, and yaw.
+Both endpoints are flat, and pausing or advancing the demo survives the move.
+Use the shared page gutters and a contained two-column desktop layout. Stack
+below 1000px and use ordinary document flow for reduced motion. The terminal
+is also visible in the hero before JavaScript initializes. No terminal skin or
+demo behavior changes are part of this pass.
+Craft process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+
+## Dedicated Features page
+
+Remove the pictured two-column tool walkthrough from Home. Keep Home's short
+feature summaries and link their Kpm and kreq actions to /features/. Add Features
+to the main navigation and footer.
+
+The Features page uses the existing black-and-white identity, interface font,
+and monospace command font. A compact split introduction leads into a six-topic
+feature explorer backed by the existing deterministic browser-shell examples.
+Use one substantial console preview beside quiet selectors, rather than another
+grid of identical cards. Kpm and kreq follow as two horizontal sections, each
+with a compact task selector and one copyable command at a time. Keep the source
+build requirement, placeholder API notice, and links to the full documentation.
+
+Use page #fafafa/#080808, surface #f1f1f1/#121212, ink #171717/#f1f1f1,
+secondary #626262/#a3a3a3, and quiet neutral rules. Stack on mobile, keep task
+controls keyboard reachable, wrap commands, and respect reduced motion.
+This supersedes the earlier homepage tool walkthrough direction below.
+
+## Documentation handbook
+
+The user explicitly requested a more substantial Docs redesign using unslop.
+Use a compact, searchable topic rail; a large handbook opening; a readable
+article; and a contextual contents rail on wide screens. Preserve the content,
+section order, logo, monochrome palette, and existing interface/code typefaces.
+Reduce repeated setup numbers to one sequence within the article. Make the
+initial PowerShell command a dark console surface, with quieter command blocks
+throughout the reference and open, indented response examples. Keep the run
+location visible above every command. Long Kpm and kreq chapters get contextual
+subheading links, consistent spacing, and a clear next-chapter link.
+
+On narrow screens, retain the sticky topic menu, stack the article, wrap code,
+and hide the secondary contents rail. Keep hover, keyboard focus, filtering,
+copy feedback, and reduced-motion behavior. Use 4px spacing steps, 400/500 type
+weights, 8px code corners, neutral hairlines, and three text roles.
+Craft process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+
+## Clean feature section and tool walkthroughs
+
+The latest direction keeps the black-and-white site and three-column feature
+grid, with lighter framing: one rounded terminal preview above each description,
+no enclosing card box, consistent 24px padding, and more space between rows.
+Theme colors stay in the prompt and swatches against nearly neutral surfaces.
+Keep the custom appearance dropdowns and their keyboard controls.
+
+Follow the features with two practical Kpm and kreq walkthroughs. Use numbered
+steps, short explanations, individually copyable commands, and links to the full
+references. Clearly state the updated source-build requirement and mark example
+API URLs as placeholders. Stack the guides on mobile and wrap long commands.
+Use the existing Segoe UI interface family and Consolas/Cascadia code stack.
+Core colors: page #080808, surface #101010, preview #151515, text #f1f1f1,
+secondary #a3a3a3, and hairlines #ffffff17, with the existing light-mode tokens.
+This supersedes the enclosing feature-card frames described below.
+
+## Restored feature-card style
+
+Restore the feature section's earlier three-column desktop grid, equal-sized
+cards, 20px gaps, original rounded previews, type sizes and spacing. Keep its
+current content and interactions. Two columns below 1050px and one below 650px
+remain the original responsive behavior. This supersedes the two-large/four-small
+feature arrangement; the latest hero and terminal directions remain in effect.
+
+## Clean terminal and borderless hero
+
+Latest user direction: simplify the terminal; adapt the hero from
+https://www.pinterest.com/pin/349873464818734441/ while keeping the existing
+black-and-white colors; explicitly remove the enclosing hero border/card frame.
+Use its left copy, right visual, fine geometric linework and restrained scroll
+marker on a continuous page canvas. The visual remains the real terminal, with
+no invented protection features or reference-product branding.
+
+Remove the terminal's command table, counters, secondary title strips and
+decorative window dots. Keep one output area, current path, prompt, reset,
+completion, history and theme controls. Page and terminal still support both
+color modes. Header and hero use the same bounded container and fluid gutters.
+Neither copy nor terminal is placed offscreen. Preserve one mounted session
+during the scroll handoff and the static reduced-motion alternative.
+
+This direction supersedes the earlier framed and trading-interface treatments.
+Craft process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+
+## Contained desktop layout correction
+
+The user's latest screenshot shows clipped copy and a terminal extending past the
+screen. Supersede the offscreen 60vw placement with a real second grid column.
+Header, copy, terminal source, landing and footer share a 20–64px fluid gutter
+and the existing bounded desktop width. Center copy against the fully visible
+terminal, constrain the headline to a readable two-line desktop size, and stack
+below 1000px. Keep the dark terminal treatment, quiet code backdrop and measured
+single-session scroll transition. Root horizontal clipping is defensive; neither
+the headline nor the source panel relies on cropping to fit.
+
+## Reference composition correction
+
+The user rejected the editor-like interpretation and asked to look at the same
+reference again. Match its composition: a flat panel emerging from the lower-right,
+cropped by the viewport edge, with a small frame handle, a single compact app bar,
+a context strip, command/result rows and a dense output area. Remove the file-tree
+sidebar and the initial perspective tilt. A faint static field of shell commands
+and binary text echoes the supplied background while retaining monochrome branding.
+
+Desktop source geometry sits at 60vw and 42% down the hero, with a 760–1200px panel.
+Only the starting preview is cropped. Native scrolling moves the same mounted
+terminal to a fully contained, centered 1120px dock. Temporary rotation is confined
+to the handoff; both endpoints are flat. Mobile and reduced motion retain a fully
+visible ordinary-flow preview. Initial transcript rows come from four real sandbox
+commands; command/result buttons recall actual input without executing it.
+
+Browser verification: initial transform is identity, the page has no horizontal
+overflow, and the landed panel is centered and contained. One prompt, its output,
+and the unsubmitted input remain intact. This supersedes the file-sidebar treatment
+below. Craft process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+
+## Compact terminal workspace
+
+The supplied crop of the trading-platform preview now guides the terminal itself:
+an almost-black panel, compact header and tabs, a narrow left column, fine neutral
+dividers and dense working content. Keep the approved black-and-white branding.
+Translate the reference's product structure into shell content: sample files on
+the left, a bounded command transcript on the right, and Terminal, History and
+Appearance controls above. Retain Windows caption glyphs and the actual K logo.
+
+The file list comes from the demo session's current folder. Folder clicks run cd;
+file clicks run cat against the browser sample filesystem. Recent commands refill
+the prompt without running them. Display up to four transcript entries and scroll
+to the newest output. Keep the sandbox label, completion, palette controls, reset,
+stdin handling, keyboard history and previous/next feature controls available.
+
+Use container queries against the terminal's own width: reduce the sidebar below
+620px and hide it below 440px while keeping the prompt and feature tabs available.
+The same mounted terminal keeps its input, output and theme during the measured
+scroll handoff. Existing reduced-motion and page color-mode behavior remain.
+Craft process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+
+## Trading-interface reference, monochrome adaptation
+
+Reference: https://www.pinterest.com/pin/813392382764988113/ (QClay's trading
+platform). The user approved its dark composition with black and white instead
+of lime, and explicitly retained the terminal's existing scroll movement.
+
+Audit: the hero left excess space around a comparatively small headline;
+terminal labels dropped below 11px; control radii and gaps were inconsistent;
+the feature grid gave every capability the same emphasis; the main headline
+did not name Windows. The working terminal, supplied logo and neutral palette
+were already appropriate. This is a focused reference adaptation, not a new
+product identity.
+
+Product: a native Windows shell for developers.
+Character: precise, technical, direct.
+World: black console surfaces, white type, fine gray borders.
+Moments: the live command window beside the headline and its centered landing.
+Signature: one uninterrupted prompt and command session throughout the scroll.
+
+Passes, in order:
+1. Spacing: 4px rhythm, bounded hero height, matching 96px section spacing and
+   facts separated from the primary actions.
+2. Color: #080808 canvas, #101010 surfaces, #f1f1f1 primary text, #a3a3a3
+   supporting text and white hairlines. Use this ramp through the full homepage.
+   Dark is the initial site mode, while explicit saved light choices remain valid.
+3. Icons: retain the supplied artwork and existing line icons; no new decoration.
+4. Copy: lead with Windows, at your command; remove terminal punctuation from
+   short headings; retain real commands, installation details and all six features.
+5. Type: Segoe UI and Consolas, 400/500 weights, larger command and caption text.
+6. Layout: left headline, right terminal, two lead feature panels above four
+   compact panels. Preserve section order and fluid 27-inch sizing.
+7. Details: squared 8px controls, 12px cards, 4px inner preview corners, visible
+   focus and quiet surface changes.
+8. Visuals: the actual browser terminal is the product visual. No generated
+   scene is needed for this reference, and no image prompt was written.
+9. Motion: preserve the requested single-terminal rotation, reversible scroll
+   journey, command state and reduced-motion fallback. Arrival copy follows the
+   landing. Resolve native scroll padding and margin when measuring the endpoint
+   so the Follow the prompt anchor also completes the journey.
+
+Craft process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+
+## Large desktop displays
+
+For 27-inch displays, grow the shared container smoothly from 1200px at a
+1440px viewport to a 1440px maximum at 1920px and above. Keep the existing
+paper #fff, ink #171717, muted #686868, line #e1e1e1 and dark #080808 palette,
+Segoe UI interface type and Consolas command type. The desktop composition
+stays `[left title and actions | right working terminal]`, followed by the
+centered terminal landing. Scale the hero height with the viewport, bounded
+between 640px and 900px, and grow its headline and landing terminal in proportion.
+Retain compact layouts for short screens and existing mobile breakpoints.
+The Playground fills the viewport below the navbar, with output scrolling
+inside its terminal. Preserve readable documentation line lengths and the
+existing theme, focus and reduced-motion behavior.
+
 ## Compact navbar
 
 Use a consistent 56px header on desktop and 52px on mobile, including Home.
@@ -205,3 +411,41 @@ Refine the technology collection into compact icon-and-caption packets. Stagger 
 The workspace heading stays visually hidden, with its layout space reserved, while the terminal travels. Once the existing terminal-location state reaches workspace, reveal the heading after 120ms, then the subtitle after 260ms and the workspace link after 380ms. Reverse scrolling hides the copy again. The terminal stays mounted through the sequence, and the static reduced-motion fallback remains available.
 
 Remove the homepage's large logo and “For the love of the command line” story teaser, as requested from the supplied screenshot. The homepage now proceeds from installation directly to the shared footer; the About route and navigation remain available.
+
+## Documentation polish
+
+Approved direction: K Shell installation and configuration for Windows users; precise, calm, practical. Keep the monochrome terminal workspace, existing theme preview, and `›` prompt signature. This is a focused polish pass guided by unslop by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)), CC BY 4.0.
+
+Audit: the Appearance navigation row wrapped to 56px while adjacent rows measured 36px; numbered steps repeated their labels above the headings; the mobile introduction delayed the first command. Mobile topic jumps also needed clearance beneath both sticky navigation bars.
+
+| Pass | Result |
+| --- | --- |
+| Spacing | A 256px desktop sidebar and shorter topic labels keep all 11 rows at 36px. Mobile introductory gaps use 8, 12, 16, and 32px steps. |
+| Color | Retained the existing neutral palette and light/dark surfaces. |
+| Icons | Retained the existing line icons; removed the unnecessary boxes around sidebar step numbers. |
+| Copy | Shortened the introduction, installation instruction, and navigation labels while retaining search terms. |
+| Type | Kept Segoe UI and Consolas; step numbers use tabular figures. |
+| Layout | One heading per step replaces the repeated eyebrow label. Number markers align with headings on desktop and mobile. |
+| Details | Mobile topic anchors clear the header and topic bar; existing search, copy controls, and configuration remain interactive. |
+| Visuals | Retained the shell appearance preview and actual command examples. |
+| Motion | Sidebar hover feedback uses the skill's shared easing curve; reduced-motion support remains in place. |
+
+Validation: targeted ESLint and production export with TypeScript pass. Browser checks confirm no horizontal overflow at measured widths of 320, 390, 800, and 1440px; consistent desktop navigation rows; appearance-topic search; mobile menu closure and heading clearance after navigation; installation command copying; synchronized session and startup commands after switching a palette. No browser console errors were observed. No generated imagery was needed.
+
+## Current hero: a flowing particle surface
+
+This revision replaces the terminal scroll handoff with the requested particle wave. Keep K Shell's existing Segoe UI typography, supplied wordmark, product copy and CTA destinations. Desktop pairs left-aligned copy with a broad wave on the right; mobile places the wave below the copy. Keep the surrounding site in its existing light/dark palette.
+
+Hero tokens: navy #080F20, orange #FF9A45, coral #FF6B62, white #F9FAFC, muted text #ACB7CB. The white install button remains the strongest control. The particle surface is the one expressive element: no wireframe edges, extra floating objects, or ornamental labels. The functioning terminal stays centered in the next section.
+
+Render one point cloud with BufferGeometry and GLSL sine deformation through React Three Fiber. Stable attributes hold positions, sizes and colors; frame updates change time and damped pointer uniforms only. Soft circular cores and small halos provide depth without a postprocessing bloom pass. Cap DPR at 1.5 (1.25 on mobile), lower mobile density, and suspend continuous frames while paused, offscreen or hidden. Demand frames keep a paused surface visible during resize. Reduced-motion sessions load the static SVG without the rendering engine. Context loss, shader compilation or renderer failures also show that fallback. Regenerate the static artwork with node scripts/generate-particle-wave.mjs.
+
+Light-mode follow-up: use #F7F9FC for the hero surface and #142139 for text and primary controls, with muted text #526177. Deepen wave colors to #C75A1E, #C44248 and #53627A, switching from additive to normal alpha blending so particles remain visible on the pale background. Use the existing page theme event to update the canvas in place, preserving pause state and motion. The SVG fallback receives a CSS brightness/saturation adjustment in light mode. Dark-mode tokens remain in place. Browser checks cover light/dark switching while paused and the 390px mobile layout, with no overflow or console errors.
+
+## Scroll-driven wave-to-terminal formation
+
+Keep the centered hero and its existing colors. A single point cloud moves from the hero bounds to the actual terminal bounds using measured scroll progress. The shader first pitches the wave downward, then interpolates its projected points into a flat terminal frame, header controls, and sampled command glyphs. The same mounted DOM terminal fades in only after the dots gather; reversing scroll reverses the formation without losing command state. Keep hidden controls inert until the reveal. Suspend continuous GPU frames once the terminal is formed. Without WebGL, with renderer failure, or with reduced motion, use the static wave and a directly available terminal. Browser checks confirm intermediate particle formation, completed terminal command execution, reverse-scroll state retention, mobile light mode, and no console errors or horizontal overflow.
+
+## Automatic home terminal feature tour
+
+The home terminal is now a read-only presentation. Render typed commands as text, with no input, form, editing handler or run button. Eight scenes cover completion, navigation, file tools, syntax colors, history, appearance, KPM and kreq. Resolve supported examples against the existing isolated browser shell engine. Native source-build KPM/kreq scenes show labelled example output and link to their documentation; no tool installation or HTTP request runs. Start playback only when the terminal is visible and the particle formation has revealed it. Preserve playback through reverse scroll, pause offscreen and in hidden tabs, and provide pause/resume, next-feature and restart controls. Reduced-motion mode shows complete static examples. Keep the Playground interactive and direct users there for typing. Browser verification confirms automatic results, zero editable home fields, source-build labelling, 390px light-mode layout without overflow, and successful typed command execution in the separate Playground.

@@ -34,6 +34,8 @@ export function Icon({name}: {name:string}) {
     download: <path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/>,
     book: <path d="M12 6v15m0-15C8 3 5 3 2 4v15c4-1 6-1 10 2 4-3 6-3 10-2V4c-3-1-6-1-10 2Z"/>,
     code: <path d="m7 7-5 5 5 5m10-10 5 5-5 5M14 4l-4 16"/>,
+    folder: <path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>,
+    file: <><path d="M14 3H5v18h14V8l-5-5Z"/><path d="M14 3v5h5M8 13h8M8 17h6"/></>,
     spark: <path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2ZM20 2v4m-2-2h4"/>,
     palette: <><path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-3.7 1.8 1.8 0 0 1 1-3.3h3a3 3 0 0 0 3-3c0-4.4-4-8-9-8Z"/><path d="M7 10h.01M10 6.5h.01M15 7h.01M6.5 14h.01" strokeWidth="3"/></>,
     history: <path d="M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v6l4 2"/>,

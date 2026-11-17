@@ -59,7 +59,7 @@ export default function About() {
         </figure>
       </section>
 
-      <nav className="container about-page-nav" aria-label="On this page"><span>Get to know K Shell</span><a href="#project">The idea</a><a href="#technology">The technology</a><a href="#architecture">Under the hood</a><a href="#roadmap">What’s next</a></nav>
+      <nav className="container about-page-nav" aria-label="On this page"><span>Get to know K Shell</span><a href="#project">The idea</a><a href="#technology">The technology</a><a href="#architecture">Under the hood</a></nav>
 
       <section id="project" className="container about-story">
         <div><span className="section-kicker">A familiar feeling, built from the ground up.</span><h2>The shell should<br />meet you halfway.</h2></div>
@@ -80,8 +80,6 @@ export default function About() {
       </section>
 
       <section id="architecture" className="container about-architecture"><div className="architecture-intro"><span className="section-kicker">Under the hood</span><h2>One command.<br />Clear responsibilities.</h2><p>The interactive layer, language, and Windows integration each have their place. Here’s how the pieces fit together.</p><Link href="/docs/#commands" className="text-link">Try your first command <Arrow /></Link></div><div className="architecture-layers">{layers.map((layer) => <article key={layer.title}><span className="architecture-icon"><Icon name={layer.icon} /></span><div><code>{layer.location}</code><h3>{layer.title}</h3><p>{layer.text}</p></div></article>)}</div></section>
-
-      <section id="roadmap" className="container about-progress"><div className="section-heading"><div><span className="section-kicker">An open project. A clear direction.</span><h2>A useful foundation.<br />More to build.</h2></div><p>K Shell is in active development.<br />Here’s what’s available and what’s ahead.</p></div><div className="progress-columns"><article><span className="progress-label"><span className="status-dot" /> In the current build</span><h3>Ready for your next session.</h3><ul><li>Linux-style file and directory commands</li><li>Native Windows application execution</li><li>Completion, suggestions, and persistent history</li><li>Ocean, Dusk, and Midnight appearance options</li></ul></article><article><span className="progress-label future"><Icon name="code" /> Future direction</span><h3>A more expressive shell.</h3><ul><li>Pipes and file redirection</li><li>Variables and aliases</li><li>A fuller shell scripting language</li></ul><p>These are planned capabilities and are not implemented in the current build.</p></article></div></section>
 
       <section className="container about-open-source"><div className="open-source-mark"><Logo /></div><div><span className="section-kicker">Free to use. Open to possibility.</span><h2>Your next idea starts<br />with a fresh prompt.</h2><p>Explore the docs, build it yourself, and make K Shell part of your workflow.</p><div className="open-source-actions"><Link className="button button-primary" href="/docs/#installation">Get started with K Shell <Arrow /></Link><a className="text-link" href="/LICENSE.txt">Read the MIT license <Arrow /></a></div></div></section>
     </main>

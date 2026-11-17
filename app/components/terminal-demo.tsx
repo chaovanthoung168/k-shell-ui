@@ -1,146 +1,130 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon, Logo } from "./ui";
+import { DEMO_FEATURES, resolveDemoFeature } from "./terminal-demo-data";
+import styles from "./terminal-demo.module.css";
 
-const examples = {
-  Completion: { command: "ls", lines: ["  src/       tests/       Cargo.toml", "  README.md  Cargo.lock  LICENSE"] },
-  History: { command: "history 3", lines: ["  1  cargo build", "  2  theme dusk", "  3  ls"] },
-  Themes: { command: "theme dusk", lines: ["  Theme set to Dusk", "  Ocean, Dusk, Midnight — your choice"] },
-};
-type Mode = keyof typeof examples;
-
-const sequence: { mode: Mode; command: string; lines: string[] }[] = [
-  { mode: "Completion", command: "cargo build --release", lines: ["  Demo: release build complete", "  Run Cargo in K Shell to build your project"] },
-  { mode: "History", ...examples.History },
-  { mode: "Themes", ...examples.Themes },
-];
-
-function subscribeMotion(callback: () => void) {
-  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-  media.addEventListener("change", callback);
-  return () => media.removeEventListener("change", callback);
+function CommandText({ text }: { text: string }) {
+  const [command = "", ...rest] = text.split(" ");
+  return <><span className={styles.commandName}>{command}</span>{rest.length > 0 && <> {rest.join(" ").split(/("[^"]*"|'[^']*')/g).map((part, index) => <span key={index} className={/^["']/.test(part) ? styles.string : undefined}>{part}</span>)}</>}</>;
 }
 
 export function TerminalDemo() {
-  const terminalRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [mode, setMode] = useState<Mode>("Completion");
-  const [input, setInput] = useState("");
-  const [response, setResponse] = useState<string[] | null>(null);
-  const [lastCommand, setLastCommand] = useState<string | null>(null);
-  const [theme, setTheme] = useState("dusk");
-  const [autoPlay, setAutoPlay] = useState(true);
-  const reducedMotion = useSyncExternalStore(subscribeMotion, () => window.matchMedia("(prefers-reduced-motion: reduce)").matches, () => true);
-  const playing = autoPlay && !reducedMotion && visible;
+  const host = useRef<HTMLDivElement>(null);
+  const output = useRef<HTMLDivElement>(null);
+  const [featureIndex, setFeatureIndex] = useState(0);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [typed, setTyped] = useState(0);
+  const [phase, setPhase] = useState<"typing" | "complete">("typing");
+  const [paused, setPaused] = useState(false);
+  const [eligible, setEligible] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  const feature = DEMO_FEATURES[featureIndex];
+  const steps = useMemo(() => resolveDemoFeature(feature), [feature]);
+  const current = steps[stepIndex];
+  const shown = reduced ? steps : steps.slice(0, stepIndex + (phase === "complete" ? 1 : 0));
+  const last = shown.at(-1);
+  const typing = !reduced && phase === "typing";
+  const text = typing ? current.command.slice(0, typed) : "";
+  const completing = typing && !!current.completePrefix && typed === current.completePrefix.length;
 
   useEffect(() => {
-    const terminal = terminalRef.current;
-    if (!terminal) return;
-    const observer = new IntersectionObserver(entries => {
-      setVisible(entries.some(entry => entry.isIntersecting));
-    }, { threshold: .2 });
-    observer.observe(terminal);
-    return () => observer.disconnect();
+    const element = host.current;
+    if (!element) return;
+    const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    const container = element.closest("#terminal-preview") ?? element.parentElement!;
+    let inView = false;
+    function update() { setEligible(inView && !document.hidden && !element!.closest("[inert]")); }
+    function preference() { setReduced(motion.matches); }
+    const observer = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting && entry.intersectionRatio >= 0.25; update(); }, { threshold: 0.25 });
+    observer.observe(element);
+    const attributes = new MutationObserver(update);
+    attributes.observe(container, { attributes: true, attributeFilter: ["inert", "aria-hidden"] });
+    document.addEventListener("visibilitychange", update);
+    motion.addEventListener("change", preference);
+    preference();
+    return () => {
+      observer.disconnect();
+      attributes.disconnect();
+      document.removeEventListener("visibilitychange", update);
+      motion.removeEventListener("change", preference);
+    };
   }, []);
 
   useEffect(() => {
-    if (!playing) return;
-    let tick = 0;
-    let scene = 0;
-    const timer = window.setInterval(() => {
-      const current = sequence[scene];
-      tick += 1;
-      // Let the terminal's entrance finish before the first keystroke.
-      if (tick <= 9) return;
-      const length = tick - 9;
-      if (length <= current.command.length) {
-        setInput(current.command.slice(0, length));
-      } else if (length === current.command.length + 7) {
-        setLastCommand(current.command);
-        setMode(current.mode);
-        setResponse(current.lines);
-        if (current.mode === "Themes") setTheme("dusk");
-        setInput("");
-      } else if (length > current.command.length + 35) {
-        if (scene === sequence.length - 1) {
-          setAutoPlay(false);
-          window.clearInterval(timer);
-          return;
-        }
-        tick = 0;
-        scene += 1;
-      }
-    }, 85);
-    return () => window.clearInterval(timer);
-  }, [playing]);
-
-  function togglePlayback() {
-    if (autoPlay) {
-      setAutoPlay(false);
-      return;
+    if (!eligible || paused || reduced) return;
+    let delay: number;
+    let advance: () => void;
+    if (phase === "typing" && typed < current.command.length) {
+      delay = completing ? 600 : 50;
+      advance = () => setTyped(completing ? current.completion!.length : typed + 1);
+    } else if (phase === "typing") {
+      delay = 500;
+      advance = () => setPhase("complete");
+    } else {
+      delay = Math.min(4200, 1800 + current.output.split("\n").length * 180);
+      advance = () => {
+        if (stepIndex + 1 < steps.length) setStepIndex(stepIndex + 1);
+        else { setFeatureIndex(value => (value + 1) % DEMO_FEATURES.length); setStepIndex(0); }
+        setTyped(0);
+        setPhase("typing");
+      };
     }
-    setMode("Completion");
-    setInput("");
-    setResponse(null);
-    setLastCommand(null);
-    setAutoPlay(true);
+    const timer = setTimeout(advance, delay);
+    return () => clearTimeout(timer);
+  }, [eligible, paused, reduced, phase, typed, current, completing, stepIndex, steps.length, featureIndex]);
+
+  useEffect(() => {
+    if (output.current) output.current.scrollTop = output.current.scrollHeight;
+  }, [featureIndex, stepIndex, phase, reduced]);
+
+  function selectFeature(index: number) {
+    setFeatureIndex(index);
+    setStepIndex(0);
+    setTyped(0);
+    setPhase("typing");
+    setPaused(false);
   }
 
-  function run() {
-    setAutoPlay(false);
-    const command = input.trim();
-    if (!command) return;
-    setLastCommand(command);
-    if (command === "clear") setResponse([]);
-    else if (command.startsWith("echo ")) setResponse([command.slice(5).replace(/^["']|["']$/g, "")]);
-    else if (command === "cargo build --release") setResponse(["Demo: release build complete.", "Run cargo in K Shell to build your own project."]);
-    else if (command === "ls") setResponse(examples.Completion.lines);
-    else if (command === "pwd") setResponse(["C:\\Users\\you\\projects\\k-shell"]);
-    else if (command === "help") setResponse(["Try: ls, pwd, echo hello, history, clear", "Or: theme ocean, theme dusk, theme midnight"]);
-    else if (command.startsWith("history")) setResponse(examples.History.lines);
-    else if (["theme ocean", "theme dusk", "theme midnight"].includes(command)) {
-      setTheme(command.split(" ")[1]);
-      setResponse([`Theme set to ${command.split(" ")[1]}.`]);
-    } else setResponse(["This is a browser preview. Try help for demo commands."]);
-    setInput("");
+  function nextFeature() {
+    setFeatureIndex(value => (value + 1) % DEMO_FEATURES.length);
+    setStepIndex(0);
+    setTyped(0);
+    setPhase("typing");
+    setPaused(false);
   }
 
-  return (
-    <div ref={terminalRef} className={`terminal-window theme-${theme}`}>
-      <div className="wt-titlebar">
-        <div className="wt-tab"><Logo /><span>K Shell</span><svg className="wt-tab-close" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 5 6 6m0-6-6 6" /></svg></div>
-        <div className="wt-new-tab" aria-hidden="true"><span>+</span><svg viewBox="0 0 16 16"><path d="m5 6 3 3 3-3" /></svg></div>
-        <span className="wt-executable">kshell.exe</span>
-        <div className="wt-caption-controls" aria-hidden="true">
-          <span><svg viewBox="0 0 16 16"><path d="M3 8h10" /></svg></span>
-          <span><svg viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" /></svg></span>
-          <span><svg viewBox="0 0 16 16"><path d="m3.5 3.5 9 9m0-9-9 9" /></svg></span>
+  return <div ref={host} className={styles.preview} data-demo-feature={featureIndex} data-demo-phase={phase}>
+    <div className={styles.window} data-palette={last?.palette ?? "ocean"}>
+      <div className={styles.titlebar}>
+        <div className={styles.brand}><Logo /><span>K Shell</span></div>
+        <span className={styles.featureName}>{feature.name}</span>
+      </div>
+      <div className={styles.location}><code>{last?.path ?? "C:\\Playground\\k-shell"}</code><span>{feature.sourceOnly ? "Illustrative output" : "Sample workspace"}</span></div>
+      <div ref={output} className={styles.output} role="region" aria-label="Automatic terminal demo output" tabIndex={0}>
+        {shown.length ? shown.map((entry, index) => <div className={styles.entry} key={`${featureIndex}-${index}`}>
+          <div className={styles.previousCommand}><span aria-hidden="true">›</span><code><CommandText text={entry.command} /></code></div>
+          {entry.output && <pre>{entry.output}</pre>}
+        </div>) : <p className={styles.empty}>Watch K Shell’s features in action.</p>}
+      </div>
+      <div className={styles.promptArea}>
+        <div className={styles.commandPreview} aria-label="Automatically typed command">
+          <span className={styles.promptSymbol} aria-hidden="true">›</span>
+          <div className={styles.inputWrap}><code><CommandText text={text} /></code>{completing && <span className={styles.ghost}>{current.completion?.slice(typed)}</span>}{!reduced && <span className={styles.caret} data-running={eligible && !paused} aria-hidden="true" />}</div>
+          {completing && <kbd className={styles.tabHint}>Tab</kbd>}
+        </div>
+        <p className={styles.description} role="status" aria-live="polite">{feature.description}</p>
+      </div>
+      <div className={styles.statusbar}>
+        <div className={styles.status}>{feature.sourceOnly ? <Link href={`/docs/#${feature.docs}`}>Source build example</Link> : <span>{reduced ? "Static feature demo" : "Automatic feature demo"}</span>}<span>{featureIndex + 1} / {DEMO_FEATURES.length}</span></div>
+        <div className={styles.controls}>
+          {!reduced && <button type="button" onClick={() => setPaused(value => !value)} aria-label={paused ? "Resume automatic demo" : "Pause automatic demo"} aria-pressed={paused}>{paused ? "Resume" : "Pause"}</button>}
+          <button type="button" onClick={nextFeature}>Next feature</button>
+          <button type="button" onClick={() => selectFeature(0)} aria-label="Restart automatic demo" title="Restart demo"><Icon name="history" /></button>
         </div>
       </div>
-      <div className="terminal-body">
-        <div className="terminal-welcome"><Logo /><div><strong>K Shell on Windows</strong><span>Interactive command preview</span></div><span className="terminal-live"><span className="status-dot" /> Ready</span></div>
-        <div className="terminal-path"><Icon name="terminal" /> ~\projects\k-shell <span>main</span></div>
-        <div className="terminal-command"><span className="prompt">›</span> {lastCommand ?? examples[mode].command}</div>
-        <div className="terminal-output" aria-live={playing ? "off" : "polite"}>{(response ?? examples[mode].lines).map((line, i) => <div key={i}>{line}</div>)}</div>
-        <div className="terminal-path second-path"><Icon name="terminal" /> ~\projects\k-shell <span>main</span></div>
-        <form className="terminal-input-line" onSubmit={event => { event.preventDefault(); run(); }}>
-          <span className="prompt">›</span>
-          <div className="terminal-input-wrap">
-            <input aria-label="Try a demo shell command" autoComplete="off" spellCheck={false} value={input} placeholder={playing ? "" : "Try help, ls, or theme dusk"} onFocus={() => setAutoPlay(false)} onChange={event => setInput(event.target.value)} onKeyDown={event => {
-              if (event.key === "Tab" && (input.startsWith("cargo b") || (!input && mode === "Completion"))) { event.preventDefault(); setInput("cargo build --release"); }
-              if (event.key === "ArrowUp") { event.preventDefault(); setInput("ls"); }
-            }} />
-            {playing && !input && <span className="terminal-cursor" aria-hidden="true" />}
-          </div>
-          <button aria-label="Run demo command" title="Run demo command">↵</button>
-        </form>
-        <div className="terminal-tip">Interactive preview. Click the prompt and try a command.</div>
-      </div>
-      <div className="terminal-tabs" role="group" aria-label="Terminal preview examples">
-        <button className="animation-toggle" aria-label={playing ? "Pause terminal animation" : "Play terminal animation"} disabled={reducedMotion} onClick={togglePlayback}><Icon name={playing ? "pause" : "play"} /><span>{reducedMotion ? "Motion off" : playing ? "Pause demo" : "Play demo"}</span></button>
-        {(Object.keys(examples) as Mode[]).map(tab => <button key={tab} aria-pressed={mode === tab} onClick={() => { setAutoPlay(false); setMode(tab); setLastCommand(null); setResponse(null); setInput(""); if (tab === "Themes") setTheme("dusk"); }}>{tab}</button>)}
-      </div>
     </div>
-  );
+  </div>;
 }

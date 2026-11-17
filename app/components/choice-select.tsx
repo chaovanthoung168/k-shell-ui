@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Icon } from "./ui";
 import styles from "./choice-select.module.css";
 
-type Choice = { value: string; label: string; description?: string; color?: string };
+type Choice = { value: string; label: string; description?: string; color?: string; preview?: ReactNode };
 
 export function ChoiceSelect({ label, value, options, onChange, disabled = false }: {
   label: string;
@@ -64,7 +64,7 @@ export function ChoiceSelect({ label, value, options, onChange, disabled = false
     {expanded && <div className={styles.list} id={`${id}-list`} role="listbox" aria-label={label}>
       {options.map((option, index) => <div id={`${id}-option-${index}`} key={option.value} role="option" aria-selected={option.value === value} data-active={active === index} className={styles.option} onPointerMove={() => setActive(index)} onMouseDown={(event) => event.preventDefault()} onClick={() => choose(index)}>
         {option.color && <i className={styles.swatch} style={{ background: option.color }} aria-hidden="true" />}
-        <span><span>{option.label}</span>{option.description && <small>{option.description}</small>}</span><span className={styles.check}>{option.value === value && <Icon name="check" />}</span>
+        <span><span>{option.label}</span>{option.description && <small>{option.description}</small>}</span>{option.preview && <span className={styles.preview} aria-hidden="true">{option.preview}</span>}<span className={styles.check}>{option.value === value && <Icon name="check" />}</span>
       </div>)}
     </div>}
   </div>;

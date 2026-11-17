@@ -99,16 +99,6 @@
 .architecture-layers code { font-size: 12px; color: var(--accent); }
 .architecture-layers h3 { font-size: 20px; letter-spacing: -.3px; margin: 7px 0 10px; }
 .architecture-layers p { font-size: 16px; line-height: 1.85; }
-.about-progress { padding-block: 55px 70px; border-top: 1px solid var(--line); }
-.progress-columns { display: grid; grid-template-columns: repeat(2,1fr); gap: 55px; }
-.progress-columns article { border-top: 1px solid var(--line); padding-top: 24px; }
-.progress-label { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; color: var(--accent); }
-.progress-label.future { color: var(--slate); }
-.progress-label svg { width: 14px; height: 14px; }
-.progress-columns h3 { font-size: 26px; margin: 18px 0; letter-spacing: -.7px; }
-.progress-columns ul { padding-left: 17px; margin: 0; color: var(--slate); font-size: 16px; line-height: 2.2; }
-.progress-columns li::marker { color: var(--accent); font-size: 12px; }
-.progress-columns p { font-size: 14px; line-height: 1.8; margin-top: 17px; max-width: 350px; }
 .about-open-source { display: flex; gap: 37px; align-items: center; border-top: 1px solid var(--line); padding-block: 49px 70px; }
 .open-source-mark { display: grid; place-items: center; width: 100px; height: 100px; border: 1px solid var(--line); background: var(--surface); border-radius: 20px; flex-shrink: 0; }
 .open-source-mark svg { width: 53px; height: 43px; }
@@ -190,8 +180,6 @@
   .architecture-layers h3 { font-size: 18px; }
   .architecture-layers p { font-size: 14px; }
   .architecture-layers article:not(:last-child) .architecture-icon:after { height: 95px; }
-  .progress-columns { gap: 35px; }
-  .progress-columns h3 { font-size: 23px; }
   .about-open-source { gap: 30px; }
   .about-open-source h2 { font-size: 31px; }
 }
@@ -257,10 +245,6 @@
   .architecture-layers p { font-size: 16px; }
   .architecture-layers code { font-size: 12px; }
   .architecture-layers article:not(:last-child) .architecture-icon:after { height: 80px; }
-  .about-progress { padding-block: 40px; }
-  .progress-columns { grid-template-columns: 1fr; gap: 28px; }
-  .progress-columns h3 { font-size: 24px; }
-  .progress-columns ul { font-size: 16px; }
   .about-open-source { align-items: flex-start; gap: 20px; padding-block: 35px 45px; flex-direction: column; }
   .open-source-mark { width: 57px; height: 57px; border-radius: 11px; }
   .open-source-mark svg { width: 30px; height: 27px; }
@@ -282,7 +266,6 @@
 .build-tooling p,
 .architecture-intro > p,
 .architecture-layers p,
-.progress-columns ul,
 .about-open-source p { font-size: 16px; line-height: 1.8; }
 .about-intro-copy > p { font-size: 18px; }
 .dependency-title { flex-wrap: wrap; gap: 5px 12px; }

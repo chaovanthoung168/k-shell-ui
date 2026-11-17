@@ -1,0 +1,13 @@
+.artwork { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
+.artwork::after { content: ""; position: absolute; inset: 0; opacity: var(--wave-scrim-opacity, 1); background: radial-gradient(ellipse 52% 46% at 50% 44%, color-mix(in srgb, var(--hero-bg) 92%, transparent), color-mix(in srgb, var(--hero-bg) 60%, transparent) 48%, transparent 100%); }
+.visual { position: absolute; inset: calc(-5% * (1 - var(--particle-progress, 0))) calc(-4% * (1 - var(--particle-progress, 0))); opacity: .9; mask-image: radial-gradient(ellipse 76% 68% at center, #000 36%, transparent 94%); }
+.artwork[data-morphing="true"] .visual { mask-image: none; }
+.visual > div { position: absolute !important; inset: 0; }
+.fallback { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+.hidden { visibility: hidden; }
+:global([data-theme="light"]) .fallback { filter: brightness(.56) saturate(1.45); }
+@media (max-width: 700px) {
+  .visual { inset: calc(-4% * (1 - var(--particle-progress, 0))) calc(-45% * (1 - var(--particle-progress, 0))); }
+  .artwork::after { background: radial-gradient(ellipse 80% 45% at 50% 42%, color-mix(in srgb, var(--hero-bg) 94%, transparent), color-mix(in srgb, var(--hero-bg) 65%, transparent) 55%, transparent 100%); }
+}
+@media (prefers-reduced-motion: reduce) { .fallback { visibility: visible; } }

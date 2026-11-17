@@ -1,0 +1,41 @@
+.section { padding-block: 48px 64px; scroll-margin-top: 88px; }
+.heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; padding-top: 40px; margin-bottom: 24px; border-top: 1px solid var(--line); }
+.heading h2 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.12; letter-spacing: -.03em; font-weight: 400; }
+.heading > p { font-size: 15px; line-height: 1.7; padding-bottom: 4px; }
+.availability { max-width: 80ch; color: var(--slate); font-size: 13px; line-height: 24px; }
+.availability a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.availability a svg { width: 14px; height: 14px; }
+.guides { margin-top: 48px; }
+.guide { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); align-items: start; gap: 80px; padding-bottom: 48px; scroll-margin-top: 96px; }
+.guide + .guide { border-top: 1px solid var(--line); padding-top: 48px; }
+.guideHeading { min-width: 0; }
+.toolName { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--slate); font-size: 13px; }
+.toolName svg { width: 16px; height: 16px; }
+.guideHeading h3 { font: 400 40px/48px var(--mono); letter-spacing: -.03em; }
+.guideHeading p { max-width: 36ch; margin-top: 16px; font-size: 16px; line-height: 1.7; }
+.guideLink { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 20px; color: var(--ink); font-size: 14px; }
+.guideLink:hover { text-decoration: underline; text-underline-offset: 4px; }
+.guideLink svg { width: 16px; height: 16px; }
+.recipe { min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.recipeTabs { display: flex; gap: 24px; padding: 0 24px; border-bottom: 1px solid var(--line); }
+.recipeTabs button { position: relative; min-height: 48px; padding: 12px 0; background: transparent; color: var(--slate); font-size: 14px; }
+.recipeTabs button:hover { color: var(--ink); }
+.recipeTabs button[aria-pressed="true"] { color: var(--ink); }
+.recipeTabs button[aria-pressed="true"]::after { content: ""; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--ink); }
+.recipeBody { min-height: 236px; padding: 24px 24px 16px; }
+.recipeBody h4 { margin: 0; color: var(--ink); font-size: 16px; line-height: 24px; font-weight: 500; }
+.recipeBody > p { max-width: 64ch; margin-top: 8px; font-size: 14px; line-height: 1.7; }
+.example { position: relative; margin-top: 20px; }
+.command { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.command > span { color: var(--slate); font-family: var(--mono); line-height: 24px; }
+.command code { flex: 1; min-width: 0; padding-block: 2px; color: var(--ink); font-size: 13px; line-height: 20px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.command button { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; margin: -4px; border-radius: 4px; color: var(--slate); background: transparent; }
+.command button:hover { color: var(--ink); background: var(--surface-hover); }
+.command button svg { width: 16px; height: 16px; }
+.copyStatus { display: block; min-height: 16px; margin-top: 4px; color: var(--slate); font-size: 12px; line-height: 16px; }
+.note { margin: 0 24px; border-top: 1px solid var(--line); }
+.note summary { min-height: 44px; padding: 12px 0; cursor: pointer; color: var(--slate); font-size: 13px; }
+.note p { margin-bottom: 20px; color: var(--slate); font-size: 13px; line-height: 1.7; }
+.section a:focus-visible, .section button:focus-visible, .section summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media (max-width: 1000px) { .guide { gap: 40px; } }
+@media (max-width: 700px) { .section { padding-block: 16px 40px; } .heading { display: block; padding-top: 32px; } .heading > p { margin-top: 20px; } .guides { margin-top: 32px; } .guide { grid-template-columns: 1fr; gap: 24px; padding-bottom: 32px; } .guide + .guide { padding-top: 32px; } .guideHeading p { max-width: none; } .guideHeading h3 { font-size: 32px; line-height: 40px; } .guideLink { margin-top: 12px; } .recipeBody { min-height: 240px; padding: 20px 16px 12px; } .recipeTabs { padding-inline: 16px; } .command { gap: 8px; padding: 12px; } .command button { width: 44px; height: 44px; margin: -8px -4px -8px 0; } .note { margin-inline: 16px; } }

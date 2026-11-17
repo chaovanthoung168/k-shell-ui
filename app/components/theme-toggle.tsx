@@ -39,21 +39,15 @@ export function ThemeToggle() {
   );
 
   useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
     sessionPreference = readPreference();
-    const followSystem = () => {
-      if (!sessionPreference) applyTheme(media.matches ? "dark" : "light");
-    };
     const syncStorage = (event: StorageEvent) => {
       if (event.key !== storageKey && event.key !== null) return;
       sessionPreference = isTheme(event.newValue) ? event.newValue : null;
-      applyTheme(sessionPreference ?? (media.matches ? "dark" : "light"));
+      applyTheme(sessionPreference ?? "dark");
     };
-    applyTheme(sessionPreference ?? (media.matches ? "dark" : "light"));
-    media.addEventListener("change", followSystem);
+    applyTheme(sessionPreference ?? "dark");
     window.addEventListener("storage", syncStorage);
     return () => {
-      media.removeEventListener("change", followSystem);
       window.removeEventListener("storage", syncStorage);
     };
   }, []);

@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   allowedDevOrigins: ["127.0.0.1"],
-  /* config options here */
+  // Export all pages, including Features, for static hosting.
   experimental: {
     agentFeedback: true,
   },

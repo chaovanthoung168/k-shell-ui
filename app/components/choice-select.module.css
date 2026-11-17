@@ -1,17 +1,21 @@
 .root { --choice-bg: var(--terminal-top, var(--paper)); --choice-fg: var(--terminal-text, var(--ink)); --choice-muted: var(--terminal-muted, var(--slate)); --choice-border: var(--terminal-border, var(--line)); --choice-hover: var(--terminal-selection, var(--surface-hover)); position: relative; min-width: 0; font-family: var(--sans); color: var(--choice-fg); }
-.trigger { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 40px; padding: 8px 12px; border: 1px solid var(--choice-border); border-radius: 8px; color: inherit; background: var(--choice-bg); font: inherit; font-size: 14px; line-height: 20px; text-align: left; cursor: pointer; transition: background-color 120ms, border-color 120ms; }
+.root:has(.trigger[aria-expanded="true"]) { z-index: 2; }
+.trigger { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 40px; padding: 8px var(--choice-padding, 12px); border: 1px solid var(--choice-border); border-radius: 8px; color: inherit; background: var(--choice-bg); font: inherit; font-size: var(--choice-font-size, 14px); line-height: 20px; text-align: left; cursor: pointer; transition: background-color 120ms, border-color 120ms; }
 .trigger > span { flex: 1; }
 .trigger:hover:not(:disabled), .trigger[aria-expanded="true"] { background: var(--choice-hover); }
 .trigger:disabled { opacity: .5; cursor: default; }
 .trigger:focus-visible { outline: 2px solid var(--terminal-accent, var(--blue)); outline-offset: 3px; }
 .chevron { width: 16px; height: 16px; flex-shrink: 0; color: var(--choice-muted); }
+.trigger[aria-expanded="true"] .chevron { transform: rotate(180deg); }
 .swatch { display: block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.list { position: absolute; top: calc(100% + 8px); right: 0; z-index: 50; width: max(100%, 208px); max-width: calc(100vw - 48px); padding: 4px; border: 1px solid var(--choice-border); border-radius: 12px; background: var(--choice-bg); box-shadow: 0 8px 24px #00000012; }
+.list { position: absolute; top: calc(100% + 8px); inset-inline: var(--choice-list-start, auto) var(--choice-list-end, 0); z-index: 50; width: max(100%, var(--choice-list-width, 208px)); max-width: calc(100vw - 48px); padding: 4px; border: 1px solid var(--choice-border); border-radius: 12px; background: var(--choice-menu-bg, var(--choice-bg)); box-shadow: 0 8px 24px #00000012; }
 .option { display: flex; align-items: center; gap: 12px; min-height: 40px; padding: 8px 12px; border-radius: 8px; font-size: 14px; line-height: 20px; cursor: pointer; }
 .option[data-active="true"] { background: var(--choice-hover); outline: 1px solid var(--choice-border); outline-offset: -1px; }
 .option[aria-selected="true"] { color: var(--choice-fg); font-weight: 500; }
 .option > span:first-of-type { flex: 1; }
 .option small { display: block; color: var(--choice-muted); font-size: 12px; font-weight: 400; line-height: 20px; }
+.preview { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; flex-shrink: 0; color: var(--choice-muted); font-family: var(--mono); }
+.preview svg { width: 16px; height: 16px; }
 .check { display: block; width: 16px; height: 16px; flex-shrink: 0; }
 .check svg { width: 16px; height: 16px; }
 @media (max-width: 760px) { .trigger, .option { min-height: 44px; } }

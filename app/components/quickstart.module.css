@@ -1,20 +1,20 @@
 .section { padding-block: 112px; }
 .content { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); column-gap: 80px; max-width: none; margin-inline: auto; }
 .heading { grid-column: 1; grid-row: 1 / span 5; text-align: left; margin-bottom: 0; }
-.heading h2 { font-size: clamp(44px, 4.7vw, 64px); font-weight: 400; line-height: 1.06; letter-spacing: -.04em; }
+.heading h2 { font-size: clamp(44px, 4.7vw, 64px); font-weight: 500; line-height: 1.06; letter-spacing: -.04em; }
 .heading > p { margin: 24px 0; max-width: 32ch; font-size: 16px; line-height: 1.8; }
 .commandBox, .installNote, .launch, .footer { grid-column: 2; }
 .platform { display: inline-flex; align-items: center; gap: 8px; color: var(--slate); font-size: 13px; }
 .platform svg { width: 15px; height: 15px; }
 .commandBox { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
-.commandHeader { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 22px 0; }
+.commandHeader { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px 0; }
 .commandHeader > span { display: inline-flex; align-items: center; gap: 8px; color: var(--slate); font-size: 13px; }
 .commandHeader > span svg { width: 16px; height: 16px; }
-.commandBox pre { margin: 0; padding: 23px 26px 30px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15px; line-height: 2; color: var(--ink); border-radius: 0 0 12px 12px; }
+.commandBox pre { margin: 0; padding: 24px 24px 32px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15px; line-height: 2; color: var(--ink); border-radius: 0 0 12px 12px; }
 .commandBox pre:focus-visible { outline-offset: -4px; }
 .commandBox code { font-size: inherit; }
 .copyControl { display: inline-flex; position: relative; flex-shrink: 0; }
-.primaryCopy, .copyButton { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; padding: 8px 11px; border: 1px solid transparent; border-radius: 6px; font-size: 12px; line-height: 1.5; }
+.primaryCopy, .copyButton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 36px; padding: 8px 12px; border: 1px solid transparent; border-radius: 8px; font-size: 12px; line-height: 1.5; }
 .primaryCopy { background: var(--soft-accent); color: var(--accent); }
 .primaryCopy:hover { background: var(--surface-hover); }
 .copyButton { color: var(--slate); background: transparent; }
@@ -26,9 +26,9 @@
 .launch { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; margin-top: 24px; border-bottom: 1px solid var(--line); }
 .launch > div:first-child { min-width: 0; }
 .launch h3 { font-size: 18px; line-height: 1.5; font-weight: 500; letter-spacing: -.3px; }
-.launch p { margin-top: 7px; max-width: 48ch; font-size: 14px; line-height: 1.8; }
+.launch p { margin-top: 8px; max-width: 48ch; font-size: 14px; line-height: 1.8; }
 .launch p code { font-size: 13px; background: transparent; padding: 0; color: var(--ink); }
-.launchCommand { display: flex; flex-shrink: 0; align-items: center; gap: 12px; min-height: 49px; padding: 5px 7px 5px 15px; border-radius: 7px; background: var(--surface); }
+.launchCommand { display: flex; flex-shrink: 0; align-items: center; gap: 12px; min-height: 48px; padding: 4px 8px 4px 16px; border-radius: 8px; background: var(--surface); }
 .launchCommand > span { font-family: var(--mono); font-size: 23px; color: var(--accent); line-height: 1; }
 .launchCommand > code { font-size: 15px; }
 .footer { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 16px 32px; padding-top: 24px; }

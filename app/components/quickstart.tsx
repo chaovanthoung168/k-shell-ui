@@ -52,7 +52,7 @@ export function Quickstart() {
         <p className={styles.installNote}>No Rust installation or administrator access needed.</p>
 
         <div className={styles.launch}>
-          <div><h3>Then, open a new terminal.</h3><p>Run <code>kshell</code> or choose the K Shell profile in Windows Terminal.</p></div>
+          <div><h3>Then, open a new terminal</h3><p>Run <code>kshell</code> or choose the K Shell profile in Windows Terminal.</p></div>
           <div className={styles.launchCommand}><span aria-hidden="true">›</span><code>kshell</code><CopyCommand command="kshell" label="launch command" /></div>
         </div>
 

@@ -5,9 +5,13 @@
   --text-small: 14px;
   --text-caption: 12px;
   --header-height: 56px;
+  --layout-width: clamp(1200px, calc(50vw + 480px), 1440px);
+  --page-gutter: clamp(20px, 4vw, 64px);
 }
 
-html { scroll-padding-top: calc(var(--header-height) + 16px); }
+.container { max-width: var(--layout-width); width: calc(100% - 2 * var(--page-gutter)); }
+
+html { scroll-padding-top: calc(var(--header-height) + 16px); overflow-x: clip; }
 .site-header { height: var(--header-height); }
 .brand .brand-wordmark { display: block; width: 120px; height: 52.5px; }
 .site-header .brand .brand-wordmark { width: 96px; height: 42px; }
@@ -42,7 +46,7 @@ body { font-size: 17px; }
 .quickstart > div > p,
 .about-strip p,
 .feature-detail p,
-.footer-top p { font-size: var(--text-body); line-height: 1.8; }
+.footer-top p { font-size: var(--text-body); line-height: 1.8; max-width: 44ch; }
 .advantage-list h3 { font-size: 20px; }
 .feature-detail h3 { font-size: 30px; }
 .feature-option { font-size: var(--text-control); }

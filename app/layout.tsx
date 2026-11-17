@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   icons: { icon: "/kshell-icon.svg" },
 };
 
-const themeScript = `(function(){var t;try{t=localStorage.getItem('kshell-color-mode')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t})()`;
+const themeScript = `(function(){var t;try{t=localStorage.getItem('kshell-color-mode')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.dataset.theme=t})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

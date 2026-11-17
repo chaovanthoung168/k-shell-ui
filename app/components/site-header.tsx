@@ -19,7 +19,7 @@ export function SiteHeader() {
           <Wordmark />
         </Link>
         <nav aria-label="Main navigation" className={open ? "navigation is-open" : "navigation"}>
-          {[["/", "Home"], ["/playground/", "Playground"], ["/docs/", "Docs"], ["/about/", "About"]].map(([href, label]) => (
+          {[["/", "Home"], ["/features/", "Features"], ["/playground/", "Playground"], ["/docs/", "Docs"], ["/about/", "About"]].map(([href, label]) => (
             <Link key={href} href={href} aria-current={(href === "/" ? pathname === "/" : pathname.startsWith(href.slice(0, -1))) ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>
           ))}
         </nav>
