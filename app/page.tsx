@@ -1,9 +1,33 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, Icon } from "./components/ui";
 import { Hero } from "./components/hero";
 import { FeatureCards } from "./components/feature-cards";
 import { Quickstart } from "./components/quickstart";
 import styles from "./home.module.css";
+
+const sharingTitle = "K Shell — Windows, at your command";
+const sharingDescription = "K Shell is a fast, customizable, open-source shell built with Rust. Linux-style commands, smart autocompletion and syntax highlighting, right in your Windows terminal.";
+
+export const metadata: Metadata = {
+  description: sharingDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "K Shell",
+    title: sharingTitle,
+    description: sharingDescription,
+    images: [{ url: "/social-preview.png", width: 1200, height: 630, type: "image/png", alt: "K Shell logo over the homepage particle wave, with the headline Windows, at your command." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: sharingTitle,
+    description: sharingDescription,
+    images: [{ url: "/social-preview.png", alt: "K Shell — Windows, at your command" }],
+  },
+};
 
 export default function Home() {
   return (

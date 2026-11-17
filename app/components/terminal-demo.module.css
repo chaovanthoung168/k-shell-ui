@@ -10,7 +10,7 @@
 .location { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 36px; margin-inline: 24px; color: var(--demo-muted); }
 .location code { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
 .location > span { flex-shrink: 0; font-family: var(--sans); font-size: 11px; }
-.output { height: 248px; padding: 16px 24px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--demo-line) transparent; font-family: var(--mono); }
+.output { height: 248px; padding: 16px 24px; overflow: auto; overscroll-behavior: auto; scrollbar-width: thin; scrollbar-color: var(--demo-line) transparent; font-family: var(--mono); }
 .output:focus-visible { outline-offset: -4px; }
 .entry + .entry { margin-top: 20px; }
 .previousCommand { display: flex; align-items: baseline; gap: 12px; color: var(--demo-ink); font-size: 15px; line-height: 24px; }
@@ -51,5 +51,7 @@
   .statusbar { padding-inline: 16px; }
   .controls { gap: 20px; }
 }
+/* Keep page swipes over the read-only output on phones and touch devices. */
+@media (any-pointer: coarse) { .output { overflow-y: hidden; } }
 @media (pointer: coarse) { .controls button { min-height: 44px; } }
 @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }

@@ -7,6 +7,7 @@ import "./window-theme.css";
 import "./typography.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://k-shell-windows.berrylorikeet8.chatgpt.site"),
   title: { default: "K Shell — A familiar shell for Windows", template: "%s | K Shell" },
   description: "A modern, customizable Windows shell built with Rust. Discover native commands, intelligent completion, syntax highlighting, and persistent history.",
   icons: { icon: "/kshell-icon.svg" },
